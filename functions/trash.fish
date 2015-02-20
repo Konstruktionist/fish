@@ -5,4 +5,3 @@ function trash -d "empty all the Trash and the asl logs"
 	sudo rm -rfv ~/.Trash
 	sudo rm -rfv /private/var/log/asl/*.asl
 end
-
