@@ -11,7 +11,7 @@ function ii --description 'display useful host related informaton'
 	# set nloc (scselect)
 	set ip (curl -s ip.appspot.com)
 
-	echo -e "\nYou are logged onto$cur_host"
+	echo -e "\nYou are logged onto: $cur_host"
 	echo -e "\nAdditionnal information:\n $kerninfo"
 	echo -e "\nUsers logged on: "; w -h; echo -e
 	echo -e "Current date:\n $datum"

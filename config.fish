@@ -16,7 +16,7 @@ set -Ux EDITOR mate
 if status --is-login
 	set PATH /usr/local/sbin $PATH
    # Add bin in home directory to $PATH
-   # set PATH $HOME/bin $PATH
+   set PATH $HOME/bin $PATH
 end
 
 # expose PATH to graphical apps
