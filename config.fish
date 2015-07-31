@@ -52,9 +52,3 @@ setenv -x GREP_OPTIONS "--color=auto"
 
 # tell slrn what the default news server is
 # setenv -x NNTPSERVER "reader.extremeusenet.nl"
-
-# Latest build on OS X yosemite causes disk errors #1859
-# this is a temporary fix for 2.1.1
-function on_exit --on-process %self
-  rm /tmp/fish.$USER/fishd.socket
-end
