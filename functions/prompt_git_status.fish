@@ -1,4 +1,6 @@
 # Copied from https://github.com/sgoumaz/dotfiles
+# to get the sha1 value of a branch use:
+#     git rev-parse --short HEAD
 
 set -gx fish_prompt_git_status_added '+'
 set -gx fish_prompt_git_status_modified '•'
@@ -7,10 +9,10 @@ set -gx fish_prompt_git_status_copied '»'
 set -gx fish_prompt_git_status_deleted '–'
 set -gx fish_prompt_git_status_untracked '?'
 set -gx fish_prompt_git_status_unmerged '!'
-
 set -gx fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
 
 function prompt_git_status --description 'Write out the git status'
+  set -l gitsha (git rev-parse --short HEAD ^/dev/null)
   set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
   if test -z $branch
     return
@@ -22,6 +24,12 @@ function prompt_git_status --description 'Write out the git status'
 
   if test -z "$index"
     set_color $fish_color_git_clean; echo -n $branch
+
+    echo -n ' '
+
+    echo -n $gitsha
+
+    echo -n ' '
 
     set_color $fish_color_separator; echo -n '['
 
@@ -60,6 +68,16 @@ function prompt_git_status --description 'Write out the git status'
 
   echo -n $branch
 
+  if test -n "$gitsha"
+
+     echo -n ' '
+
+     echo -n $gitsha
+
+     echo -n ' '
+
+  end
+
   set_color $fish_color_separator; echo -n '['
 
   for i in $fish_prompt_git_status_order
@@ -75,28 +93,3 @@ function prompt_git_status --description 'Write out the git status'
 
   set_color normal
 end
-
-
-# # Fish git prompt
-# set __fish_git_prompt_showdirtystate 'yes'
-# set __fish_git_prompt_showstashstate 'yes'
-# set __fish_git_prompt_showuntrackedfiles 'yes'
-# set __fish_git_prompt_showupstream 'auto'
-# set -g __fish_git_prompt_showupstream "informative"
-# set __fish_git_prompt_color_branch yellow
-# set __fish_git_prompt_color_upstream_ahead green
-# set __fish_git_prompt_color_upstream_behind red
-#
-# # Status Chars
-# set __fish_git_prompt_char_dirtystate '⚡'
-# set __fish_git_prompt_char_stagedstate '→'
-# set __fish_git_prompt_char_untrackedfiles '☡'
-# set __fish_git_prompt_char_stashstate '↩'
-# set __fish_git_prompt_char_upstream_ahead '+'
-# set __fish_git_prompt_char_upstream_behind '-'
-#
-# function prompt_git_status --description 'Write out the git status'
-#  printf '%s ' (__fish_git_prompt)
-#
-#   set_color normal
-# end
