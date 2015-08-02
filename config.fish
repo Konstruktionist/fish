@@ -1,9 +1,9 @@
 #!/usr/bin/env fish
 
 # ---------------------------------------------------------
-# 
+#
 # 	Setting up the fish shell to my liking
-# 
+#
 # ---------------------------------------------------------
 
 # Set architecture flags
