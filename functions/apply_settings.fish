@@ -1,3 +1,4 @@
+# Source https://github.com/sgoumaz/dotfiles/blob/master/apply-settings.fish
 function apply_settings -d 'setup fish universal variables'
 
 	# setup fish universal variables

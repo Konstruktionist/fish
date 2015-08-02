@@ -1,3 +1,3 @@
 function vimrc
-   command vim ~/.vimrc
+   command vim ~/Gitrepos/vim/vimrc
 end
