@@ -1,26 +1,38 @@
 # Copied from https://github.com/sgoumaz/dotfiles
-# to get the sha1 value of a branch use:
-#     git rev-parse --short HEAD
+#
+# Added comments so I know what's going on a few weeks from now
+# Added SHA1 value code
 
 set -gx fish_prompt_git_status_added '+'
 set -gx fish_prompt_git_status_modified '•'
 set -gx fish_prompt_git_status_renamed '›'
 set -gx fish_prompt_git_status_copied '»'
-set -gx fish_prompt_git_status_deleted '–'
+set -gx fish_prompt_git_status_deleted '-'
 set -gx fish_prompt_git_status_untracked '?'
 set -gx fish_prompt_git_status_unmerged '!'
 set -gx fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
 
 function prompt_git_status --description 'Write out the git status'
+
+  # Get the SHA1 value of a branch and keep it hidden if we're not in a git repo
+
   set -l gitsha (git rev-parse --short HEAD ^/dev/null)
+
+  # Get the branch name and keep it hidden if we're not in a git repo
+
   set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
   if test -z $branch
     return
   end
 
+  # If used in fish_right_prompt, comment out next line
   set_color $fish_color_separator; echo -n ':'
 
+  # Get the status of the repo and keep it hidden if we're not in a git repo, to see if there are any changes, NOT counting occurences
+
   set -l index (git status --porcelain ^/dev/null|cut -c 1-2|sort -u)
+
+  # We are in a clean repo
 
   if test -z "$index"
     set_color $fish_color_git_clean; echo -n $branch
@@ -40,6 +52,8 @@ function prompt_git_status --description 'Write out the git status'
     set_color normal
     return
   end
+
+  # Handling dirty repo's
 
   set -l gs
   set -l staged
