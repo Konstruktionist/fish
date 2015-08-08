@@ -20,7 +20,7 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_param 5f87af
 	set -U fish_color_quote d7af5f
 	set -U fish_color_redirection normal
-	set -U fish_color_search_match --background=yellow
+	set -U fish_color_search_match --background=c2804e
 	set -U fish_color_status 5f0000
 	set -U fish_color_user 5f875f
 	set -U fish_color_valid_path --underline
