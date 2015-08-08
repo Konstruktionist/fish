@@ -1,34 +1,38 @@
 function getnet -d "get network information"
 
-  set QUERY0 (ipconfig getpacket en0)
-  set QUERY1 (ipconfig getpacket en1)
-  set ETH_MAC0 (ifconfig en0 | grep ether | awk '{print $2}')
-  set ETH_MAC1 (ifconfig en1 | grep ether | awk '{print $2}')
+  set QUERY0 (ipconfig getpacket en0) # Query Ethernet
+  set QUERY1 (ipconfig getpacket en1) # Query Wifi
+  set ETH_MAC0 (ifconfig en0 | grep ether | awk '{print $2}') # Ethernet MAC address
+  set WIFI_MAC1 (ifconfig en1 | grep ether | awk '{print $2}') # Wifi MAC address
 
   set PUBLIC (curl -s http://checkip.dyndns.org | awk '{print $6}' | awk 'BEGIN {FS = "<"} {print $1}')
+
+  # ciaddr = Client IP Address (DHCP)
+  # yiaddr = Your IP Address (DHCP)
+
   set ETH_IP1 (ipconfig getpacket en0 | grep ciaddr | awk '{print $3}')
   set ETH_IP2 (ipconfig getpacket en0 | grep yiaddr | awk '{print $3}')
   set ETH_SUBNET (ipconfig getpacket en0 | grep 'subnet_mask (ip):' | awk '{print $3}')
   set ETH_ROUTER (ipconfig getpacket en0 | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
   set ETH_DNS (ipconfig getpacket en0 | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
   set ETH_SPEED (ifconfig en0 | grep media: | sed 's/.*(//' | sed 's/ .*//' | sed 's/baseT/ MBit\/s/')
-  set WI_IP1 (ipconfig getpacket en1 | grep ciaddr | awk '{print $3}')
-  set WI_IP2 (ipconfig getpacket en1 | grep yiaddr | awk '{print $3}')
-  set WI_SUBNET (ipconfig getpacket en1 | grep 'subnet_mask (ip):' | awk '{print $3}')
-  set WI_ROUTER (ipconfig getpacket en1 | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
-  set WI_DNS (ipconfig getpacket en1 | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
-  set WI_SPEED (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep lastTxRate: | sed 's/.*: //' | sed 's/$/ MBit\/s/')
+  set WIFI_IP1 (ipconfig getpacket en1 | grep ciaddr | awk '{print $3}')
+  set WIFI_IP2 (ipconfig getpacket en1 | grep yiaddr | awk '{print $3}')
+  set WIFI_SUBNET (ipconfig getpacket en1 | grep 'subnet_mask (ip):' | awk '{print $3}')
+  set WIFI_ROUTER (ipconfig getpacket en1 | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
+  set WIFI_DNS (ipconfig getpacket en1 | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
+  set WIFI_SPEED (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep lastTxRate: | sed 's/.*: //' | sed 's/$/ MBit\/s/')
 
 
   echo $QUERY0 | grep 'BOOTREPLY' > /dev/null
-  set ET $status # Exit status van vorige regel, Ethernet aanwezig
+  set ETH $status # Exit status from previous line, Ethernet active?
 
   echo $QUERY1 | grep 'BOOTREPLY' > /dev/null
-  set WI $status  # Exit status van vorige regel, Wifi aanwezig
+  set WIFI $status  # Exit status from previous line, Wifi active?
 
   echo " "
 
-  if test $ET -a $WI
+  if test $ETH -a $WIFI
     echo "     Public IP: $PUBLIC"
   end
 
@@ -38,7 +42,7 @@ function getnet -d "get network information"
   echo  "Wired Ethernet (en0)"
   echo "--------------------"
 
-  if test $ET -eq 0
+  if test $ETH -eq 0
     echo $QUERY0 | grep 'yiaddr = 0.0.0.0' > /dev/null
     set AT $status
     if test $AT -eq 0
@@ -46,7 +50,7 @@ function getnet -d "get network information"
       else
         echo "   IP Address: $ETH_IP2 (DHCP)"
     end
-    # end
+
     echo "  Subnet Mask: $ETH_SUBNET"
     echo "       Router: $ETH_ROUTER"
     echo "   DNS Server: $ETH_DNS"
@@ -54,8 +58,8 @@ function getnet -d "get network information"
     echo "        Speed: $ETH_SPEED"
 
    else
-    if test $ET -a 0
-      echo "  IP Address: inactive"
+    if test $ETH -a 0
+      echo "   IP Address: inactive"
       echo "  MAC Address: $ETH_MAC0"
     end
   end
@@ -64,27 +68,26 @@ function getnet -d "get network information"
   echo "Wireless Ethernet (en1)"
   echo "-----------------------"
 
-  if test $WI -eq 0
+  if test $WIFI -eq 0
     echo $QUERY1 | grep 'yiaddr = 0.0.0.0' > /dev/null
     set AT $status
     if test $AT -eq 0
-        echo "   IP Address: $WI_IP1 (Static)"
+        echo "   IP Address: $WIFI_IP1 (Static)"
       else
-        echo "   IP Address: $WI_IP2 (DHCP)"
+        echo "   IP Address: $WIFI_IP2 (DHCP)"
     end
-    # end
-    echo "  Subnet Mask: $WI_SUBNET"
-    echo "       Router: $WI_ROUTER"
-    echo "   DNS Server: $WI_DNS"
-    echo "  MAC Address: $ETH_MAC1"
-    echo "        Speed: $WI_SPEED"
+
+    echo "  Subnet Mask: $WIFI_SUBNET"
+    echo "       Router: $WIFI_ROUTER"
+    echo "   DNS Server: $WIFI_DNS"
+    echo "  MAC Address: $WIFI_MAC1"
+    echo "        Speed: $WIFI_SPEED"
 
     else
-      if test  $WI -a 0
-        echo "  IP Address: inactive"
-        echo "  MAC Address: $ETH_MAC1"
+      if test  $WIFI -a 0
+        echo "   IP Address: inactive"
+        echo "  MAC Address: $WIFI_MAC1"
     end
   end
   echo " "
 end
-
