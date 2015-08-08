@@ -16,7 +16,7 @@ function ip -d 'get ip address info'
 
    if test -z $external
    else
-      printf '%sExtern    : %s%s%s\n' (set_color yellow) (set_color normal) $external
+      printf '%sPublic    : %s%s%s\n' (set_color yellow) (set_color normal) $external
    end
 
    printf '%sDNS       : %s%s%s\n' (set_color yellow) (set_color normal) $DNS
