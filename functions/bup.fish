@@ -1,9 +1,15 @@
 function bup -d 'Brew update & upgrade'
 
-	echo -e '==> Updating Brew ...\n'
+	set_color yellow;
+	echo -e '\n==> Updating Brew ...'
+	set_color normal;
 	brew update;
+	set_color yellow;
+   echo -e '\n==> Upgrading Brew ...'
+	set_color normal;
 	brew upgrade;
-   echo -e '\n==> Cleaning up Brew ...\n'
+	set_color yellow;
+   echo -e '\n==> Cleaning up Brew ...'
+	set_color normal;
    brew cleanup;
-
 end
