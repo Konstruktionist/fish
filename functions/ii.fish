@@ -18,6 +18,6 @@ function ii --description 'display useful host related informaton'
 	echo -e "\nMachine stats:\n $stats"
 	echo -e "\nCurrent network location: "; scselect; echo -e
 	echo -e "Public facing IP Address:\n $ip"
-	echo -e ;scutil --dns
+	echo -e ; scutil --dns
 	echo
 end
