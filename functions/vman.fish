@@ -1,4 +1,4 @@
-# bash, zsh
+##!bin/bash
 #  vman() {
 #   vim -c "SuperMan $*"
 #
