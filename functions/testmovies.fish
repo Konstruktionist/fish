@@ -1,3 +1,8 @@
+# A script to extract dates from filenames and put those in the date created & modified metadata
+#
+# A work in progress
+#
+
 function testmovies
 
 	# Get a list of possibleCandidates
