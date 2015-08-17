@@ -5,7 +5,7 @@ function getnet -d "get network information"
   set ETH_MAC0 (ifconfig en0 | grep ether | awk '{print $2}') # Ethernet MAC address
   set WIFI_MAC1 (ifconfig en1 | grep ether | awk '{print $2}') # Wifi MAC address
 
-  set PUBLIC (curl -s http://checkip.dyndns.org | awk '{print $6}' | awk 'BEGIN {FS = "<"} {print $1}')
+  set PUBLIC (curl -s http://ipecho.net/plain)
 
   # ciaddr = Client IP Address (DHCP)
   # yiaddr = Your IP Address (DHCP)
