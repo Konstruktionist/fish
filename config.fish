@@ -7,7 +7,7 @@
 # ---------------------------------------------------------
 
 # Set architecture flags
-set -gx ARCHFLAGS "-arch x86_64"
+set -Ux ARCHFLAGS "-arch x86_64"
 
 # Set the editor
 set -Ux EDITOR mate
@@ -31,24 +31,18 @@ complete -c unmark -f -a '(ls ~/.marks)'
 
 # LESS with colors
 # from http://blog.0x1fff.com/2009/11/linux-tip-color-enabled-pager-less.html
-set -x LESS "-RSM~gIsw"
+set -Ux LESS "-RSM~gis"
 
 # Colorful man pages
 # from http://pastie.org/pastes/206041/text
-setenv -x LESS_TERMCAP_mb (set_color -o red)
-setenv -x LESS_TERMCAP_md (set_color -o red)
-setenv -x LESS_TERMCAP_me (set_color normal)
-setenv -x LESS_TERMCAP_se (set_color normal)
-setenv -x LESS_TERMCAP_so (set_color -b yellow -o black)
-setenv -x LESS_TERMCAP_ue (set_color normal)
-setenv -x LESS_TERMCAP_us (set_color -o green)
+setenv -x LESS_TERMCAP_mb (set_color red)                # begin blinking
+setenv -x LESS_TERMCAP_md (set_color red)                # begin bold
+setenv -x LESS_TERMCAP_so (set_color -b yellow -o black) # begin standout-mode - info box
+setenv -x LESS_TERMCAP_us (set_color green)              # begin underline
+setenv -x LESS_TERMCAP_se (set_color normal)             # end standout-mode
+setenv -x LESS_TERMCAP_ue (set_color normal)             # end underline
+setenv -x LESS_TERMCAP_me (set_color normal)             # end mode
 
 # grep colors
-setenv -x GREP_COLOR '0;30;43' # black foreground, yellow background
+setenv -x GREP_COLOR '0;30;43' # black text, yellow background
 setenv -x GREP_OPTIONS "--color=auto"
-
-# setup syntax highlighting for cheatsheets
-# set -Ux CHEATCOLORS true
-
-# tell slrn what the default news server is
-# setenv -x NNTPSERVER "reader.extremeusenet.nl"
