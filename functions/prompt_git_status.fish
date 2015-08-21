@@ -2,9 +2,14 @@
 #
 # Added comments so I know what's going on a few weeks from now
 # Added SHA1 value code
+# ---------------------------------------------------------------------------------------------------------------------
+
+#
+#  How to get the change count into the prompt?
+#   Also how to get the ahead and behind count?
 
 set -gx fish_prompt_git_status_added '+'
-set -gx fish_prompt_git_status_modified '•'
+set -gx fish_prompt_git_status_modified '~'
 set -gx fish_prompt_git_status_renamed '›'
 set -gx fish_prompt_git_status_copied '»'
 set -gx fish_prompt_git_status_deleted '-'
