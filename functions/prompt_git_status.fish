@@ -44,7 +44,7 @@ function prompt_git_status --description 'Write out the git status'
 
     echo -n ' '
 
-    echo -n $gitsha
+    set_color 808080; echo -n $gitsha; set_color normal
 
     echo -n ' '
 
@@ -91,7 +91,7 @@ function prompt_git_status --description 'Write out the git status'
 
      echo -n ' '
 
-     echo -n $gitsha
+    set_color 808080; echo -n $gitsha; set_color normal
 
      echo -n ' '
 
