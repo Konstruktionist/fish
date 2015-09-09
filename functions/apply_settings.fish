@@ -8,7 +8,7 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_autosuggestion 909090 --backgound=fae3a0
 	set -U fish_color_command 6193bc
 	set -U fish_color_comment 808080
-	set -U fish_color_cwd 5faf00
+	set -U fish_color_cwd 5f8700 # green
 	set -U fish_color_cwd_root b91e2e
 	set -U fish_color_error d14548 --bold
 	set -U fish_color_escape af5f5f
@@ -16,11 +16,11 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_host 5f87af
 	set -U fish_color_match d7d7d7 --background=303030
 	set -U fish_color_normal d2c5bc
-	set -U fish_color_operator d7d7d7
-	set -U fish_color_param 0087ff
+	set -U fish_color_operator 81957c # Terminal green
+	set -U fish_color_param 87afff
 	set -U fish_color_quote fae3a0
 	set -U fish_color_redirection cb1ed1
-	set -U fish_color_search_match --background=c2804e
+	set -U fish_color_search_match --background=fae3a0  # yelllow background
 	set -U fish_color_status b91e2e
 	set -U fish_color_user 5f875f
 	set -U fish_color_valid_path --underline
@@ -28,11 +28,11 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_dimmed 555
 	set -U fish_color_separator 999
 
-	set -U fish_color_git_clean 5faf00      # green
+	set -U fish_color_git_clean 5f8700      # green
 	set -U fish_color_git_staged fae3a0     # yellow
 	set -U fish_color_git_dirty d14548      # red
 
-	set -U fish_color_git_added 5faf00      # green
+	set -U fish_color_git_added 5f8700      # green
 	set -U fish_color_git_copied magenta
 	set -U fish_color_git_deleted 666
 	set -U fish_color_git_modified 6193bc   # blue
