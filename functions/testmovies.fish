@@ -1,30 +1,44 @@
-# A script to extract dates from filenames and put those in the date created & modified metadata
+# A script to extract the height of a movie file & if it's over 720
+#  put their names in a file for further processing with Don Melton's
+#   transcode-video tools
 #
-# A work in progress
+# It's working!! 11-10-2015
 #
 
-function testmovies
+function testmovies -d 'find HD movies > 720p'
 
-	# Get a list of possibleCandidates
+	for file in *.mkv
+		set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
+    if test $film_Height -gt 720
+       echo $file >> queue.txt
+    end
+	end
 
-	ls *.mkv *.m4v *.avi > possibleCandidates
+  for file in *.m4v
+    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
+    if test $film_Height -gt 720
+       echo $file >> queue.txt
+    end
+  end
 
-	# use possibleCandidates file as input for mediaInfo
+  for file in *.avi
+    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
+    if test $film_Height -gt 720
+       echo $file >> queue.txt
+    end
+  end
 
-		for file in possibleCandidates
-			mediainfo | grep 'Height*>720'
-         # for val in Height*; echo $val; end
-			# if 'Height' > 720
-			# 	file > finalCandidates
-			# end
-		end
+  for file in *.ts
+    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
+    if test $film_Height -gt 720
+       echo $file >> queue.txt
+    end
+  end
 
-
-	#    if ((kMDItemPixelHeight > '720')) < possibleCandidates
-	#         echo Found fish
-	# else if grep bash /etc/shells
-	#         echo Found bash
-	# else
-	#         echo Got nothing
-	# end
+  for file in *.mov
+    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
+    if test $film_Height -gt 720
+       echo $file >> queue.txt
+    end
+  end
 end
