@@ -14,9 +14,7 @@ set -Ux EDITOR subl
 
 #	Add /usr/local/bin/ to our $PATH as a first entry for commands
 if status --is-login
-	set PATH /usr/local/sbin $PATH
-   # Add bin in home directory to $PATH
-   set PATH $HOME/bin $PATH
+	set PATH /usr/local/bin $PATH
 end
 
 # expose PATH to graphical apps
