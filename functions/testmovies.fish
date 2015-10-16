@@ -65,7 +65,7 @@ function testmovies -d 'find HD movies >= 720p'
   end
 
   if test -f queue.txt
-    # Add 0 to awk result to be sure its a number.  See: man awk -> BUGS
+    # Add 0 to awk result to be sure it's a number.  See: man awk -> BUGS
     set -l num_of_files (awk 'END{print NR}+0' queue.txt)
     echo -n "HD movies added to queue.txt: "; set_color yellow; echo $num_of_files; set_color normal
   else
