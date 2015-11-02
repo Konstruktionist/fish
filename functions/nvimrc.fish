@@ -1,4 +1,4 @@
 function nvimrc
-   command nvim ~/.nvimrc
+   command nvim ~/.config/nvim/nvimrc
 end
 
