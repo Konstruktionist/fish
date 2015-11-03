@@ -3,10 +3,8 @@ function apply_settings -d 'setup fish universal variables'
 
 	# setup fish universal variables
 
-	# set -U EDITOR 'subl -w'
-
 	set -U fish_color_autosuggestion 909090 --backgound=fae3a0
-	set -U fish_color_command 6193bc
+	set -U fish_color_command 5fafff
 	set -U fish_color_comment 808080
 	set -U fish_color_cwd 5f8700 # green
 	set -U fish_color_cwd_root b91e2e
@@ -20,7 +18,7 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_param 87afff
 	set -U fish_color_quote fae3a0
 	set -U fish_color_redirection cb1ed1
-	set -U fish_color_search_match --background=fae3a0  # yelllow background
+	set -U fish_color_search_match --background=b91e2e  # red background
 	set -U fish_color_status b91e2e
 	set -U fish_color_user 5f875f
 	set -U fish_color_valid_path --underline
@@ -39,8 +37,6 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_git_renamed magenta
 	set -U fish_color_git_unmerged fae3a0   # yellow
 	set -U fish_color_git_untracked d14548  # red
-
-	# set -U fish_greeting ""
 
 	set -U fish_pager_color_completion normal
 	set -U fish_pager_color_description 555 yellow
