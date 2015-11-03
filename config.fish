@@ -7,15 +7,15 @@
 # ---------------------------------------------------------
 
 # Set architecture flags
-set -Ux ARCHFLAGS "-arch x86_64"
+set -U ARCHFLAGS "-arch x86_64"
 
 # Set the editor
-set -Ux EDITOR subl
+set -U EDITOR mate
 
 #	Add /usr/local/bin/ to our $PATH as a first entry for commands
-if status --is-login
-	set PATH /usr/local/bin $PATH
-end
+# if status --is-login
+#   set PATH /usr/local/bin $PATH
+# end
 
 # expose PATH to graphical apps
 launchctl setenv PATH $PATH
@@ -38,7 +38,7 @@ setenv -gx LESS_TERMCAP_md (set_color d14548)             # begin bold (red)
 setenv -gx LESS_TERMCAP_me (set_color normal)             # end mode
 setenv -gx LESS_TERMCAP_so (set_color -b yellow -o black) # begin standout-mode - info box
 setenv -gx LESS_TERMCAP_se (set_color normal)             # end standout-mode
-setenv -gx LESS_TERMCAP_us (set_color green)              # begin underline
+setenv -gx LESS_TERMCAP_us (set_color 6193bc)             # begin underline (blue)
 setenv -gx LESS_TERMCAP_ue (set_color normal)             # end underline
 
 # grep colors
