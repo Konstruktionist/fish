@@ -5,8 +5,8 @@
 #       dependency: mediainfo
 #       =====================
 #
-#   version 1.1
-#   16-10-2015
+#   version 1.2
+#   24-11-2015
 #
 #   mediainfo returns Height if it's over 999 with a space in it (like '1 080')
 #   awk grabs the fields 3,4 & 5 and concatenates it to a string ending in
@@ -22,47 +22,12 @@ function testmovies -d 'find HD movies >= 720p'
     echo -n ''
   end
 
-  for file in *.mkv
+  for file in *.mkv  *.m4v *.avi *.ts *.mov *.wmv
     set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
     if test $film_Height -gt 719
        echo $file >> queue.txt
     end
 	end
-
-  for file in *.m4v
-    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
-    if test $film_Height -gt 719
-       echo $file >> queue.txt
-    end
-  end
-
-  for file in *.avi
-    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
-    if test $film_Height -gt 719
-       echo $file >> queue.txt
-    end
-  end
-
-  for file in *.ts
-    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
-    if test $film_Height -gt 719
-       echo $file >> queue.txt
-    end
-  end
-
-  for file in *.mov
-    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
-    if test $film_Height -gt 719
-       echo $file >> queue.txt
-    end
-  end
-
-  for file in *.wmv
-    set film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
-    if test $film_Height -gt 719
-       echo $file >> queue.txt
-    end
-  end
 
   if test -f queue.txt
     # Add 0 to awk result to be sure it's a number.  See: man awk -> BUGS
