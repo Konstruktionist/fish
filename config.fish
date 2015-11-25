@@ -33,13 +33,13 @@ set -gx LESS "-RSM~gis"
 
 # Colorful man pages
 # from http://pastie.org/pastes/206041/text
-setenv -gx LESS_TERMCAP_mb (set_color d14548)             # begin blinking (red)
-setenv -gx LESS_TERMCAP_md (set_color d14548)             # begin bold (red)
-setenv -gx LESS_TERMCAP_me (set_color normal)             # end mode
-setenv -gx LESS_TERMCAP_so (set_color -b yellow -o black) # begin standout-mode - info box
-setenv -gx LESS_TERMCAP_se (set_color normal)             # end standout-mode
-setenv -gx LESS_TERMCAP_us (set_color 6193bc)             # begin underline (blue)
-setenv -gx LESS_TERMCAP_ue (set_color normal)             # end underline
+setenv -gx LESS_TERMCAP_mb (printf "\e[1;31m")        # begin blinking (red)
+setenv -gx LESS_TERMCAP_md (printf "\e[1;31m")        # begin bold (red)
+setenv -gx LESS_TERMCAP_me (printf "\e[0m")           # end mode
+setenv -gx LESS_TERMCAP_se (printf "\e[0m")           # end standout-mode
+setenv -gx LESS_TERMCAP_so (printf "\e[1;30;43m")     # begin standout-mode - info box (yellow background, bold black text)
+setenv -gx LESS_TERMCAP_ue (printf "\e[0m")           # end underline
+setenv -gx LESS_TERMCAP_us (printf "\e[04;36m")       # begin underline (cyan)
 
 # grep colors
 setenv -gx GREP_COLOR '0;30;43' # black text, yellow background
