@@ -3,7 +3,7 @@ function apply_settings -d 'setup fish universal variables'
 
 	# setup fish universal variables
 
-	set -U fish_color_autosuggestion 909090 --backgound=fae3a0
+	set -U fish_color_autosuggestion b2b2b2 --backgound=fae3a0
 	set -U fish_color_command 5fafff
 	set -U fish_color_comment 808080
 	set -U fish_color_cwd 5f8700 # green
@@ -25,6 +25,11 @@ function apply_settings -d 'setup fish universal variables'
 
 	set -U fish_color_dimmed 555
 	set -U fish_color_separator 999
+  
+  
+  
+  
+  
 
 	set -U fish_color_git_clean 5f8700      # green
 	set -U fish_color_git_staged fae3a0     # yellow
