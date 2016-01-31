@@ -1,6 +1,9 @@
 # A script to extract dates from filenames and put those in the date created & modified metadata
 #
 # A work in progress
+# TODO: longer dates, take into account time values as well
+#   version 1.0
+#   31-01-2016
 #
 
 function fixdate
@@ -31,8 +34,10 @@ function fixdate
           set year (echo $datum | cut -c 1-2)
           set month (echo $datum | cut -c 3-4)
           set day (echo $datum | cut -c 5-6)
-          echo date = $year-$month-$day
           # plug them into the SetFile command
+          # SetFile is deprecated as of Xcode 6, may not work in the future
+          SetFile -d $month/$day/$year $file
+          SetFile -m $month/$day/$year $file
       end
   end
 end
