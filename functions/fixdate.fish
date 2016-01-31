@@ -19,15 +19,15 @@ function fixdate
     echo -n ''
   end
 
-  # Assumption: date is formatted as YYMMDD (6 numbers)
+  # Assumption: date is formatted as YYMMDD (6 digits)
   # get list of files
   for file in *.mp4
-      # find out if filename contains numbers
-      # pattern longer than 6 numbers?
+      # find out if filename contains digits
+      # pattern longer than 6 digits?
       if test (echo $file | egrep '[0-9]{7,}')
           # we will ignore these
           echo $file >> errors.txt
-      else if test (echo $file | egrep '[0-9]{6}') # matches dates with six numbers
+      else if test (echo $file | egrep '[0-9]{6}') # matches dates with six digits
           echo $file >> candidates.txt
           set datum (echo $file | egrep '[0-9]{6}' | awk '{print $2}')
           # get the individual year, month and day items
