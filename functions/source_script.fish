@@ -1,6 +1,6 @@
 # Cloned from https://github.com/fish-shell/fish-shell/issues/522
 
-function source_script --description 'Source sh/csh file'
+function source_script -d 'Source sh/csh file'
   set -l ext
   set -l type
 

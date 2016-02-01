@@ -1,6 +1,6 @@
 # Taken from: https://github.com/LoveIsGrief/fish-functions/blob/master/functions/cdl.fish
 
-function cdl -d "Automatically output folder after changing to it."
+function cdl -d 'Automatically output folder after changing to it.'
 
     if test (count $argv) -ge 1
 

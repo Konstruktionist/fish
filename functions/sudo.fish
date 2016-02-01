@@ -1,4 +1,4 @@
-function sudo --description 'Run command using sudo (use !! for last command)'
+function sudo -d 'Run command using sudo (use !! for last command)'
       if test (count $argv) -gt 0
           switch $argv[1]
               case '!!'

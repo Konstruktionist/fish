@@ -1,6 +1,6 @@
 # Copied from https://github.com/sgoumaz/dotfiles
 
-function fish_prompt --description 'Write out the prompt'
+function fish_prompt -d 'Write out the prompt'
   set last_status $status
 
   # HACK: workaround to force new sessions not to display dimmed;

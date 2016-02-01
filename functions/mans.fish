@@ -3,6 +3,6 @@
 #             Example: mans mplayer codec
 #   --------------------------------------------------------------------
 
-	function mans -d "Search manpage given in argument '1' for term given in argument '2'"
+	function mans -d 'Search manpage given in argument 1 for term given in argument 2'
 		man $argv[1] | grep -iC3 --color=always $argv[2] | less -R
 	end

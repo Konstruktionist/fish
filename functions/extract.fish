@@ -1,6 +1,6 @@
 # Taken from: https://github.com/sch1zo/dot-files/blob/fish/.config/fish/functions/extract.fish
 
-function extract --description "extract the given archive into a folder"
+function extract -d 'extract the given archive into a folder'
   for file in $argv
     if test -f $file
       echo -s "Extracting " (set_color --bold yellow) $file (set_color normal)

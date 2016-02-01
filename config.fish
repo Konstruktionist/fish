@@ -46,4 +46,4 @@ setenv -gx GREP_COLOR '0;30;43' # black text, yellow background
 setenv -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
-setenv -gx LSCOLORS 'gxfxbdaebxxehehbaghbad'          # see man ls
+setenv -gx LSCOLORS 'gxfxbdaeBxxehehbaghbad'          # see man ls

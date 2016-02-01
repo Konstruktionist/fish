@@ -17,7 +17,7 @@ set -gx fish_prompt_git_status_untracked '?'
 set -gx fish_prompt_git_status_unmerged '!'
 set -gx fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
 
-function prompt_git_status --description 'Write out the git status'
+function prompt_git_status -d 'Write out the git status'
 
   # Get the SHA1 value of a branch and keep it hidden if we're not in a git repo
 
@@ -44,7 +44,7 @@ function prompt_git_status --description 'Write out the git status'
 
     echo -n ' '
 
-    set_color 808080; echo -n $gitsha; set_color normal
+    set_color $fish_color_git_sha; echo -n $gitsha; set_color normal
 
     echo -n ' '
 
@@ -91,7 +91,7 @@ function prompt_git_status --description 'Write out the git status'
 
      echo -n ' '
 
-    set_color 808080; echo -n $gitsha; set_color normal
+    set_color $fish_color_git_sha; echo -n $gitsha; set_color normal
 
      echo -n ' '
 

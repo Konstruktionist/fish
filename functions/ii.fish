@@ -1,4 +1,4 @@
-function ii --description 'display useful host related informaton'
+function ii -d 'display useful host related informaton'
 
 
 	# local variables
