@@ -1,12 +1,13 @@
-# A script to extract dates from filenames and put those in the date created & modified metadata
+# A script to extract dates from filenames
+#   and put those in the date created & modified metadata
 #
 # A work in progress
 # TODO: longer dates, take into account time values as well
-#   version 1.0
-#   31-01-2016
+#   version 1.1
+#   2016-02-02
 #
 
-function fixdate
+function fixdate -d 'fix file creation & modification dates'
   #clean up from previous use
   if test -f candidates.txt
     rm candidates.txt
@@ -19,7 +20,7 @@ function fixdate
     echo -n ''
   end
 
-  # Assumption: date is formatted as YYMMDD (6 digits)
+  # Assumption: date in filename is formatted as YYMMDD (6 digits)
   # get list of files
   for file in *.mp4
       # find out if filename contains digits
@@ -27,9 +28,11 @@ function fixdate
       if test (echo $file | egrep '[0-9]{7,}')
           # we will ignore these
           echo $file >> errors.txt
-      else if test (echo $file | egrep '[0-9]{6}') # matches dates with six digits
+      else if test (echo $file | egrep '[0-9]{6}') # match dates with six digits
           echo $file >> candidates.txt
-          set datum (echo $file | egrep '[0-9]{6}' | awk '{print $2}')
+          # we don't know where the date appears, so let's grab only the
+          #  matching part
+          set datum (echo $file | egrep -o '[0-9]{6}')
           # get the individual year, month and day items
           set year (echo $datum | cut -c 1-2)
           set month (echo $datum | cut -c 3-4)
