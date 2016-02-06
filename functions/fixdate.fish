@@ -3,8 +3,12 @@
 #
 # A work in progress
 # TODO: longer dates, take into account time values as well
-#   version 1.1
-#   2016-02-02
+#
+#       dependency: SetFile
+#       ===================
+#
+#   version 1.2
+#   06-02-2016
 #
 
 function fixdate -d 'fix file creation & modification dates'
@@ -39,8 +43,8 @@ function fixdate -d 'fix file creation & modification dates'
           set day (echo $datum | cut -c 5-6)
           # plug them into the SetFile command
           # SetFile is deprecated as of Xcode 6, may not work in the future
-          SetFile -d $month/$day/$year $file
-          SetFile -m $month/$day/$year $file
+          SetFile -d $month/$day/$year $file  # creation date
+          SetFile -m $month/$day/$year $file  # modification date
       end
   end
 end
