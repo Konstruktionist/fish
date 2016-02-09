@@ -22,6 +22,7 @@ function getnet -d "get network information"
   set WIFI_ROUTER (ipconfig getpacket en1 | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
   set WIFI_DNS (ipconfig getpacket en1 | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
   set WIFI_SPEED (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep lastTxRate: | sed 's/.*: //' | sed 's/$/ MBit\/s/')
+  set WIFI_NAME (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep '\sSSID:' | sed 's/.*: //')
 
 
   echo $QUERY0 | grep 'BOOTREPLY' > /dev/null
@@ -33,10 +34,10 @@ function getnet -d "get network information"
   echo " "
 
   if test $ETH -a $WIFI
-    echo "     Public IP: $PUBLIC"
+    echo "    Public IP: $PUBLIC"
   end
 
-  echo "      Hostname:" (uname -n)
+  echo "     Hostname:" (uname -n)
   echo " "
 
   echo  "Wired Ethernet (en0)"
@@ -77,6 +78,7 @@ function getnet -d "get network information"
         echo "   IP Address: $WIFI_IP2 (DHCP)"
     end
 
+    echo " Network Name: $WIFI_NAME"
     echo "  Subnet Mask: $WIFI_SUBNET"
     echo "       Router: $WIFI_ROUTER"
     echo "   DNS Server: $WIFI_DNS"
