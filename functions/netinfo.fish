@@ -16,7 +16,7 @@ function netinfo -d "get network information"
   # echo "To be implemented"
   # networksetup -listallhardwareports
   # pair the MAC adresses to the device identifier
-  #  Then: 
+  #  Then:
   #       for every identifier do ifconfig -uv identifier
   #         (this should get also any virtual network interfaces like VPN's)
 
@@ -27,24 +27,27 @@ function netinfo -d "get network information"
 
   set nw_services (networksetup -listallnetworkservices | awk 'NF<=4') # get rid of the first line
   for value in $nw_services
-    set_color -o blue; echo $value ; set_color normal 
+    set_color -o blue; echo $value ; set_color normal
     networksetup -getinfo $value
     echo 'DNS-Servers:' (networksetup -getdnsservers $value | awk '{print $1 "  " $2}')
     echo ' '
   end
-  #   set activated (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
-  #   if test $activated = 'active'
-  #     set_color -o blue; echo (ifconfig -uv $val | grep 'type: ' | awk '{print $2, $3, $4}')
-  #     set_color -o blue; echo "----------------"; set_color normal
-  #     set_color -o blue; echo -n '       Status: ' ; set_color normal; echo (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
-  #     set_color -o blue; echo -n '   IP-address: ' ; set_color normal; echo (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
-  #     set_color -o blue; echo -n 'Network Speed: ' ; set_color normal; echo (ifconfig -uv $val | grep 'link rate: ' | awk '{print $3, $4}')
-  #     set_color -o blue; echo -n '  MAC-address: ' ; set_color normal; echo (ifconfig -uv $val | grep 'ether ' | awk '{print $2}')
-  #     set_color -o blue; echo " "
-  #   else if test $activated = 'inactive'
-  #     set_color -o blue; echo (ifconfig -uv $val | grep 'type: ' | awk '{print $2, $3, $4}')
-  #     set_color -o blue; echo "----------------"; set_color normal
-  #     set_color -o blue; echo -n '       Status: ' ; set_color normal; echo (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
-  #   end
-  # end
+
+  set ports (ifconfig -uv | grep '^[a-z0-9]' | awk -F : '{print $1}')
+  for val in $ports
+    set activated (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
+    if test $activated = 'active' ^/dev/null
+      set_color -o blue; echo (ifconfig -uv $val | grep 'type: ' | awk '{print $2, $3, $4}')
+      set_color -o blue; echo "----------------"; set_color normal
+      set_color -o blue; echo -n '       Status: ' ; set_color normal; echo (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
+      set_color -o blue; echo -n '   IP-address: ' ; set_color normal; echo (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
+      set_color -o blue; echo -n 'Network Speed: ' ; set_color normal; echo (ifconfig -uv $val | grep 'link rate: ' | awk '{print $3, $4}')
+      set_color -o blue; echo -n '  MAC-address: ' ; set_color normal; echo (ifconfig -uv $val | grep 'ether ' | awk '{print $2}')
+      set_color -o blue; echo " "
+    else if test $activated = 'inactive' ^/dev/null
+      set_color -o blue; echo (ifconfig -uv $val | grep 'type: ' | awk '{print $2, $3, $4}')
+      set_color -o blue; echo "----------------"; set_color normal
+      set_color -o blue; echo -n '       Status: ' ; set_color normal; echo (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
+    end
+  end
 end
