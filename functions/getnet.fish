@@ -1,3 +1,7 @@
+#   Deprecated. Use netinfo.fish instead
+#
+#     This is not correct on machines witout a physical Ethernet port
+
 function getnet -d "get network information"
 
   set QUERY0 (ipconfig getpacket en0) # Query Ethernet
