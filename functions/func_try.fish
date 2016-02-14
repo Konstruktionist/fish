@@ -41,8 +41,8 @@ function func_try -d 'Playground function'
   # result [ac:bc:32:b8:12:79, 4a:00:03:ea:db:f0, 4a:00:03:ea:db:f1, 0e:bc:32:b8:12:79, 7e:1c:4b:9b:cb:82, ae:bc:32:8b:58:00]
   # Total: 6 elements
 
-#   We want to use the friendly labels from networksetup but the data from ifconfig
-#   The only thing that matches in both is the MAC address
+  #   We want to use the friendly labels from networksetup but the data from ifconfig
+  #   The only thing that matches in both is the MAC address
 
   echo '------------------------------------------------'
   for i in  $IC_MAC_Address
