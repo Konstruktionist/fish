@@ -3,11 +3,11 @@
 # PROBLEM: getnet.fish has en0 & en1 hardcoded to Ethernet & Wi-Fi.
 #   This works if there is a physical ethernet port on the computer
 #   but current MacBooks may not have one.
-#   This also displays all network interfaces, not just Ethetnet & Wi-Fi.
+#   This also displays all network interfaces, not just Ethernet & Wi-Fi.
 #
 # SOLUTION: find out what ports are available on the machine & how
 #   they map to Ethernet and Wi-Fi. Then use this information to
-#   diplay the correct port with the user friendly labels.
+#   display the correct port with the user friendly labels.
 #
 #   version 1.1
 #   21-02-2016
@@ -15,7 +15,7 @@
 function netinfo -d "get network information"
 
   set public (curl -s http://ipecho.net/plain)
-  if test -z "$public" # We don't have an internet connection
+  if test -z "$public" # No internet connection
     set public "No internet connection available"
   end
 
@@ -40,15 +40,14 @@ function netinfo -d "get network information"
     set router (ipconfig getpacket $geekport | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
     set dnsserver (ipconfig getpacket $geekport | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
 
-    # We want inofmation about active network ports...
+    # We want information about active network ports...
     if test $activated = 'active' ^/dev/null
     #   and of these, the ones with an ip-address assigned to it
       if test -n "$ipaddress" # Do we have an ip address?
       # Give us the information
         echo -n $label ; echo -n ' ('; echo -n $geekport ; echo ')'
         echo "--------------"
-        # Does this port have a name associated with it? If so, it is Wi-Fi
-        #   and we want to know the name of the network
+        # Is this a WiFi associated port? If so, then we want the network name
         switch $label
           case Wi-Fi
             echo -n  ' Network Name: '; echo $wifi_name
