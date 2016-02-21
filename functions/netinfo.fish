@@ -29,7 +29,7 @@ function netinfo -d "get network information"
 
   for val in $ports
     set activated (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
-    set label (ifconfig -uv $val | grep 'type' | awk -F : '{print $2}')
+    set label (ifconfig -uv $val | grep 'type' | awk '{print $2}')
     set geekport (ifconfig -uv $val | grep '^[a-z0-9]' | awk -F : '{print $1}')
     set state (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
     set ipaddress (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
@@ -49,16 +49,18 @@ function netinfo -d "get network information"
         echo "--------------"
         # Does this port have a name associated with it? If so, it is Wi-Fi
         #   and we want to know the name of the network
-        if test -n "$wifi_name"
-          echo -n ' Network Name: ' ; echo $wifi_name
+        switch $label
+          case Wi-Fi
+            echo -n  ' Network Name: '; echo $wifi_name
         end
+
         echo -n '   IP-address: ' ; echo $ipaddress
         echo -n '  Subnet Mask: ' ; echo $netmask
         echo -n '       Router: ' ; echo $router
         echo -n '   DNS Server: ' ; echo $dnsserver
         echo -n '  MAC-address: ' ; echo $macaddress
         echo -n 'Network Speed: ' ; echo $networkspeed
-        echo -n 'Netw. quality: ' ; echo $quality
+        echo -n ' Link quality: ' ; echo $quality
         echo " "
       end
 
