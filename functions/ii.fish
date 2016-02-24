@@ -9,7 +9,7 @@ function ii -d 'display useful host related informaton'
 	set datum (date)
 	set stats (uptime)
 	# set nloc (scselect)
-	set ip (curl -s ip.appspot.com)
+	set ip (curl -s http://ipecho.net/plain)
 
 	echo -e "\nYou are logged onto: $cur_host"
 	echo -e "\nAdditionnal information:\n $kerninfo"
@@ -18,6 +18,6 @@ function ii -d 'display useful host related informaton'
 	echo -e "\nMachine stats:\n $stats"
 	echo -e "\nCurrent network location: "; scselect; echo -e
 	echo -e "Public facing IP Address:\n $ip"
-	echo -e ; scutil --dns
+	echo -e "\nDNS servers: "; scutil --dns | grep nameserver | sort | uniq | awk -F : '{print $2}'
 	echo
 end
