@@ -15,6 +15,7 @@
 
 function netinfo -d "get network information"
 
+  # Get public ip address
   set public (curl -s http://ipecho.net/plain)
   if test -z "$public" # No Internet connection
     set public "No Internet connection available"
