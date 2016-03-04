@@ -11,6 +11,9 @@ set -U ARCHFLAGS "-arch x86_64"
 
 # Set the editor
 set -U EDITOR mate
+# Let homebrew know about my preferred editor
+setenv -gx HOMEBREW_EDITOR mate
+setenv -gx VISUAL mate
 
 #	Add /usr/local/bin/ to our $PATH as a first entry for commands
 # if status --is-login
