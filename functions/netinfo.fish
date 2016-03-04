@@ -41,7 +41,8 @@ function netinfo -d "get network information"
     set quality (ifconfig -uv $val | grep 'link quality:' | awk '{print $3, $4}')
     set netmask (ipconfig getpacket $val | grep 'subnet_mask (ip):' | awk '{print $3}')
     set router (ipconfig getpacket $val | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
-    set dnsserver (ipconfig getpacket $val | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
+    # set dnsserver (ipconfig getpacket $val | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
+    set dnsserver (networksetup -getdnsservers $label | awk '{print $1, $2}')
 
     # We want information about active network ports...
     if test $activated = 'active' ^/dev/null
