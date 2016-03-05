@@ -10,13 +10,14 @@
 #
 #   This also should display all network interfaces, not just Ethernet & Wi-Fi.
 #
-#   version 1.2
-#   21-02-2016
+#   version 1.3
+#   05-03-2016
 
 function netinfo -d "get network information"
 
   # Get public ip address
   set public (curl -s http://ipecho.net/plain)
+  sleep .3 # Let's account for lag in reply from ipecho.net
   if test -z "$public" # No Internet connection
     set public "No Internet connection available"
   end
