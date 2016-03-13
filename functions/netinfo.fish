@@ -10,14 +10,16 @@
 #
 #   This also should display all network interfaces, not just Ethernet & Wi-Fi.
 #
-#   version 1.3
-#   05-03-2016
+#   version 1.4
+#   13-03-2016
 
 function netinfo -d "get network information"
 
   # Get public ip address
   set public (curl -s http://ipecho.net/plain)
-  sleep .3 # Let's account for lag in reply from ipecho.net
+  # Let's account for possible lag in reply from ipecho.net
+  sleep .3
+
   if test -z "$public" # No Internet connection
     set public "No Internet connection available"
   end
@@ -42,7 +44,6 @@ function netinfo -d "get network information"
     set quality (ifconfig -uv $val | grep 'link quality:' | awk '{print $3, $4}')
     set netmask (ipconfig getpacket $val | grep 'subnet_mask (ip):' | awk '{print $3}')
     set router (ipconfig getpacket $val | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
-    # set dnsserver (ipconfig getpacket $val | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
     set dnsserver (networksetup -getdnsservers $label | awk '{print $1, $2}')
 
     # We want information about active network ports...
@@ -70,11 +71,6 @@ function netinfo -d "get network information"
 
       # Don't display the inactive ports.
     else if test $activated = 'inactive' ^/dev/null
-      # echo -n $label ; echo -n ' ('; echo -n $geekport ; echo ')'
-      # echo "----------------"; set_color normal
-      # echo -n '       Status: ' ; echo $state
-      # echo -n '  MAC-address: ' ; echo $macaddress
-      # echo " "
     end
   end
 end
