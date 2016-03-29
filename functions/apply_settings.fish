@@ -13,7 +13,7 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_history_current 87afd7
 	set -U fish_color_host 5f87af
 	set -U fish_color_match d7d7d7 --background=303030
-	set -U fish_color_normal d2c5bc
+	set -U fish_color_normal a1a1a1
 	set -U fish_color_operator 81957c # Terminal green
 	set -U fish_color_param 87afff
 	set -U fish_color_quote fae3a0
