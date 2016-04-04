@@ -16,6 +16,6 @@ function chost -d 'check someonewhocares.org for last update'
    set -l my_date (strptime -i "%d %b %Y" $my_hosts)
    set -l difference (datediff $my_date $distant_date)
    echo -s 'Online version updated on:   ' $distant_hosts
-   echo -ns "My current hosts file dated: $my_hosts which is $difference day(s) behind."
+   echo -ns "My current hosts file dated: $my_hosts which is $difference day(s) behind."\n
 end
 
