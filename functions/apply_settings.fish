@@ -22,6 +22,7 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_status b91e2e
 	set -U fish_color_user 5f875f
 	set -U fish_color_valid_path --underline
+  set -U fish_color_terminator f3b26d   # orange
 
 	set -U fish_color_dimmed 808080
 	set -U fish_color_separator 999
