@@ -21,7 +21,7 @@ setenv -gx VISUAL mate
 # end
 
 # expose PATH to graphical apps
-launchctl setenv PATH $PATH
+#launchctl setenv PATH $PATH
 
 # Setup the bookmark functionality
 set -gx MARKPATH $HOME/.marks
