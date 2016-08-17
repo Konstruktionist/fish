@@ -15,7 +15,7 @@ set -U EDITOR mate
 setenv -gx HOMEBREW_EDITOR mate
 setenv -gx VISUAL mate
 
-#	Add /usr/local/bin/ to our $PATH as a first entry for commands
+# Add /usr/local/bin/ to our $PATH as a first entry for commands
 # if status --is-login
 #   set PATH /usr/local/bin $PATH
 # end
@@ -45,7 +45,7 @@ setenv -gx LESS_TERMCAP_ue (printf "\e[0m")           # end underline
 setenv -gx LESS_TERMCAP_us (printf "\e[04;36m")       # begin underline (cyan)
 
 # grep colors
-setenv -gx GREP_COLOR '1;37;42' # bright/bold white text, green background
+setenv -gx GREP_COLOR '1;30;43' # bright/bold black text, yellow background
 setenv -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
