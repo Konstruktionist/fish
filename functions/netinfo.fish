@@ -2,7 +2,7 @@
 #
 # PROBLEM: getnet.fish has en0 & en1 hardcoded to Ethernet & Wi-Fi.
 #   This works if there is a physical ethernet port on the computer
-#   but current MacBooks may not have one.
+#   but current Macs may not have one.
 #
 # SOLUTION: find out what ports are available on the machine & how
 #   they map to Ethernet and Wi-Fi. Then use this information to
