@@ -3,7 +3,7 @@
 #       dependency: tag (https://github.com/jdberry/tag) via brew
 #       =========================================================
 #
-#   version 1.1
+#   version 1.2
 #   17-09-2016
 
 function mdb -d 'Make a flatfile movie database'
@@ -24,10 +24,11 @@ function mdb -d 'Make a flatfile movie database'
     set tags (tag -lN $file)
 
     # If file has no tags, don't try to put it in database
+    # Make tags standout by using the 'Label' Unicode symbol
     if test -z $tags
       echo $title '•' $width 'x' $height >> "$HOME/Movies on $drive.txt"
       else
-      echo $title '•' $width 'x' $height '•' $tags >> "$HOME/Movies on $drive.txt"
+      echo $title '•' $width 'x' $height '🏷 ' $tags >> "$HOME/Movies on $drive.txt"
     end
    end
 end
