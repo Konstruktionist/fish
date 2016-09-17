@@ -3,8 +3,8 @@
 #       dependency: tag (https://github.com/jdberry/tag) via brew
 #       =========================================================
 #
-#   version 1.0
-#   28-02-2016
+#   version 1.1
+#   17-09-2016
 
 function mdb -d 'Make a flatfile movie database'
 
@@ -23,6 +23,11 @@ function mdb -d 'Make a flatfile movie database'
     set height (mdls $file | grep kMDItemPixelHeight | awk '{print $3}')
     set tags (tag -lN $file)
 
-    echo $title '|' $width 'x' $height '|' $tags >> "$HOME/Movies on $drive.txt"
+    # If file has no tags, don't try to put it in database
+    if test -z $tags
+      echo $title '•' $width 'x' $height >> "$HOME/Movies on $drive.txt"
+      else
+      echo $title '•' $width 'x' $height '•' $tags >> "$HOME/Movies on $drive.txt"
+    end
    end
 end
