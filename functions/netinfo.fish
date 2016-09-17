@@ -48,9 +48,9 @@ function netinfo -d "get network information"
 
     # We want information about active network ports...
     if test $activated = 'active' ^/dev/null
-    #   and of these, the ones with an IP-address assigned to it
+      # and of these, the ones with an IP-address assigned to it
       if test -n "$ipaddress" # Do we have an IP address?
-      # Give us the information
+        # Give us the information
         echo -n $label ; echo -n ' ('; echo -n $val ; echo ')'
         echo "--------------"
         # Is this a WiFi associated port? If so, then we want the network name
