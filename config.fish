@@ -15,10 +15,10 @@ set -U EDITOR mate
 setenv -gx HOMEBREW_EDITOR mate
 setenv -gx VISUAL mate
 
-# Add /usr/local/bin/ to our $PATH as a first entry for commands
-# if status --is-login
-#   set PATH /usr/local/bin $PATH
-# end
+# Add gem path to our $PATH as a first entry for commands
+if status --is-login
+  set PATH $HOME/.gem/ruby/2.0.0/bin $PATH
+end
 
 # expose PATH to graphical apps
 #launchctl setenv PATH $PATH
@@ -55,3 +55,6 @@ set -gx SOCCER_CLI_API_TOKEN "f8e416cdeeb24e33824e96b1bcfc3961"
 
 # disable Google analytics for homebrew
 set -gx HOMEBREW_NO_ANALYTICS 1
+
+abbr tv transcode-video --mp4 --720p --small --quick --audio-width all=stereo --add-subtitle nld
+abbr vidl youtube-dl -f pg-nettv
