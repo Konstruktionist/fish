@@ -10,8 +10,8 @@
 #
 #   This also should display all network interfaces, not just Ethernet & Wi-Fi.
 #
-#   version 1.4
-#   13-03-2016
+#   version 1.5
+#   26-09-2016
 
 function netinfo -d "get network information"
 
@@ -39,7 +39,7 @@ function netinfo -d "get network information"
     set label (ifconfig -uv $val | grep 'type' | awk '{print $2}')
     set state (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
     set ipaddress (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
-    set networkspeed (ifconfig -uv $val | grep 'link rate: ' | awk '{print $3, $4}')
+    set networkspeed (ifconfig -uv $val | grep 'link rate:' | awk '{print $3, $4}')
     set macaddress (ifconfig -uv $val | grep 'ether ' | awk '{print $2}')
     set quality (ifconfig -uv $val | grep 'link quality:' | awk '{print $3, $4}')
     set netmask (ipconfig getpacket $val | grep 'subnet_mask (ip):' | awk '{print $3}')
@@ -57,6 +57,9 @@ function netinfo -d "get network information"
         switch $label
           case Wi-Fi
             echo -n  ' Network Name: '; echo $wifi_name
+            # Networkspeed for Wi-Fi is reported differently (more info) then
+            # ethernet so we adjust for that here
+            set networkspeed (ifconfig -uv $val | grep 'downlink rate:' | awk '{print $7, $8}')
         end
 
         echo -n '   IP-address: ' ; echo $ipaddress
