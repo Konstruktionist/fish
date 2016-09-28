@@ -9,7 +9,7 @@
 #     version 1.0
 #     28-03-2016
 
-function chost -d 'check someonewhocares.org for last update'
+function chosts -d 'check someonewhocares.org for last update'
    set -l my_hosts (cat /etc/hosts | egrep -i 'last updated' | awk '{print $5, $6, $7}')
    set -l distant_hosts (curl -s http://someonewhocares.org/hosts/zero/hosts | egrep -i 'last updated' | awk '{print $5, $6, $7}')
    set -l distant_date (strptime -i "%d %b %Y" $distant_hosts)
