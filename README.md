@@ -3,17 +3,17 @@
 ### Functions with external dependancies
 
 * img_size.fish
-    *depends on [**imagemagick**](https://imagemagick.org)*.
+    _depends on [**imagemagick**](https://imagemagick.org)_.
 * fixdate.fish
-    *depends on **SetFile***
+    _depends on **SetFile**_
         SetFile is a OS X macOS tool installed by Xcode.  
         Its documentation says it is deprecated, but for now it works.  
         From its manpage :  
-        *Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.*
+        _Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6._
 * mdb.fish
-    *depends on [**tag**](https://github.com/jdberry/tag)*.
+    _depends on [**tag**](https://github.com/jdberry/tag)_.
 * testmovies.fish
-    *depends on [**mediainfo**](http://mediaarea.net)*.
+    _depends on [**mediainfo**](http://mediaarea.net)_.
 
 
 ---
