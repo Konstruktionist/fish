@@ -6,6 +6,7 @@
     _depends on [**imagemagick**](https://imagemagick.org)_.
 * fixdate.fish
     _depends on **SetFile**_
+    
         SetFile is a OS X macOS tool installed by Xcode.  
         Its documentation says it is deprecated, but for now it works.  
         From its manpage :  
