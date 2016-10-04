@@ -1,3 +1,3 @@
-function cpuhogs -d 'Find CPU hogs'
-	ps wwaxr -o pid,stat,%cpu,time,command | head -10
+function cpuhogs -d 'Find top 10 CPU hogs'
+	ps  -axrco pid,state,%cpu,time,command | head
 end
