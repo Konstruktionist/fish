@@ -10,6 +10,9 @@ function ii -d 'display useful host related informaton'
 	set stats (uptime)
 	# set nloc (scselect)
 	set ip (curl -s http://ipecho.net/plain)
+  # Let's account for possible lag in reply from ipecho.net
+  sleep .3
+  
 
 	echo -e "\nYou are logged onto: $cur_host"
 	echo -e "\nAdditionnal information:\n $kerninfo"
