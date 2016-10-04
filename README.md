@@ -102,7 +102,7 @@ Source sh/csh file. Seems usefull, but I can't remember if I ever used it.
 * **sudo**  
 Run command using sudo (use !! for last command).
 * **testmovies**  
-A script to extract the height of movie files in a directory & if it's over 720 put their names in a file for further processing with Don Melton's transcode-video tools.
+A script to extract the height of movie files in a directory & if it's over 720 put their names in a file for further processing with Don Melton's [video transcoding tools](https://github.com/donmelton/video_transcoding).
 * **totrash**  
 Move a specified file to the Trash.
 * **try_func**  
