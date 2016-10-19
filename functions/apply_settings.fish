@@ -3,8 +3,8 @@ function apply_settings -d 'setup fish universal variables'
 
 	# setup fish universal variables
 
-	set -U fish_color_autosuggestion b2b2b2 --backgound=fae3a0
-	set -U fish_color_command 5fafff
+	set -U fish_color_autosuggestion 74fbfd --backgound=fae3a0 # cyan-like
+	set -U fish_color_command 4eab31  # green
 	set -U fish_color_comment 808080
 	set -U fish_color_cwd 5f8700 # green
 	set -U fish_color_cwd_root b91e2e
