@@ -17,7 +17,7 @@ setenv -gx VISUAL mate
 
 # Add gem path to our $PATH as a first entry for commands
 if status --is-login
-  set PATH $HOME/.gem/ruby/2.3.0/bin $PATH
+  set PATH $HOME/.gem/ruby/2.0.0/bin $PATH
 end
 
 # expose PATH to graphical apps
