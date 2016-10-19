@@ -2,15 +2,15 @@
 
 ### Functions with dependencies on non-standard installed tools
 
-* chosts.fish _depends on [**dateutils**](http://www.fresse.org/dateutils)_
-* img_size.fish _depends on [**imagemagick**](https://imagemagick.org)_.
+* chosts.fish _depends on [**dateutils**][fresse]_
+* img_size.fish _depends on [**imagemagick**][imagemagick]_.
 * fixdate.fish _depends on **SetFile**_  
     SetFile is a macOS (OS X) tool installed by Xcode.  
     From its manpage :  
     _Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6._  
     Its documentation says it is deprecated, but for now it works. (With Xcode 8 it still gets installed).  
-* mdb.fish _depends on [**tag**](https://github.com/jdberry/tag)_.
-* testmovies.fish _depends on [**mediainfo**](http://mediaarea.net)_.
+* mdb.fish _depends on [**tag**][github]_.
+* testmovies.fish _depends on [**mediainfo**][mediaarea]_.
 * xpstatus.fish _depends on **GetFileInfo**_  
 Like _SetFile_ also a deprecated tool installed by Xcode.
 
@@ -57,7 +57,7 @@ Dumped here by `brew install fzf`.
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
 * **fzf_key_bindings**  
-As the name implies key bindings for [fzf](https://github.com/junegunn/fzf) (fuzzy finder).
+As the name implies key bindings for [fzf][github 2] (fuzzy finder).
 * **getnet**  
 Get network information.  
 I don't use this anymore because newer Mac's may not have a physical ethernet port.
@@ -73,7 +73,7 @@ Find out the dimensions of an image.
 Show IP addresses & DNS servers. 
 * **ipinfo**  
 Get IP information for a FQDN (fully qualified domain name). I used this to block Facebook.  
-To find out more  look at [this](https://www.perpetual-beta.org/weblog/blocking-facebook-on-os-x.html) blogpost.
+To find out more  look at [this][perpetual-beta] blogpost.
 * **jump**  
 Jump to previously set bookmark for a directory.
 * **lmas**  
@@ -102,7 +102,7 @@ Source sh/csh file. Seems usefull, but I can't remember if I ever used it.
 * **sudo**  
 Run command using sudo (use !! for last command).
 * **testmovies**  
-A script to extract the height of movie files in a directory & if it's over 720 put their names in a file for further processing with Don Melton's [video transcoding tools](https://github.com/donmelton/video_transcoding).
+A script to extract the height of movie files in a directory & if it's over 720 put their names in a file for further processing with Don Melton's [video transcoding tools][github 3].
 * **totrash**  
 Move a specified file to the Trash.
 * **try_func**  
@@ -112,7 +112,7 @@ Undo a `git push`
 * **unmark**  
 Remove a bookmark.
 * **updhosts**  
-Update my /private/etc/hosts file from [someonewhocares.org](http://someonewhocares.org/hosts/zero/hosts) and append my personal blocklist to it.
+Update my /private/etc/hosts file from [someonewhocares.org][someonewhocares] and append my personal blocklist to it.
 * **vimrc**  
 Open the .vimrc file.
 * **weer**  
@@ -121,3 +121,12 @@ The weather forecast for a city. Type in `city,country` (case insensitive).
 Shows the version of Apple's XProtect tool and the last time it was updated.
 
 ---
+
+[fresse]: http://www.fresse.org/dateutils
+[github]: https://github.com/jdberry/tag
+[github 2]: https://github.com/junegunn/fzf
+[github 3]: https://github.com/donmelton/video_transcoding
+[imagemagick]: https://imagemagick.org
+[mediaarea]: http://mediaarea.net
+[perpetual-beta]: https://www.perpetual-beta.org/weblog/blocking-facebook-on-os-x.html
+[someonewhocares]: http://someonewhocares.org/hosts/zero/hosts
