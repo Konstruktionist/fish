@@ -112,7 +112,8 @@ Undo a `git push`
 * **unmark**  
 Remove a bookmark.
 * **updhosts**  
-Update my /private/etc/hosts file from [someonewhocares.org][someonewhocares] and append my personal blocklist to it.
+Update my /private/etc/hosts file from [4][someonewhocares] [different][mvps] [online][yoyo] [sources][SB] and append my personal blocklist to it.  
+All to block ads & malware sites, trackers and other annoyances like facebook.
 * **vimrc**  
 Open the .vimrc file.
 * **weer**  
@@ -130,3 +131,7 @@ Shows the version of Apple's XProtect tool and the last time it was updated.
 [mediaarea]: http://mediaarea.net
 [perpetual-beta]: https://www.perpetual-beta.org/weblog/blocking-facebook-on-os-x.html
 [someonewhocares]: http://someonewhocares.org/hosts/zero/hosts
+[mvps]: http://winhelp2002.mvps.org/hosts.txt
+[yoyo]: https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext
+[SB]: https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts
+
