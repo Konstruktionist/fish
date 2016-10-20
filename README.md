@@ -2,17 +2,20 @@
 
 ### Functions with dependencies on non-standard installed tools
 
-* chosts.fish _depends on [**dateutils**][fresse]_
-* img_size.fish _depends on [**imagemagick**][imagemagick]_.
-* fixdate.fish _depends on **SetFile**_  
+* **chosts.fish** _depends on [**dateutils**][fresse]_
+* **img_size.fish** _depends on [**imagemagick**][imagemagick]_.
+* **fixdate.fish** _depends on **SetFile**_  
     SetFile is a macOS (OS X) tool installed by Xcode.  
     From its manpage :  
     _Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6._  
     Its documentation says it is deprecated, but for now it works. (With Xcode 8 it still gets installed).  
-* mdb.fish _depends on [**tag**][github]_.
-* testmovies.fish _depends on [**mediainfo**][mediaarea]_.
-* xpstatus.fish _depends on **GetFileInfo**_  
-Like _SetFile_ also a deprecated tool installed by Xcode.
+* **mdb.fish** _depends on [**tag**][github]_.
+* **testmovies.fish** _depends on [**mediainfo**][mediaarea]_.
+* **xpstatus.fish** _depends on **GetFileInfo**_  
+Like _SetFile_ also a deprecated tool installed by Xcode.  
+
+These tools were installed with [brew][brew].
+
 
 ---
 
@@ -23,7 +26,7 @@ Set up fish universal variables. At the moment all color related
 * **bup**  
 Three consecutive commands to keep homebrew up to date and lean.  
 `brew update`, `brew upgrade` and finally `brew cleanup`.  
-This will update *everything* that is installed via a brew command for which a newer version is availlable.
+This will update *everything* that is installed via a brew command for which a newer version is available.
 * **cdl**  
 Change to a directory and list its contents with a long listing.
 * **chosts**  
@@ -33,7 +36,7 @@ Recursively delete ".DS_Store" files
 * **cleanLaunchServices**  
 Clean up LaunchServices to remove duplicates in the "*Open With*" menu.
 * **cpuhogs**  
-Find what's hogging the CPU. A Top 10 list.
+Find what's hogging the CPU. Kinda like a Top 10 list.
 * **decrypt**  
 Decrypt a file.
 * **down4me**  
@@ -63,10 +66,13 @@ Get network information.
 I don't use this anymore because newer Mac's may not have a physical ethernet port.
 * **glog**  
 A nice git log display.
+* **helper_**_something_  
+As the name implies (usually) small helper functions that are called from other functions.  
+***Not*** to be used on its own! They are most likely to be destructive in nature.
 * **hosts**  
 Open the hosts file in my favorite editor.
 * **ii**  
-Display useful host related informaton.
+Display useful host related information.
 * **img_size**  
 Find out the dimensions of an image.
 * **ip**  
@@ -98,7 +104,7 @@ Helper function for fish_prompt.
 * **restore_original_fish_colors**  
 Like it says on the tin.
 * **source_script**  
-Source sh/csh file. Seems usefull, but I can't remember if I ever used it.
+Source sh/csh file. Seems useful, but I can't remember if I ever used it.
 * **sudo**  
 Run command using sudo (use !! for last command).
 * **testmovies**  
@@ -106,7 +112,7 @@ A script to extract the height of movie files in a directory & if it's over 720 
 * **totrash**  
 Move a specified file to the Trash.
 * **try_func**  
-A dummy function to try out a new script. This gives me time to think of a good name (_it doesn't allways works out_).
+A dummy function to try out a new script. This gives me time to think of a good name (_it doesn't always works out_).
 * **undopush**  
 Undo a `git push`
 * **unmark**  
@@ -117,11 +123,15 @@ All to block ads & malware sites, trackers and other annoyances like facebook.
 * **vimrc**  
 Open the .vimrc file.
 * **weer**  
-The weather forecast for a city. Type in `city,country` (case insensitive).
+The weather forecast for a city. Type in `city,country` (case insensitive) as arguments.
 * **xpstatus**  
 Shows the version of Apple's XProtect tool and the last time it was updated.
 
 ---
+
+I've tried to attribute the people from whom I stole the code.  
+If you feel that I have missed something, open an Issue here.
+Also if you find bugs, ditto.
 
 [fresse]: http://www.fresse.org/dateutils
 [github]: https://github.com/jdberry/tag
@@ -134,4 +144,4 @@ Shows the version of Apple's XProtect tool and the last time it was updated.
 [mvps]: http://winhelp2002.mvps.org/hosts.txt
 [yoyo]: https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext
 [SB]: https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts
-
+[brew]: http://brew.sh
