@@ -14,14 +14,14 @@ function updhosts -d 'Update my /etc/hosts file'
 
   curl -s http://someonewhocares.org/hosts/zero/hosts | helper_cleanup >> hosts_temp
   curl -s http://winhelp2002.mvps.org/hosts.txt | helper_cleanup >> hosts_temp
-  curl -s 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' | helper_yocleanup >> hosts_temp
+  curl -s 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' | helper_cleanup >> hosts_temp
   curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts | helper_cleanup >> hosts_temp
 
 
   # Restore the original hosts entries
   cat hosts_original.txt > my_current_hosts
 
-  #  Add a time stamp
+  # Add a time stamp
   echo -n "#   Last updated: "  (date -R) >> my_current_hosts
 
   # Sort entries and remove duplicates
