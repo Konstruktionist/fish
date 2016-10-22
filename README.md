@@ -14,12 +14,12 @@
 * **xpstatus.fish** _depends on **GetFileInfo**_  
 Like _SetFile_ also a deprecated tool installed by Xcode.  
 
-These tools were installed with [brew][brew].
+> These tools were installed with [brew][brew].
 
 
 ---
 
-## In alphabetical order
+#### In alphabetical order
 
 * **apply_settings**  
 Set up fish universal variables. At the moment all color related
@@ -86,6 +86,7 @@ Jump to previously set bookmark for a directory.
 List all applications that were downloaded from the Mac App Store.
 * **mans**  
 Search for something in a man page.  
+`mans manpage searchterm`
 Displays paginated result with colored search terms and three lines surrounding each hit.
 * **mark**  
 Set a bookmark for the current directory or a named directory.
