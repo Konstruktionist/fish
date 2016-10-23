@@ -1,6 +1,6 @@
 function updhosts -d 'Update my /etc/hosts file'
 
-  # Relies on two helper functions: helper_cleanup & helper_yocleanup
+  # Relies on a helper function: helper_cleanup
 
   # Save current working directory, so we can excecute this anywhere in the file system.
   set current_working_directory $PWD
@@ -8,9 +8,15 @@ function updhosts -d 'Update my /etc/hosts file'
   cd ~/workspace
 
   # Clean up my blocklist
+  # This is a list which I maintain with reasons why the sites are on there. If
+  # in the future things seem odd, I can review if I broke something.
   cat my_blocklist | sed 's/[[:space:]]*#.*$//g;' | tr ' ' '\t' | tr -s '\t' | tr -d '\015' | sort -u > hosts_temp
 
   # Get blocklists online, clean them up & append them to our temp file
+  # The StevenBlack list contains the other lists as well. So if any one of
+  # them fails, they still get included.
+  # If all of them fail we end up with the standard hosts file provided by the
+  # OS.
 
   curl -s http://someonewhocares.org/hosts/zero/hosts | helper_cleanup >> hosts_temp
   curl -s http://winhelp2002.mvps.org/hosts.txt | helper_cleanup >> hosts_temp
