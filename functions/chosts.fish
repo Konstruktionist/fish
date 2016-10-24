@@ -18,4 +18,3 @@ function chosts -d 'check someonewhocares.org for last update'
    echo -s 'Online version updated on:   ' $distant_hosts
    echo -ns "My current hosts file dated: $my_hosts which is $difference day(s) behind."\n
 end
-
