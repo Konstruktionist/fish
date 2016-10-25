@@ -25,16 +25,16 @@ function updhosts -d 'Update my /etc/hosts file'
 
 
   # Restore the original hosts entries
-  cat hosts_original.txt > my_current_hosts
+  cat hosts_original.txt > my_temp_hosts
 
   # Add a time stamp
-  echo -n "#   Last updated: "  (date -R) >> my_current_hosts
+  echo -n "#   Last updated: "  (date -R) >> my_temp_hosts
 
-  # Sort entries and remove duplicates
-  cat hosts_temp | sort -u >> my_current_hosts
+  # Sort entries, remove duplicates & append to my_temp_hosts
+  cat hosts_temp | sort -u >> my_temp_hosts
 
   # Put it in the right place
-  sudo mv my_current_hosts /private/etc/hosts
+  sudo mv my_temp_hosts /private/etc/hosts
 
   # Clean up after ourselves
   rm hosts_temp
