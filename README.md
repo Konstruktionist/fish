@@ -22,7 +22,8 @@ Like _SetFile_ also a deprecated tool installed by Xcode.
 #### In alphabetical order
 
 * **apply_settings**  
-Set up fish universal variables. At the moment all color related
+Set up fish universal variables. At the moment all color related.  
+I'm using a customised SpaceGray theme. The standard colors fish comes with don't work very well with this theme. When I set up a Mac this function makes it easy to apply the colors that I found to be working best for me. It has taken an inordinate amount of time to get to these, so it's important to preserve them even if this function is never called again during the computers lifetime. 
 * **bup**  
 Three consecutive commands to keep homebrew up to date and lean.  
 `brew update`, `brew upgrade` and finally `brew cleanup`.  
