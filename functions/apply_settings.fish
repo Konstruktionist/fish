@@ -18,7 +18,7 @@ function apply_settings -d 'setup fish universal variables'
 	set -U fish_color_param 87afff
 	set -U fish_color_quote fae3a0
 	set -U fish_color_redirection cb1ed1
-	set -U fish_color_search_match --background=87af5f  # green background
+	set -U fish_color_search_match --background=000000  # black background
 	set -U fish_color_status b91e2e
 	set -U fish_color_user 5f875f
 	set -U fish_color_valid_path --underline
