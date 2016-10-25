@@ -6,18 +6,18 @@ function ip -d 'get ip address info'
 
    if test -z $wired
    else
-      printf '%sEthernet  : %s%s%s\n' (set_color yellow) (set_color normal) $wired
+      echo -ns (set_color yellow) 'Ethernet  : '  (set_color normal) $wired \n
    end
 
    if test -z $wifi
    else
-      printf '%sWifi      : %s%s%s\n' (set_color yellow) (set_color normal) $wifi
+     echo -ns (set_color yellow) 'Wifi      : '  (set_color normal) $wifi \n
    end
 
    if test -z $external
    else
-      printf '%sPublic    : %s%s%s\n' (set_color yellow) (set_color normal) $external
+     echo -ns (set_color yellow) 'Public    : '  (set_color normal) $external \n
    end
 
-   printf '%sDNS       : %s%s%s\n' (set_color yellow) (set_color normal) $DNS
+   echo -ns (set_color yellow) 'DNS       : '  (set_color normal) $DNS \n
 end
