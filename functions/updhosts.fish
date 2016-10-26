@@ -16,12 +16,12 @@ function updhosts -d 'Update my /etc/hosts file'
   # The StevenBlack list contains the other lists as well. So if any one of
   # them fails, they still get included.
   # If all of them fail we end up with the standard hosts file provided by the
-  # OS.
+  # OS with my personal blocklist appended.
 
   curl -s http://someonewhocares.org/hosts/zero/hosts | helper_cleanup >> hosts_temp
   curl -s http://winhelp2002.mvps.org/hosts.txt | helper_cleanup >> hosts_temp
   curl -s 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' | helper_cleanup >> hosts_temp
-  curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts | helper_cleanup >> hosts_temp
+  curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | helper_cleanup >> hosts_temp
 
 
   # Restore the original hosts entries

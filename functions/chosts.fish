@@ -22,7 +22,7 @@ function chosts -d 'check online hosts files for last update'
   set -l my_hosts (cat /etc/hosts | egrep -i 'last updated' | awk '{print $5, $6, $7}')
   set -l swc ( curl -s http://someonewhocares.org/hosts/zero/hosts | egrep -i 'last updated' | awk '{print $5, $6, $7}')
   set -l yoyo ( curl -s 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' | egrep -i 'last updated' | awk '{print $5, $6, $7}')
-  set -l sb ( curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts | egrep 'Date:' | awk '{print $4, substr($3,1,3), $5}')
+  set -l sb ( curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | egrep 'Date:' | awk '{print $4, substr($3,1,3), $5}')
   set -l mvps (curl -s http://winhelp2002.mvps.org/hosts.txt | egrep -i 'Updated' | sed 's/^#[[:space:]]-*[[:space:]][A-z]*:[[:space:]]//' | awk '{print $1}' | awk -F - '{print $2, substr($1,1,3), $3}')
 
   # The date is just a string, here we convert it to a format that dateutils can
