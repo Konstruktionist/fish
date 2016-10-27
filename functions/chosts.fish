@@ -72,7 +72,7 @@ function chosts -d 'check online hosts files for last update'
           set abs $difference
           set ah_beh "ahead"
       end
-    echo -ns "   " $name " updated on: " $val " which is " $display_color $abs $normal " day(s) " $ah_beh"."\n
+    echo -ns "   " $name " updated on: " $date " which is " $display_color $abs $normal " day(s) " $ah_beh"."\n
   end
 end
 
