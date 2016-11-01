@@ -55,23 +55,23 @@ function chosts -d 'check online hosts files for last update'
     end
 
     # Convert remote date strings for use with dateutils
-      set -l distant_date (strptime -i "%d %b %Y" $date)
-      # Calculate the difference in days between local and remote hosts files
-      set -l difference (datediff $my_date $distant_date)
-      # Figure out if remote is ahead (positive difference) or behind (negative
-      # difference) and adjust color and message to it.
-        if test $difference -le 0
-        # We don't want to show negative numbers. (It took some time to figure
-        # out that we need to escape the * with a backslash. Without it we get
-        # a wildcard error message.)
-        set abs ( math $difference\*-1)
-          set display_color (set_color yellow)
-          set ah_beh "behind"
-        else
-          set display_color (set_color red)
-          set abs $difference
-          set ah_beh "ahead"
-      end
+    set -l distant_date (strptime -i "%d %b %Y" $date)
+    # Calculate the difference in days between local and remote hosts files
+    set -l difference (datediff $my_date $distant_date)
+    # Figure out if remote is ahead (positive difference) or behind (negative
+    # difference) and adjust color and message to it.
+    if test $difference -le 0
+      # We don't want to show negative numbers. (It took some time to figure
+      # out that we need to escape the * with a backslash. Without it we get
+      # a wildcard error message.)
+      set abs ( math $difference\*-1)
+      set display_color (set_color yellow)
+      set ah_beh "behind"
+    else
+      set display_color (set_color red)
+      set abs $difference
+      set ah_beh "ahead"
+    end
     echo -ns "   " $name " updated on: " $date " which is " $display_color $abs $normal " day(s) " $ah_beh"."\n
   end
 end

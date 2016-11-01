@@ -89,11 +89,11 @@ function prompt_git_status -d 'Write out the git status'
 
   if test -n "$gitsha"
 
-     echo -n ' '
+    echo -n ' '
 
     set_color $fish_color_git_sha; echo -n $gitsha; set_color normal
 
-     echo -n ' '
+    echo -n ' '
 
   end
 

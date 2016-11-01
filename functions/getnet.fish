@@ -51,9 +51,9 @@ function getnet -d "get network information"
     echo $QUERY0 | grep 'yiaddr = 0.0.0.0' > /dev/null
     set AT $status
     if test $AT -eq 0
-        echo "   IP Address: $ETH_IP1 (Static)"
-      else
-        echo "   IP Address: $ETH_IP2 (DHCP)"
+      echo "   IP Address: $ETH_IP1 (Static)"
+    else
+      echo "   IP Address: $ETH_IP2 (DHCP)"
     end
 
     echo "  Subnet Mask: $ETH_SUBNET"
@@ -62,7 +62,7 @@ function getnet -d "get network information"
     echo "  MAC Address: $ETH_MAC0"
     echo "        Speed: $ETH_SPEED"
 
-   else
+  else
     if test $ETH -a 0
       echo "   IP Address: inactive"
       echo "  MAC Address: $ETH_MAC0"
@@ -77,9 +77,9 @@ function getnet -d "get network information"
     echo $QUERY1 | grep 'yiaddr = 0.0.0.0' > /dev/null
     set AT $status
     if test $AT -eq 0
-        echo "   IP Address: $WIFI_IP1 (Static)"
-      else
-        echo "   IP Address: $WIFI_IP2 (DHCP)"
+      echo "   IP Address: $WIFI_IP1 (Static)"
+    else
+      echo "   IP Address: $WIFI_IP2 (DHCP)"
     end
 
     echo " Network Name: $WIFI_NAME"
@@ -89,10 +89,10 @@ function getnet -d "get network information"
     echo "  MAC Address: $WIFI_MAC1"
     echo "        Speed: $WIFI_SPEED"
 
-    else
-      if test  $WIFI -a 0
-        echo "   IP Address: inactive"
-        echo "  MAC Address: $WIFI_MAC1"
+  else
+    if test  $WIFI -a 0
+      echo "   IP Address: inactive"
+      echo "  MAC Address: $WIFI_MAC1"
     end
   end
   echo " "

@@ -1,3 +1,3 @@
 function vimrc
-   command vim ~/.config/vim/vimrc
+  command vim ~/.config/vim/vimrc
 end

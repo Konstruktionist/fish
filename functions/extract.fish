@@ -22,9 +22,9 @@ function extract -d 'extract the given archive into a folder'
           unzip $file
         case *.pax
           pax -r < $file
-         case *.Z
-           uncompress $file
-		 case '*'
+        case *.Z
+          uncompress $file
+        case '*'
           echo "Extension not recognized, cannot extract $file"
       end
     else

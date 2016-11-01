@@ -7,15 +7,15 @@ function source_script -d 'Source sh/csh file'
   while true
     switch $argv[1]
       case '--sh'
-      set type sh
+        set type sh
       case '--csh'
-      set type csh
+        set type csh
       case '--bash'
-      set type bash
+        set type bash
       case '--ext'
-      set ext 1
+        set ext 1
       case '*'
-      break
+        break
     end
     set -e argv[1]
   end
@@ -24,11 +24,11 @@ function source_script -d 'Source sh/csh file'
     for f in $argv
       switch $f
         case '*.sh'
-        set type bash
-        break
+          set type bash
+          break
         case '*.csh' '*.tcsh'
-        set type csh
-        break
+          set type csh
+          break
       end
     end
   end
@@ -38,16 +38,16 @@ function source_script -d 'Source sh/csh file'
 
   switch "$type"
     case bash
-    set exe /bin/bash
-    set source .
+      set exe /bin/bash
+      set source .
     case sh
-    set exe /bin/sh
-    set source .
+      set exe /bin/sh
+      set source .
     case csh
-    set exe /bin/tcsh
-    set source source
+      set exe /bin/tcsh
+      set source source
     case '*'
-    echo Unknown source type for "'$argv'"
+      echo Unknown source type for "'$argv'"
   end
 
   if test "$ext"
@@ -63,32 +63,32 @@ function source_script -d 'Source sh/csh file'
     set -l IFS '='
     set -l diffopts --old-line-format '-=%L' --new-line-format '+=%L' --unchanged-line-format ''
     command diff $diffopts $f1 $f2 | command grep -vE $filter | while read -l state var value
-      switch $state$var
-        case -PATH
+    switch $state$var
+      case -PATH
         continue
 
-        case +PATH
+      case +PATH
         eval set value (echo $value | tr : ' ')
         for pt in $value
-            contains $pt $PATH; and continue
-            if not test -d $pt
-                echo "Unable to add '$pt' to \$PATH. Check existance."
-                continue
-            end
-            set -gx PATH $PATH $pt >  /dev/null
+          contains $pt $PATH; and continue
+          if not test -d $pt
+            echo "Unable to add '$pt' to \$PATH. Check existance."
+            continue
+          end
+          set -gx PATH $PATH $pt >  /dev/null
         end
 
-        case '-*'
+      case '-*'
         set -e $var
 
-        case '+*'
+      case '+*'
         eval set -gx $var (echo $value | command sed $pattern)
 
-        case '*'
+      case '*'
         echo Source error! Invalid case "'$state$var'"
-      end
     end
-
-    command rm $f1 $f2 > /dev/null
   end
+
+  command rm $f1 $f2 > /dev/null
+end
 end

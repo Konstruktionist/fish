@@ -18,16 +18,16 @@ function testmovies -d 'find HD movies >= 720p'
   #clean up from previous use
   if test -f queue.txt
     rm queue.txt
-    else
+  else
     echo -n ''
   end
 
   for file in *.mkv  *.m4v *.avi *.ts *.mov *.wmv
     set -l film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
     if test $film_Height -ge 720
-       echo $file >> queue.txt
+      echo $file >> queue.txt
     end
-	end
+  end
 
   if test -f queue.txt
     set -l num_of_files (awk 'END{print NR}' queue.txt)

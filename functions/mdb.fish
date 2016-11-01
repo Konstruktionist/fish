@@ -13,7 +13,7 @@ function mdb -d 'Make a flatfile movie database'
   # clean up from previous use
   if test -f $HOME/Movies\ on\ $drive.txt
     rm $HOME/Movies\ on\ $drive.txt
-    else
+  else
     echo -n ''
   end
 
@@ -27,8 +27,8 @@ function mdb -d 'Make a flatfile movie database'
     # Make tags standout by using the 'Label' Unicode symbol
     if test -z $tags
       echo $title '•' $width 'x' $height >> "$HOME/Movies on $drive.txt"
-      else
+    else
       echo $title '•' $width 'x' $height '🏷 ' $tags >> "$HOME/Movies on $drive.txt"
     end
-   end
+  end
 end
