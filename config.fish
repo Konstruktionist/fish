@@ -49,7 +49,7 @@ setenv -gx GREP_COLOR '1;30;43' # bright/bold black text, yellow background
 setenv -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
-setenv -gx LSCOLORS 'gxfxbdaeBxxehehbaghbad'          # see man ls
+setenv -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
 
 set -gx SOCCER_CLI_API_TOKEN "f8e416cdeeb24e33824e96b1bcfc3961"
 
