@@ -58,3 +58,4 @@ set -gx HOMEBREW_NO_ANALYTICS 1
 
 abbr tv transcode-video --mp4 --720p --target small --quick --audio-width all=stereo --add-subtitle nld
 abbr vidl youtube-dl -f pg-nettv
+abbr quad xattr -d com.apple.quarantine
