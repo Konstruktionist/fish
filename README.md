@@ -27,7 +27,7 @@ I'm using a customised SpaceGray theme. The standard colors fish comes with don'
 * **bup**  
 Three consecutive commands to keep homebrew up to date and lean.  
 `brew update`, `brew upgrade` and finally `brew cleanup`.  
-This will update *everything* that is installed via a brew command for which a newer version is available.
+This will update _everything_ that is installed via a brew command for which a newer version is available.
 * **cdl**  
 Change to a directory and list its contents with a long listing.
 * **chosts**  
@@ -35,7 +35,7 @@ Compare the local date with the date on the net for my hosts file and see if it'
 * **cleands**  
 Recursively delete ".DS_Store" files
 * **cleanLaunchServices**  
-Clean up LaunchServices to remove duplicates in the "*Open With*" menu.
+Clean up LaunchServices to remove duplicates in the "_Open With_" menu.
 * **cpuhogs**  
 Find what's hogging the CPU. Kinda like a Top 10 list.
 * **decrypt**  
@@ -53,14 +53,14 @@ Extract the given archive into a folder.
 Display a short message at login.
 * **fish_prompt**  
 Prompt line with git info.
-* **fish_right_prompt**  
+* **fish\_right\_prompt**  
 Time stamp at the right hand side of the terminal.
-* **fish_user_key_bindings**  
-Symbolic link to *fzf_key_bindings* which lives in `/usr/local/Cellar/fzf/version_number/shell`  
+* **fish\_user\_key\_bindings**  
+Symbolic link to _fzf\_key\_bindings_ which lives in `/usr/local/Cellar/fzf/version_number/shell`  
 Dumped here by `brew install fzf`.
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
-* **fzf_key_bindings**  
+* **fzf\_key\_bindings**  
 As the name implies key bindings for [fzf][github 2] (fuzzy finder).
 * **getnet**  
 Get network information.  
@@ -101,9 +101,9 @@ The  successor of getnet.fish.
 Works on Mac's without a physical ethernet port. See in the comments.
 * **nvimrc**  
 Open the init.vim file.
-* **prompt_git_status**  
+* **prompt\_git\_status**  
 Helper function for fish_prompt.
-* **restore_original_fish_colors**  
+* **restore\_original\_fish_colors**  
 Like it says on the tin.
 * **source_script**  
 Source sh/csh file. Seems useful, but I can't remember if I ever used it.
@@ -120,7 +120,7 @@ Undo a `git push`
 * **unmark**  
 Remove a bookmark.
 * **updhosts**  
-Update my /private/etc/hosts file from [4][someonewhocares] [different][mvps] [online][yoyo] [sources][SB] and append my personal blocklist to it.  
+Update my /private/etc/hosts file from [four][someonewhocares] [different][mvps] [online][yoyo] [sources][SB] and append my personal blocklist to it.  
 All to block ads & malware sites, trackers and other annoyances like facebook.
 * **vimrc**  
 Open the .vimrc file.
