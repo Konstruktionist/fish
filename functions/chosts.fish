@@ -1,13 +1,13 @@
 # Compare the local date with the date on the net for my hosts file and see
 # if it's behind
 #
-#     Dependency : dateutils
-#     ======================
+#     Dependency : dateutils & helper_fish_command_timer.fish
+#     =======================================================
 #     project homepage: http://www.fresse.org/dateutils/
 #     installed via homebrew
 #
-#     version 1.2
-#     27-10-2016
+#     version 1.3
+#     05-11-2016
 
 function chosts -d 'check online hosts files for last update'
 
@@ -15,15 +15,24 @@ function chosts -d 'check online hosts files for last update'
   set normal (set_color normal)
   set decor (set_color 87afff) # blue
 
-  # Get the dates from the hosts files & put them in a uniform format.
-  # format is "dd Mon Year" where dd is the day of the month in numbers, Mon is
-  # the 3-letter abreviation of the month name and Year is the year
-  # including the century.
+  # With curl we download the complete file and grep the date from it,
+  # this takes time. If we only get the HTTP headers and grep those for the date
+  # we will save a lot of time.
+
   set -l my_hosts_date (cat /etc/hosts | egrep -i 'last updated' | awk '{print $5, $6, $7}')
-  set -l swc_date ( curl -s http://someonewhocares.org/hosts/zero/hosts | egrep -i 'last updated' | awk '{print $5, $6, $7}')
-  set -l yoyo_date ( curl -s 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' | egrep -i 'last updated' | awk '{print $5, $6, $7}')
+  set -l swc_headers (wget -S --spider http://someonewhocares.org/hosts/zero/hosts -o swc_headers.txt)
+  set -l mvps_headers (wget -S --spider http://winhelp2002.mvps.org/hosts.txt -o mvps_headers.txt)
+  set -l yoyo_headers (wget -S --spider 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' -o yoyo_headers.txt)
+
+  # Steven Black is a git repository on github, and refuses to give the
+  # Last-Modified header so we have to download the whole lot and use grep and
+  # awk to find the date
   set -l sb_date ( curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | egrep 'Date:' | awk '{print $4, substr($3,1,3), $5}')
-  set -l mvps_date (curl -s http://winhelp2002.mvps.org/hosts.txt | egrep -i 'Updated' | sed 's/^#[[:space:]]-*[[:space:]][A-z]*:[[:space:]]//' | awk '{print $1}' | awk -F - '{print $2, substr($1,1,3), $3}')
+
+  # Extract the dates
+  set -l swc_date (cat swc_headers.txt | egrep -i 'Last-Modified' | awk '{print $3, $4, $5}')
+  set -l yoyo_date (cat yoyo_headers.txt | egrep -i 'Last-Modified' | awk '{print $3, $4, $5}')
+  set -l mvps_date (cat mvps_headers.txt | egrep -i 'Last-Modified' | awk '{print $3, $4, $5}')
 
   # These are used later to fill in the right values
   set -l swc 'swc'
@@ -54,10 +63,13 @@ function chosts -d 'check online hosts files for last update'
         set date $mvps_date
     end
 
+
     # Convert remote date strings for use with dateutils
     set -l distant_date (strptime -i "%d %b %Y" $date)
+
     # Calculate the difference in days between local and remote hosts files
     set -l difference (datediff $my_date $distant_date)
+
     # Figure out if remote is ahead (positive difference) or behind (negative
     # difference) and adjust color and message to it.
     if test $difference -le 0
@@ -74,5 +86,8 @@ function chosts -d 'check online hosts files for last update'
     end
     echo -ns "   " $name " updated on: " $date " which is " $display_color $abs $normal " day(s) " $ah_beh"."\n
   end
+
+  # Clean up after ourselves
+  rm *_headers.txt
 end
 
