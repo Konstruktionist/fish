@@ -51,6 +51,13 @@ setenv -gx GREP_OPTIONS "--color=auto"
 # ls colors
 setenv -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
 
+# Settings for timing helper function
+source ~/.config/fish/functions/helper_fish_command_timer.fish
+set fish_command_timer_millis 1 # enable milli-seconds
+set fish_command_timer_time_format '%d %b %H:%M:%S'
+set fish_command_timer_export_cmd_duration_str 1
+
+# Acces token for football stats
 set -gx SOCCER_CLI_API_TOKEN "f8e416cdeeb24e33824e96b1bcfc3961"
 
 # disable Google analytics for homebrew
