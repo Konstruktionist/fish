@@ -1,8 +1,8 @@
 # Compare the local date with the date on the net for my hosts file and see
 # if it's behind
 #
-#     Dependency : dateutils & helper_fish_command_timer.fish
-#     =======================================================
+#     Dependency : dateutils
+#     ======================
 #     project homepage: http://www.fresse.org/dateutils/
 #     installed via homebrew
 #
