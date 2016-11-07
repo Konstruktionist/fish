@@ -5,82 +5,69 @@
 
 function try_func
 
-  # Re-usable colors
-  set normal (set_color normal)
-  set decor (set_color 87afff) # blue
+  # Get public ip address
+  set public (curl -s http://ipecho.net/plain)
+  # Let's account for possible lag in reply from ipecho.net
+  # sleep .3
 
-  # With chosts we download the complete file and grep the date from it
-  # this takes time. If we only get the HTTP headers and grep those for the date
-  # we will save a lot of time.
-
-  set -l my_hosts_date (cat /etc/hosts | egrep -i 'last updated' | awk '{print $5, $6, $7}')
-  set -l swc_headers (wget -S --spider http://someonewhocares.org/hosts/zero/hosts -o swc_headers.txt)
-  set -l mvps_headers (wget -S --spider http://winhelp2002.mvps.org/hosts.txt -o mvps_headers.txt)
-  set -l yoyo_headers (wget -S --spider 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' -o yoyo_headers.txt)
-
-  # Steven black is a git repository on github, and refuses to give the
-  # Last-Modified header so we have to download the whole lot and grep our way out
-  set sb_date ( curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | egrep 'Date:' | awk '{print $4, substr($3,1,3), $5}')
-
-  # Extract the dates
-  set swc_date (cat swc_headers.txt | egrep -i 'Last-Modified' | awk '{print $3, $4, $5}')
-  set yoyo_date (cat yoyo_headers.txt | egrep -i 'Last-Modified' | awk '{print $3, $4, $5}')
-  set mvps_date (cat mvps_headers.txt | egrep -i 'Last-Modified' | awk '{print $3, $4, $5}')
-
-  # These are used later to fill in the right values
-  set -l swc 'swc'
-  set -l yoyo 'yoyo'
-  set -l sb 'sb'
-  set -l mvps 'mvps'
-
-  # The date is just a string, here we convert it to a format that dateutils can
-  # work with.
-  set -l my_date (strptime -i "%d %b %Y" $my_hosts_date)
-
-
-  echo -s ' My hosts file was updated on: ' $decor $my_hosts_date $normal
-
-  for val in $swc $yoyo $mvps $sb
-    switch $val
-      case swc
-        set name 'someonewhocares'
-        set date $swc_date
-      case yoyo
-        set name '           yoyo'
-        set date $yoyo_date
-      case sb
-        set name '    stevenblack'
-        set date $sb_date
-      case mvps
-        set name '           mvps'
-        set date $mvps_date
-    end
-
-
-    # Convert remote date strings for use with dateutils
-    set -l distant_date (strptime -i "%d %b %Y" $date)
-
-    # Calculate the difference in days between local and remote hosts files
-    set -l difference (datediff $my_date $distant_date)
-
-    # Figure out if remote is ahead (positive difference) or behind (negative
-    # difference) and adjust color and message to it.
-    if test $difference -le 0
-      # We don't want to show negative numbers. (It took some time to figure
-      # out that we need to escape the * with a backslash. Without it we get
-      # a wildcard error message.)
-      set abs ( math $difference\*-1)
-      set display_color (set_color yellow)
-      set ah_beh "behind"
-    else
-      set display_color (set_color red)
-      set abs $difference
-      set ah_beh "ahead"
-    end
-    echo -ns "   " $name " updated on: " $date " which is " $display_color $abs $normal " day(s) " $ah_beh"."\n
+  if test -z "$public" # No Internet connection
+    set public "No Internet connection available"
   end
 
-  # Clean up after ourselves
-  rm *_headers.txt
+  echo " "
+  echo "    Public IP: $public"
+  echo "     Hostname:" (uname -n)
+  echo " "
 
+  # Get all available hardware ports
+  set ports (ifconfig -uv | grep '^[a-z0-9]' | awk -F : '{print $1}')
+
+  # Get for all available hardware ports their status
+  for val in $ports
+    set activated (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
+
+    # We want information about active network ports...
+    if test $activated = 'active' ^/dev/null
+      set ipaddress (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
+
+      # and of these, the ones with an IP-address assigned to it
+      if test -n "$ipaddress" ^/dev/null
+
+        # Do we have an IP address?
+        # Then give us the information
+        set label (ifconfig -uv $val | grep 'type' | awk '{print $2}')
+        set networkspeed (ifconfig -uv $val | grep 'link rate:' | awk '{print $3, $4}')
+        set macaddress (ifconfig -uv $val | grep 'ether ' | awk '{print $2}')
+        set quality (ifconfig -uv $val | grep 'link quality:' | awk '{print $3, $4}')
+        set netmask (ipconfig getpacket $val | grep 'subnet_mask (ip):' | awk '{print $3}')
+        set router (ipconfig getpacket $val | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
+        set dnsserver (networksetup -getdnsservers $label | awk '{print $1, $2}')
+
+        echo -n $label ; echo -n ' ('; echo -n $val ; echo ')'
+        echo "--------------"
+
+        # Is this a WiFi associated port? If so, then we want the network name
+        switch $label
+          case Wi-Fi
+            # Get WiFi network name
+            set wifi_name (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep '\sSSID:' | sed 's/.*: //')
+            echo -n  ' Network Name: '; echo $wifi_name
+            # Networkspeed for Wi-Fi
+            set networkspeed (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep lastTxRate: | sed 's/.*: //' | sed 's/$/ Mbps/')
+        end
+
+        echo -n '   IP-address: ' ; echo $ipaddress
+        echo -n '  Subnet Mask: ' ; echo $netmask
+        echo -n '       Router: ' ; echo $router
+        echo -n '   DNS Server: ' ; echo $dnsserver
+        echo -n '  MAC-address: ' ; echo $macaddress
+        echo -n 'Network Speed: ' ; echo $networkspeed
+        echo -n ' Link quality: ' ; echo $quality
+        echo " "
+      end
+
+      # Don't display the inactive ports.
+    else if test $activated = 'inactive' ^/dev/null
+    end
+  end
 end
