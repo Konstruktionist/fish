@@ -65,8 +65,6 @@ As the name implies key bindings for [fzf][github 2] (fuzzy finder).
 * **getnet**  
 Get network information.  
 I don't use this anymore because newer Mac's may not have a physical ethernet port.
-* **glog**  
-A nice git log display.
 * **helper_**_something_  
 As the name implies (usually) small helper functions that are called from other functions.  
 ***Not*** to be used on its own! They are most likely to be destructive in nature.
