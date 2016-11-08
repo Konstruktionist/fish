@@ -30,9 +30,15 @@ command mkdir -p $MARKPATH
 complete -c jump -f -a '(ls ~/.marks)'
 complete -c unmark -f -a '(ls ~/.marks)'
 
-# LESS with colors
-# from http://blog.0x1fff.com/2009/11/linux-tip-color-enabled-pager-less.html
-set -gx LESS "-RSM~gis"
+# LESS with colors (options explained)
+# R   allow raw control chars. ANSI only
+# M   causes less to prompt even more verbosely than more
+# S   cut off long lines, i.e. don't fold or wrap
+# ~   causes lines after end of file to be displayed as blank lines
+# g   highlight only last search matches
+# i   smart case search
+# s   causes consecutive blank lines to be squeezed into a single blank line
+set -gx LESS "-RMS~gis"
 
 # Colorful man pages
 # from http://pastie.org/pastes/206041/text
