@@ -34,11 +34,12 @@ complete -c unmark -f -a '(ls ~/.marks)'
 # R   allow raw control chars. ANSI only
 # M   causes less to prompt even more verbosely than more
 # S   cut off long lines, i.e. don't fold or wrap
+# X   don't clear the sceen after quiting
 # ~   causes lines after end of file to be displayed as blank lines
 # g   highlight only last search matches
 # i   smart case search
 # s   causes consecutive blank lines to be squeezed into a single blank line
-set -gx LESS "-RMS~gis"
+set -gx LESS "-RMSX~gis"
 
 # Colorful man pages
 # from http://pastie.org/pastes/206041/text
