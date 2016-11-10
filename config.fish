@@ -44,7 +44,7 @@ set -gx LESS "-RMSX~gis"
 # Colorful man pages
 # from http://pastie.org/pastes/206041/text
 setenv -gx LESS_TERMCAP_mb (printf "\e[1;31m")        # begin blinking (red)
-setenv -gx LESS_TERMCAP_md (printf "\e[1;31m")        # begin bold (red)
+setenv -gx LESS_TERMCAP_md (printf "\e[1;91m")        # begin bold (light red)
 setenv -gx LESS_TERMCAP_me (printf "\e[0m")           # end mode
 setenv -gx LESS_TERMCAP_se (printf "\e[0m")           # end standout-mode
 setenv -gx LESS_TERMCAP_so (printf "\e[1;30;43m")     # begin standout-mode - info box (yellow background, bold black text)
