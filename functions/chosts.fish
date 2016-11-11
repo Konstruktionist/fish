@@ -80,11 +80,11 @@ function chosts -d 'check online hosts files for last update'
       set display_color (set_color yellow)
       set ah_beh "behind"
     else
-      set display_color (set_color red)
+      set display_color (set_color brred)
       set abs $difference
       set ah_beh "ahead"
     end
-    echo -ns "   " $name " updated on: " $date " which is " $display_color $abs $normal " day(s) " $ah_beh"."\n
+    echo -ns "   " $name " updated on: " $date " which is " $display_color $abs " day(s) " $ah_beh $normal"."\n
   end
 
   # Clean up after ourselves
