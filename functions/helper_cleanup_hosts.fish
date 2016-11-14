@@ -1,4 +1,4 @@
-function helper_cleanup -d "Helper function for cleaning up downloaded hosts file"
+function helper_cleanup_hosts -d "Helper function for cleaning up downloaded hosts file"
 
   # files downloaded from:
   #   http://someonewhocares.org/hosts/zero/hosts
