@@ -1,7 +1,7 @@
 # A short description of the functions
 
-### Functions with dependencies on non-standard installed tools **\***
-> \* On MacOS (OS X)
+### Functions with dependencies on non-standard installed tools*
+ _\* on MacOS (OS X)_
 
 * **chosts.fish** _depends on [**dateutils**][fresse]_
 * **img_size.fish** _depends on [**imagemagick**][imagemagick]_.
@@ -28,7 +28,7 @@ I'm using a customised SpaceGray theme. The standard colors fish comes with don'
 
 * **brdeps**  
 Print a list of `brew` installed tools and its dependencies.  
-_Output_: 
+_Output_:  
       `tool_name depends on: some_other_tool(s)`
 
 * **brused**  
@@ -81,15 +81,16 @@ Prompt line with git info.
 * **fish\_right\_prompt**  
 Time stamp & command execution time at the right hand side of the terminal.
 
-* **fzf\_key\_bindings**  
-Symbolic link to keybindings for fzf (fuzzy finder) which live in `/usr/local/opt/fzf/shell/key-bindings.fish`.  
-Dumped here by `brew install fzf`.
+* **fish\_user\_key\_bindings**  
+Sources _fzf\_key\_bindings_ ?  
+Dumped here by brew install fzf.
 
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
 
 * **fzf\_key\_bindings**  
 As the name implies key bindings for [fzf][github 2] (fuzzy finder).
+Symbolic link to keybindings for fzf (fuzzy finder) which lives in /usr/local/opt/fzf/shell/key-bindings.fish.
 
 * **getnet**  
 Get network information.  
