@@ -5,17 +5,19 @@
 
 * **chosts.fish** _depends on [**dateutils**][fresse]_
 * **img_size.fish** _depends on [**imagemagick**][imagemagick]_.
+* **mdb.fish** _depends on [**tag**][github]_.
+* **testmovies.fish** _depends on [**mediainfo**][mediaarea]_.
+
+> These tools were installed with [brew][brew].
+
 * **fixdate.fish** _depends on **SetFile**_  
     SetFile is a macOS (OS X) tool installed by Xcode.  
     From its manpage :  
     _Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6._  
     Its documentation says it is deprecated, but for now it works. (With Xcode 8 it still gets installed).  
-* **mdb.fish** _depends on [**tag**][github]_.
-* **testmovies.fish** _depends on [**mediainfo**][mediaarea]_.
 * **xpstatus.fish** _depends on **GetFileInfo**_  
 Like _SetFile_ also a deprecated tool installed by Xcode.  
 
-> These tools were installed with [brew][brew].
 
 
 ---
@@ -90,7 +92,7 @@ Extract dates from filenames and put those in the date created & modified metada
 
 * **fzf\_key\_bindings**  
 As the name implies key bindings for [fzf][github 2] (fuzzy finder).
-Symbolic link to keybindings for fzf (fuzzy finder) which lives in /usr/local/opt/fzf/shell/key-bindings.fish.
+Symbolic link to keybindings for fzf (fuzzy finder) which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
 
 * **getnet**  
 Get network information.  
