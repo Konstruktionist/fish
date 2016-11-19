@@ -36,6 +36,12 @@ function updhosts -d 'Update my /etc/hosts file'
   # Put it in the right place
   sudo mv my_temp_hosts /private/etc/hosts
 
+  # clear DNS caches
+  # The commands have changed over the years with OS versions
+  # This is for macOS 10.12 Sierra
+  sudo dscacheutil -flushcache
+  sudo killall -HUP mDNSResponder
+
   # Clean up after ourselves
   rm hosts_temp
 
