@@ -3,7 +3,7 @@
 ### Functions with dependencies on non-standard installed tools*
  _\* on MacOS (OS X)_
 
-* **chosts.fish** _depends on [**dateutils**][fresse]_
+* **chosts.fish** _depends on [**dateutils**][fresse] & [**wget**][wget]_.
 * **img_size.fish** _depends on [**imagemagick**][imagemagick]_.
 * **mdb.fish** _depends on [**tag**][github]_.
 * **testmovies.fish** _depends on [**mediainfo**][mediaarea]_.
@@ -205,3 +205,4 @@ Also if you find bugs, ditto.
 [yoyo]: https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext
 [SB]: https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts
 [brew]: http://brew.sh
+[wget]: https://www.gnu.org/software/wget/
