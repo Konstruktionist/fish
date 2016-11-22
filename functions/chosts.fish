@@ -1,9 +1,8 @@
 # Compare the local date with the date on the net for my hosts file and see
 # if it's behind
 #
-#     Dependency : dateutils
-#     ======================
-#     project homepage: http://www.fresse.org/dateutils/
+#     Dependencies: dateutils, wget
+#     =============================
 #     installed via homebrew
 #
 #     version 1.3
@@ -40,8 +39,8 @@ function chosts -d 'check online hosts files for last update'
   set -l sb 'sb'
   set -l mvps 'mvps'
 
-  # The date is just a string, here we convert it to a format that dateutils can
-  # work with.
+  # The my_hosts_date is just a string, here we convert it to a format that
+  # dateutils can work with.
   set -l my_date (strptime -i "%d %b %Y" $my_hosts_date)
 
 
