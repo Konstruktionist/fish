@@ -7,10 +7,10 @@
 # ---------------------------------------------------------
 
 # Set architecture flags
-set -U ARCHFLAGS "-arch x86_64"
+set -gx ARCHFLAGS "-arch x86_64"
 
 # Set the editor
-set -U EDITOR mate
+set -gx EDITOR mate
 # Let homebrew know about my preferred editor
 setenv -gx HOMEBREW_EDITOR mate
 setenv -gx VISUAL mate
@@ -60,9 +60,11 @@ setenv -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
 
 # Settings for timing helper function
 source ~/.config/fish/functions/helper_fish_command_timer.fish
+set fish_command_timer_enabled 1 # enable command timer
 set fish_command_timer_millis 1 # enable milli-seconds
-set fish_command_timer_time_format '%d %b %H:%M:%S'
-set fish_command_timer_export_cmd_duration_str 1
+set fish_command_timer_time_format '' # disable printing of current time
+set fish_command_timer_export_cmd_duration_str 1 # export $CMD_DURATION_STR variable so we can use it in prompt
+
 
 # Acces token for football stats
 set -gx SOCCER_CLI_API_TOKEN "f8e416cdeeb24e33824e96b1bcfc3961"
