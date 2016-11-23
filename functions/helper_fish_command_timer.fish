@@ -20,7 +20,7 @@
 #
 # For the most up-to-date version, as well as further information and
 # installation instructions, please visit the GitHub project page at
-#     https://github.com/jichuan89/fish-command-timer
+#     https://github.com/jichu4n/fish-command-timer
 #
 # Requires fish 2.2 or above.
 
