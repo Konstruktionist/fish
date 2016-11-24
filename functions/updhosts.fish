@@ -1,6 +1,6 @@
 function updhosts -d 'Update my /etc/hosts file'
 
-  # Relies on a helper function: helper_cleanup_hosts
+  # Relies on a helper function: fish_cleanup_hosts
 
   # Save current working directory, so we can excecute this anywhere in the file system.
   set current_working_directory $PWD
@@ -18,10 +18,10 @@ function updhosts -d 'Update my /etc/hosts file'
   # If all of them fail we end up with the standard hosts file provided by the
   # OS with my personal blocklist appended.
 
-  curl -s http://someonewhocares.org/hosts/zero/hosts | helper_cleanup_hosts >> hosts_temp
-  curl -s http://winhelp2002.mvps.org/hosts.txt | helper_cleanup_hosts >> hosts_temp
-  curl -s 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' | helper_cleanup_hosts >> hosts_temp
-  curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | helper_cleanup_hosts >> hosts_temp
+  curl -s http://someonewhocares.org/hosts/zero/hosts | fish_cleanup_hosts >> hosts_temp
+  curl -s http://winhelp2002.mvps.org/hosts.txt | fish_cleanup_hosts >> hosts_temp
+  curl -s 'https://pgl.yoyo.org/as/serverlist.php?hostformat=hosts&showintro=0&startdate%5Bday%5D=&startdate%5Bmonth%5D=&startdate%5Byear%5D=&mimetype=plaintext' | fish_cleanup_hosts >> hosts_temp
+  curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | fish_cleanup_hosts >> hosts_temp
 
 
   # Restore the original hosts entries
