@@ -52,7 +52,7 @@ setenv -gx LESS_TERMCAP_ue (printf "\e[0m")           # end underline
 setenv -gx LESS_TERMCAP_us (printf "\e[04;36m")       # begin underline (cyan)
 
 # grep colors
-setenv -gx GREP_COLOR '1;30;43' # bright/bold black text, yellow background
+setenv -gx GREP_COLOR '4;32' # green underlined 
 setenv -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
