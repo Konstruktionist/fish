@@ -74,33 +74,36 @@ Encrypt a file.
 * **extract**  
 Extract the given archive into a folder.
 
-* **fish_greeting**  
-Display a short message at login.
+* **fish\__some\_function_**
+functions for the shell's own use.
 
-* **fish_prompt**  
-Prompt line with git info.
+   * **fish_greeting**  
+   Display a short message at login.
 
-* **fish\_right\_prompt**  
-Time stamp & command execution time at the right hand side of the terminal.
+   * **fish_prompt**  
+   Prompt line with git info.
 
-* **fish\_user\_key\_bindings**  
-Sources _fzf\_key\_bindings_ ?  
-Dumped here by brew install fzf.
+   * **fish\_right\_prompt**  
+   Time stamp & command execution time at the right hand side of the terminal.
+
+   * **fish\_user\_key\_bindings**  
+   Sources _fzf\_key\_bindings_  
+   Dumped here by brew install fzf.
+
+   * **fish**\__something\_else\_then\_above_  
+   Usually a small helper function that is called from other functions.  
+   ***Not*** to be used on its own! They are most likely to be destructive in nature.
 
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
 
 * **fzf\_key\_bindings**  
 As the name implies key bindings for [fzf][github 2] (fuzzy finder).
-Symbolic link to keybindings for fzf (fuzzy finder) which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
+It's a ymbolic link to keybindings for fzf which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
 
 * **getnet**  
 Get network information.  
 I don't use this anymore because newer Mac's may not have a physical ethernet port.
-
-* **helper**\_ _something_  
-As the name implies (usually) small helper functions that are called from other functions.  
-***Not*** to be used on its own! They are most likely to be destructive in nature.
 
 * **hosts**  
 Open the hosts file in my favorite editor.
