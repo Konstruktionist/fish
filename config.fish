@@ -59,7 +59,7 @@ setenv -gx GREP_OPTIONS "--color=auto"
 setenv -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
 
 # Settings for timing helper function
-source ~/.config/fish/functions/helper_fish_command_timer.fish
+source ~/.config/fish/functions/fish_command_timer.fish
 set fish_command_timer_enabled 1 # enable command timer
 set fish_command_timer_millis 1 # enable milli-seconds
 set fish_command_timer_time_format '' # disable printing of current time
