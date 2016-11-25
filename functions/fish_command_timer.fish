@@ -197,9 +197,9 @@ function -e fish_postexec fish_command_timer_postexec
   set -l now_str (fish_command_timer_print_time $command_end_time)
   set -l output_str
   if [ -n "$now_str" ]
-    set output_str "[ $time_str | $now_str ]"
+    set output_str "𝛅 $time_str | $now_str"
   else
-    set output_str "[ $time_str ]"
+    set output_str "𝛅 $time_str"
   end
   set -l output_str_colored
   if begin
@@ -212,11 +212,10 @@ function -e fish_postexec fish_command_timer_postexec
   end
   set -l output_str_length (fish_command_timer_strlen "$output_str")
 
-  # ----------- Disabled because I handle this in the right_prompt -------------
   # Move to the end of the line. This will NOT wrap to the next line.
-  # echo -ne "\033["{$COLUMNS}"C"
-  # # Move back (length of output_str) columns.
-  # echo -ne "\033["{$output_str_length}"D"
-  # # Finally, print output.
-  # echo -e "$output_str_colored"
+  echo -ne "\033["{$COLUMNS}"C"
+  # Move back (length of output_str) columns.
+  echo -ne "\033["{$output_str_length}"D"
+  # Finally, print output.
+  echo -e "$output_str_colored"
 end

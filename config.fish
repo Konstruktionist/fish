@@ -52,7 +52,7 @@ setenv -gx LESS_TERMCAP_ue (printf "\e[0m")           # end underline
 setenv -gx LESS_TERMCAP_us (printf "\e[04;36m")       # begin underline (cyan)
 
 # grep colors
-setenv -gx GREP_COLOR '4;32' # green underlined 
+setenv -gx GREP_COLOR '4;32' # green underlined
 setenv -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
@@ -61,9 +61,9 @@ setenv -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
 # Settings for timing helper function
 source ~/.config/fish/functions/fish_command_timer.fish
 set fish_command_timer_enabled 1 # enable command timer
+set fish_command_timer_color 808080 # light gray
 set fish_command_timer_millis 1 # enable milli-seconds
-set fish_command_timer_time_format '' # disable printing of current time
-set fish_command_timer_export_cmd_duration_str 1 # export $CMD_DURATION_STR variable so we can use it in prompt
+set fish_command_timer_time_format '%H:%M:%S' # print 24 hour clock with minutes & seconds
 
 
 # Acces token for football stats
