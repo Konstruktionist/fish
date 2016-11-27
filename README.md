@@ -61,6 +61,12 @@ Find what's hogging the CPU. Kinda like a Top 10 list.
 * **decrypt**  
 Decrypt a file.
 
+* **domaininfo**  
+Get information for a FQDN (fully qualified domain name). 
+It's a wrapper around `dig` & [ipinfo.io][ipinfo].  
+ I used this to block Facebook.  
+To find out more  look at [this][perpetual-beta] blogpost.
+
 * **down4me**  
 Checks whether a website is down just for you, or everybody.
 
@@ -77,14 +83,14 @@ Extract the given archive into a folder.
 * **fish\__some\_function_**
 functions for the shell's own use.
 
+   * **fish_command_timer**  
+   Time stamp & command execution time at the right hand side of the terminal.
+
    * **fish_greeting**  
    Display a short message at login.
 
    * **fish_prompt**  
    Prompt line with git info.
-
-   * **fish\_right\_prompt**  
-   Time stamp & command execution time at the right hand side of the terminal.
 
    * **fish\_user\_key\_bindings**  
    Sources _fzf\_key\_bindings_  
@@ -99,7 +105,7 @@ Extract dates from filenames and put those in the date created & modified metada
 
 * **fzf\_key\_bindings**  
 As the name implies key bindings for [fzf][github 2] (fuzzy finder).
-It's a ymbolic link to keybindings for fzf which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
+It's a symbolic link to keybindings for fzf which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
 
 * **getnet**  
 Get network information.  
@@ -108,18 +114,8 @@ I don't use this anymore because newer Mac's may not have a physical ethernet po
 * **hosts**  
 Open the hosts file in my favorite editor.
 
-* **ii**  
-Display useful host related information.
-
 * **img_size**  
 Find out the dimensions of an image.
-
-* **ip**  
-Show IP addresses & DNS servers. 
-
-* **ipinfo**  
-Get IP information for a FQDN (fully qualified domain name). I used this to block Facebook.  
-To find out more  look at [this][perpetual-beta] blogpost.
 
 * **jump**  
 Jump to previously set bookmark for a directory.
@@ -209,3 +205,4 @@ Also if you find bugs, ditto.
 [SB]: https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts
 [brew]: http://brew.sh
 [wget]: https://www.gnu.org/software/wget/
+[ipinfo]: http://ipinfo.io
