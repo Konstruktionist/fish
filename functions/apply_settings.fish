@@ -36,7 +36,7 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_git_added 5f8700      # green
   set -U fish_color_git_copied magenta
   set -U fish_color_git_deleted 666
-  set -U fish_color_git_modified 6193bc   # blue
+  set -U fish_color_git_modified d75fff   # purple
   set -U fish_color_git_renamed magenta
   set -U fish_color_git_unmerged fae3a0   # yellow
   set -U fish_color_git_untracked d14548  # red
