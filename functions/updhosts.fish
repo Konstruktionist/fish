@@ -39,7 +39,6 @@ function updhosts -d 'Update my /etc/hosts file'
   # clear DNS caches
   # The commands have changed over the years with OS versions
   # This is for macOS 10.12 Sierra
-  sudo dscacheutil -flushcache
   sudo killall -HUP mDNSResponder
 
   # Clean up after ourselves
