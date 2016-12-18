@@ -12,7 +12,7 @@ function domaininfo -d "Get information for a FQDN"
   # if we don't get an argument we'll use our public IP address
 
   if test -z "$argv"
-    set dig_response (curl -s http://ipecho.net/plain)
+    set dig_response (dig +short myip.opendns.com @resolver1.opendns.com)
     set_color brred; echo "Querying your own public IP address"
     echo "This is probably not what you want, enter a domain name as argument"; set_color normal
   else
