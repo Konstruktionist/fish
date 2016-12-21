@@ -1,13 +1,14 @@
 function domaininfo -d "Get information for a FQDN"
 
-  # Found this thanks to Hacker News about blocking Facebook (or anyone else) by
-  # using the pf firewall. You need to know the ASN (Autonomous System Number).
+  # Found this thanks to Hacker News about blocking Facebook (or anyone else)
+  # by using a firewall (like pf or iptables).
+  #
+  # You need to know the ASN (Autonomous System Number).
   # Use that number and plug it into a whois query like so:
   #  whois -h whois.radb.net '!gAS32934' | tr ' ' '\n'
   #                             ======= <- this is the ASN
-  # Described in detail at https://www.perpetual-beta.org/weblog/blocking-facebook-on-os-x.html
   #
-  #  Anyway this function will show the ASN after the  "org":
+  # Described in detail at https://www.perpetual-beta.org/weblog/blocking-facebook-on-os-x.html
 
   # if we don't get an argument we'll use our public IP address
 
@@ -21,7 +22,15 @@ function domaininfo -d "Get information for a FQDN"
   end
 
   for val in $dig_response
-    echo ''
+    # display the information of the requested domain
     curl -s ipinfo.io/$val | sed -e '/[{}]/d' | sed 's/\"//g' | sed 's/  //g' | sed 's/,$//'
+    # get the ASN
+    set as_number (curl -s ipinfo.io/$val | sed -e '/[{}]/d' | sed 's/\"//g' | sed 's/  //g' | sed 's/,$//' | egrep -i 'org:' | awk '{print $2}')
+    # display the IP ranges that this domain uses
+    set_color blue; echo "And its IP address ranges are: "; set_color normal
+    whois -h whois.radb.net '!g'$as_number
+    # save it to a file for later use
+    whois -h whois.radb.net '!g'$as_number | tr ' ' '\n' > ~/$argv.txt
+    set_color yellow; echo "Saved as ~/"$argv".txt"; set_color normal
   end
 end
