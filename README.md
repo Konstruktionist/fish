@@ -109,8 +109,8 @@ functions for the shell's own use.
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
 
-* **free**
-Emulates the `free` function from Linux.
+* **free**  
+Emulates the `free` function from Linux.  
 Shows free & used memory in human readable format.
 
 * **fzf\_key\_bindings**  
