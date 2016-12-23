@@ -30,7 +30,7 @@ function domaininfo -d "Get information for a FQDN"
     set_color blue; echo "And its IP address ranges are: "; set_color normal
     whois -h whois.radb.net '!g'$as_number
     # save it to a file for later use
-    whois -h whois.radb.net '!g'$as_number | tr ' ' '\n' > ~/$argv.txt
+    whois -h whois.radb.net '!g'$as_number | tr ' ' '\n' | awk 'length > 10' > ~/$argv.txt
     set_color yellow; echo "Saved as ~/"$argv".txt"; set_color normal
   end
 end
