@@ -24,6 +24,12 @@ Like _SetFile_ also a deprecated tool installed by Xcode.
 
 #### In alphabetical order
 
+* **agc**
+Change the colors of ag (the silver searcher) output.
+I don't like the yellow boxes that show up in the default settings.
+Changed to green underlined matches, light yellow pathnames & light blue line numbers
+In the config.fish file there's an `abbr` that expands `ag` to `agc`
+
 * **apply_settings**  
 Set up fish universal variables. At the moment all color related.  
 I'm using a customised SpaceGray theme. The standard colors fish comes with don't work very well with this theme. When I set up a Mac this function makes it easy to apply the colors that I found to be working best for me. It has taken an inordinate amount of time to get to these, so it's important to preserve them even if this function is never called again during the computers lifetime. 
@@ -63,9 +69,9 @@ Decrypt a file.
 
 * **domaininfo**  
 Get information for a FQDN (fully qualified domain name). 
-It's a wrapper around `dig` & [ipinfo.io][ipinfo].  
- I used this to block Facebook.  
-To find out more  look at [this][perpetual-beta] blogpost.
+It's a wrapper around `dig`, [ipinfo.io][ipinfo] & a `whois` query.  
+ I used this to block Facebook, because I read [this][perpetual-beta] blogpost.
+Usefull to block tracking servers or other pests on the internet.
 
 * **down4me**  
 Checks whether a website is down just for you, or everybody.
@@ -102,6 +108,10 @@ functions for the shell's own use.
 
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
+
+* **free**
+Emulates the `free` function from Linux.
+Shows free & used memory in human readable format.
 
 * **fzf\_key\_bindings**  
 As the name implies key bindings for [fzf][github 2] (fuzzy finder).
