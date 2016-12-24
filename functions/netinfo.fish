@@ -9,9 +9,10 @@
 #   display the correct port with the user friendly labels.
 #
 #   This also should display all network interfaces, not just Ethernet & Wi-Fi.
+#   I have not tested this assumption, for lack of specific hardware.
 #
-#   version 1.7
-#   13-12-2016
+#   version 1.8
+#   24-12-2016
 
 function netinfo -d "get network information"
 
@@ -48,7 +49,7 @@ function netinfo -d "get network information"
         set quality (ifconfig -uv $val | grep 'link quality:' | awk '{print $3, $4}')
         set netmask (ipconfig getpacket $val | grep 'subnet_mask (ip):' | awk '{print $3}')
         set router (ipconfig getpacket $val | grep 'router (ip_mult):' | sed 's/.*router (ip_mult): {\([^}]*\)}.*/\1/')
-        set dnsserver (networksetup -getdnsservers $label | awk '{print $1, $2}')
+        set dnsserver (ipconfig getpacket $val | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
 
         # Header for the network interfaces
         echo -n $label ; echo -n ' ('; echo -n $val ; echo ')'
@@ -74,7 +75,7 @@ function netinfo -d "get network information"
         echo -n '  MAC-address: ' ; echo $macaddress
         echo -n 'Network Speed: ' ; echo $networkspeed
         echo -n ' Link quality: ' ; echo $quality
-        echo " "
+        echo ''
       end
 
       # Don't display the inactive ports.
