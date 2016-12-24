@@ -119,7 +119,8 @@ It's a symbolic link to keybindings for fzf which lives in `/usr/local/opt/fzf/s
 
 * **getnet**  
 Get network information.  
-I don't use this anymore because newer Mac's may not have a physical ethernet port.
+I don't use this anymore because newer Mac's may not have a physical ethernet port.  
+Replacement is `netinfo`.
 
 * **hosts**  
 Open the hosts file in my favorite editor.
