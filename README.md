@@ -24,11 +24,10 @@ Like _SetFile_ also a deprecated tool installed by Xcode.
 
 #### In alphabetical order
 
-* **agc**
+* **ag**
 Change the colors of ag (the silver searcher) output.
 I don't like the yellow boxes that show up in the default settings.
 Changed to green underlined matches, light yellow pathnames & light blue line numbers
-In the config.fish file there's an `abbr` that expands `ag` to `agc`
 
 * **apply_settings**  
 Set up fish universal variables. At the moment all color related.  
