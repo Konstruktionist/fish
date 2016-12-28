@@ -24,7 +24,7 @@ Like _SetFile_ also a deprecated tool installed by Xcode.
 
 #### In alphabetical order
 
-* **ag**
+* **ag**  
 Change the colors of ag (the silver searcher) output.
 I don't like the yellow boxes that show up in the default settings.
 Changed to green underlined matches, light yellow pathnames & light blue line numbers
