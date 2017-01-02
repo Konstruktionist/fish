@@ -34,12 +34,14 @@ Set up fish universal variables. At the moment all color related.
 I'm using a customised SpaceGray theme. The standard colors fish comes with don't work very well with this theme. When I set up a Mac this function makes it easy to apply the colors that I found to be working best for me. It has taken an inordinate amount of time to get to these, so it's important to preserve them even if this function is never called again during the computers lifetime. 
 
 * **brdeps**  
-Print a list of `brew` installed tools and its dependencies.  
+Print a list of `brew` installed tools and their dependencies.  
+Takes optional arguments, if there are none it will display a list of all installed tools.  
 _Output_:  
       `tool_name depends on: some_other_tool(s)`
 
 * **brused**  
 Print a list of `brew` installed tools and which other tools use this.  
+Takes optional arguments, if there are none it will display a list of all installed tools.  
 _Output_:  
        `tool_name used by: some_other_tool(s)`
 
@@ -69,7 +71,7 @@ Decrypt a file.
 * **domaininfo**  
 Get information for a FQDN (fully qualified domain name). 
 It's a wrapper around `dig`, [ipinfo.io][ipinfo] & a `whois` query.  
- I used this to block Facebook, because I read [this][perpetual-beta] blogpost.
+ I used this to block Facebook, after reading [this][perpetual-beta] blogpost.
 Usefull to block tracking servers or other pests on the internet.
 
 * **down4me**  
