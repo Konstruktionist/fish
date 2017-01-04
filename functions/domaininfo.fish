@@ -24,17 +24,22 @@ function domaininfo -d "Get information for a FQDN"
   for val in $dig_response
     # display the information of the requested domain
     curl -s ipinfo.io/$val | sed -e '/[{}]/d' | sed 's/\"//g' | sed 's/  //g' | sed 's/,$//'
-    # get the ASN
-    set as_number (curl -s ipinfo.io/$val | sed -e '/[{}]/d' | sed 's/\"//g' | sed 's/  //g' | sed 's/,$//' | egrep -i 'org:' | awk '{print $2}')
-    # display the IP ranges that this domain uses
-    set reply (whois -h whois.radb.net '!g'$as_number | tr ' ' '\n' | awk 'length > 10')
-    set_color blue; echo "And its IP address ranges are: "; set_color normal
-    echo $reply
-    # save it to a file for later use
-    echo "# "$argv > ~/"$argv"_iptables.txt
-    for val in $reply
-      echo "iptables -A INPUT -d" $val "-j REJECT" >> ~/"$argv"_iptables.txt
+    # If we are querying our own public IP address (no input argument) we stop here
+    if test -z "$argv"
+      break
+    else
+      # get the ASN
+      set as_number (curl -s ipinfo.io/$val/org | awk '{print $1}')
+      # display the IP ranges that this domain uses
+      set reply (whois -h whois.radb.net '!g'$as_number | tr ' ' '\n' | awk 'length > 10')
+      set_color blue; echo "And its IP address ranges are: "; set_color normal
+      echo $reply
+      # save it to a file for later use
+      echo "# "$argv > ~/"$argv"_iptables.txt
+      for val in $reply
+        echo "iptables -A INPUT -d" $val "-j REJECT" >> ~/"$argv"_iptables.txt
+      end
+      set_color yellow; echo "Saved as ~/"$argv"_iptables.txt"; set_color normal
     end
-    set_color yellow; echo "Saved as ~/"$argv"_iptables.txt"; set_color normal
   end
 end
