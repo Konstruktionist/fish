@@ -65,6 +65,8 @@ set fish_command_timer_color 808080 # light gray
 set fish_command_timer_millis 1 # enable milli-seconds
 set fish_command_timer_time_format '%H:%M:%S' # print 24 hour clock with minutes & seconds
 
+# Change nvim cursor shape based on the mode we're in
+set -gx NVIM_TUI_ENABLE_CURSOR_SHAPE 1
 
 # Acces token for football stats
 set -gx SOCCER_CLI_API_TOKEN "f8e416cdeeb24e33824e96b1bcfc3961"
