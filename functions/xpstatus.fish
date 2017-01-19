@@ -18,23 +18,23 @@ function xpstatus -d "Check version of XProtect"
   # Convert month numbers to short month names for display purposes
   for val in $month
     switch $val
-      case 1
+      case 01
         set month_name 'Jan'
-      case 2
+      case 02
         set month_name 'Feb'
-      case 3
+      case 03
         set month_name 'Mar'
-      case 4
+      case 04
         set month_name 'Apr'
-      case 5
+      case 05
         set month_name 'May'
-      case 6
+      case 06
         set month_name 'Jun'
-      case 7
+      case 07
         set month_name 'Jul'
-      case 8
+      case 08
         set month_name 'Aug'
-      case 9
+      case 09
         set month_name 'Sep'
       case 10
         set month_name 'Oct'
