@@ -91,7 +91,8 @@ Extract the given archive into a folder.
 functions for the shell's own use.
 
    * **fish_command_timer**  
-   Time stamp & command execution time at the right hand side of the terminal.
+   Time stamp & command execution time at the right hand side of the terminal.  
+   Copied from [jichu4n][jichu4n] and slightly adapted
 
    * **fish_greeting**  
    Display a short message at login.
@@ -176,7 +177,7 @@ A script to extract the height of movie files in a directory & if it's over 720 
 Move a specified file to the Trash.
 
 * **try_func**  
-A dummy function to try out a new script. This gives me time to think of a good name (_it doesn't always works out_).
+A dummy function to try out a new script. This gives me time to think of a good name (_it doesn't always work out_).
 
 * **undopush**  
 Undo a `git push`
@@ -218,3 +219,4 @@ Also if you find bugs, ditto.
 [brew]: http://brew.sh
 [wget]: https://www.gnu.org/software/wget/
 [ipinfo]: http://ipinfo.io
+[jichu4n]: https://github.com/jichu4n/fish-command-timer
