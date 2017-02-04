@@ -64,6 +64,7 @@ set fish_command_timer_enabled 1 # enable command timer
 set fish_command_timer_color 808080 # light gray
 set fish_command_timer_millis 1 # enable milli-seconds
 set fish_command_timer_time_format '%H:%M:%S' # print 24 hour clock with minutes & seconds
+set fish_command_timer_export_cmd_duration_str 1 # export the string to $CMD_DURATION_STR, for use in prompts
 
 # Change nvim cursor shape based on the mode we're in
 set -gx NVIM_TUI_ENABLE_CURSOR_SHAPE 1
