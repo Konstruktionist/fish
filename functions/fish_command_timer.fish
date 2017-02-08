@@ -1,6 +1,6 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
-#    Copyright (C) 2016 Chuan Ji <jichuan89@gmail.com>                        #
+#    Copyright (C) 2016 Chuan Ji <jichu4n@gmail.com>                          #
 #                                                                             #
 #    Licensed under the Apache License, Version 2.0 (the "License");          #
 #    you may not use this file except in compliance with the License.         #
@@ -146,7 +146,7 @@ function fish_command_timer_compute
 end
 
 # The fish_postexec event is fired after executing a command line.
-function -e fish_postexec fish_command_timer_postexec
+function fish_command_timer_postexec -e fish_postexec
   if not fish_command_timer_compute
     return
   end
