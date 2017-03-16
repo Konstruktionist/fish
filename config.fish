@@ -47,7 +47,7 @@ setenv -gx LESS_TERMCAP_mb (printf "\e[1;31m")        # begin blinking (red)
 setenv -gx LESS_TERMCAP_md (printf "\e[1;91m")        # begin bold (light red)
 setenv -gx LESS_TERMCAP_me (printf "\e[0m")           # end mode
 setenv -gx LESS_TERMCAP_se (printf "\e[0m")           # end standout-mode
-setenv -gx LESS_TERMCAP_so (printf "\e[1;30;43m")     # begin standout-mode - info box (yellow background, bold black text)
+setenv -gx LESS_TERMCAP_so (printf "\e[30;47m")       # begin standout-mode - info box (grey background, black text)
 setenv -gx LESS_TERMCAP_ue (printf "\e[0m")           # end underline
 setenv -gx LESS_TERMCAP_us (printf "\e[04;36m")       # begin underline (cyan)
 
