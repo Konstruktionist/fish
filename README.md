@@ -90,14 +90,14 @@ Extract the given archive into a folder.
 * **fish\__some\_function_**
 functions for the shell's own use.
 
-   * **fish_command_timer**  
+   * **fish\_command\_timer**  
    Time stamp & command execution time at the right hand side of the terminal.  
    Copied from [jichu4n][jichu4n] and slightly adapted
 
-   * **fish_greeting**  
+   * **fish\_greeting**  
    Display a short message at login.
 
-   * **fish_prompt**  
+   * **fish\_prompt**  
    Prompt line with git info.
 
    * **fish\_user\_key\_bindings**  
