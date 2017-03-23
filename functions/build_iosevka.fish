@@ -1,7 +1,10 @@
 function build_iosevka -d "build custom version Iosevka font"
   cd ~/Downloads/Iosevka-master
+
   # Upgrade to latest version of required tools
-  brew upgrade node ttfautohint otfcc-mac64
+  # brew upgrade node ttfautohint otfcc-mac64
+  #   I update brew every day with the bup function, so I don't need this
+
   # Install required libraries for nodejs
   npm install
   # The custom configuration
