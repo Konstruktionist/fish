@@ -47,7 +47,7 @@ _Output_:
        `tool_name used by: some_other_tool(s)`
 
 * **build_iosevka**  
-A script to build a custom version of the [**Iosevka**][iosevka] font.  
+A script to build a custom version of the [Iosevka][iosevka] font.  
 
 * **bup**  
 Three consecutive commands to keep homebrew up to date and lean.  
