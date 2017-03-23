@@ -45,6 +45,9 @@ Takes optional arguments, if there are none it will display a list of all instal
 _Output_:  
        `tool_name used by: some_other_tool(s)`
 
+* **build_iosevka**  
+A script to build a custom version of the [**Iosevka**][iosevka] font.  
+
 * **bup**  
 Three consecutive commands to keep homebrew up to date and lean.  
 `brew update`, `brew upgrade` and finally `brew cleanup`.  
@@ -220,3 +223,5 @@ Also if you find bugs, ditto.
 [wget]: https://www.gnu.org/software/wget/
 [ipinfo]: http://ipinfo.io
 [jichu4n]: https://github.com/jichu4n/fish-command-timer
+[iosevka]: https://github.com/be5invis/Iosevka
+
