@@ -4,7 +4,7 @@ function build_iosevka -d "build custom version Iosevka font"
   brew upgrade node ttfautohint otfcc-mac64
   # Install required libraries for nodejs
   npm install
-  # The custom confiuration
+  # The custom configuration
   make custom-config design='v-asterisk-low'
   # Build font
   make custom

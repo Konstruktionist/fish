@@ -3,19 +3,20 @@
 ### Functions with dependencies on non-standard installed tools*
  _\* on MacOS (OS X)_
 
-* **chosts.fish** _depends on [**dateutils**][fresse] & [**wget**][wget]_.
-* **img_size.fish** _depends on [**imagemagick**][imagemagick]_.
-* **mdb.fish** _depends on [**tag**][github]_.
-* **testmovies.fish** _depends on [**mediainfo**][mediaarea]_.
+* **build_iosevka** _depends on [nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]._
+* **chosts** _depends on [dateutils][fresse] & [wget][wget]_.
+* **img_size** _depends on [imagemagick][imagemagick]_.
+* **mdb** _depends on [tag][github]_.
+* **testmovies** _depends on [mediainfo][mediaarea]_.
 
 > These tools were installed with [brew][brew].
 
-* **fixdate.fish** _depends on **SetFile**_  
+* **fixdate** _depends on **SetFile**_  
     SetFile is a macOS (OS X) tool installed by Xcode.  
     From its manpage :  
     _Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6._  
     Its documentation says it is deprecated, but for now it works. (With Xcode 8 it still gets installed).  
-* **xpstatus.fish** _depends on **GetFileInfo**_  
+* **xpstatus** _depends on **GetFileInfo**_  
 Like _SetFile_ also a deprecated tool installed by Xcode.  
 
 
@@ -224,4 +225,8 @@ Also if you find bugs, ditto.
 [ipinfo]: http://ipinfo.io
 [jichu4n]: https://github.com/jichu4n/fish-command-timer
 [iosevka]: https://github.com/be5invis/Iosevka
+[nodejs]: http://nodejs.org/
+[ttfautohint]: http://www.freetype.org/ttfautohint/
+[otfcc]: https://github.com/caryll/otfcc
+
 
