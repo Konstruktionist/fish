@@ -24,8 +24,8 @@ function netinfo -d "get network information"
   end
 
   echo " "
-  echo "    Public IP:" $public
-  echo "     Hostname:" (uname -n)
+  echo -n "    Public IP: "; set_color -i; echo $public; set_color normal
+  echo -n "     Hostname: "; set_color -i; echo (uname -n); set_color normal
   echo " "
 
   # Get all available hardware ports
@@ -52,15 +52,15 @@ function netinfo -d "get network information"
         set dnsserver (ipconfig getpacket $val | grep 'domain_name_server (ip_mult):' | sed 's/.*domain_name_server (ip_mult): {\([^}]*\)}.*/\1/')
 
         # Header for the network interfaces
-        echo -n $label ; echo -n ' ('; echo -n $val ; echo ')'
-        echo "--------------"
+        set_color -o; echo -n $label ; echo -n ' ('; echo -n $val ; echo ')'
+        echo "--------------"; set_color normal
 
         # Is this a WiFi associated port? If so, then we want the network name
         switch $label
           case Wi-Fi
             # Get WiFi network name
             set wifi_name (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep '\sSSID:' | sed 's/.*: //')
-            echo -n ' Network Name: '; echo $wifi_name
+            echo -n ' Network Name: '; set_color -i; echo $wifi_name; set_color normal
             # Networkspeed for Wi-Fi
             set networkspeed (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep lastTxRate: | sed 's/.*: //' | sed 's/$/ Mbps/')
           case '*'
@@ -68,13 +68,13 @@ function netinfo -d "get network information"
             set networkspeed (ifconfig -uv $val | grep 'link rate:' | awk '{print $3, $4}')
         end
 
-        echo -n '   IP-address: ' ; echo $ipaddress
-        echo -n '  Subnet Mask: ' ; echo $netmask
-        echo -n '       Router: ' ; echo $router
-        echo -n '   DNS Server: ' ; echo $dnsserver
-        echo -n '  MAC-address: ' ; echo $macaddress
-        echo -n 'Network Speed: ' ; echo $networkspeed
-        echo -n ' Link quality: ' ; echo $quality
+        echo -n '   IP-address: ' ; set_color -i; echo $ipaddress; set_color normal
+        echo -n '  Subnet Mask: ' ; set_color -i; echo $netmask; set_color normal
+        echo -n '       Router: ' ; set_color -i; echo $router; set_color normal
+        echo -n '   DNS Server: ' ; set_color -i; echo $dnsserver; set_color normal
+        echo -n '  MAC-address: ' ; set_color -i; echo $macaddress; set_color normal
+        echo -n 'Network Speed: ' ; set_color -i; echo $networkspeed; set_color normal
+        echo -n ' Link quality: ' ; set_color -i; echo $quality; set_color normal
         echo ''
       end
 

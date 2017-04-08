@@ -5,8 +5,8 @@
 #       dependency: mediainfo
 #       =====================
 #
-#   version 1.3
-#   14-01-2016
+#   version 1.4
+#   04-04-2017
 #
 #   mediainfo returns Height if it's over 999 with a space in it (like '1 080')
 #   awk grabs the fields 3,4 & 5 and concatenates it to a string ending in
@@ -18,8 +18,6 @@ function testmovies -d 'find HD movies >= 720p'
   #clean up from previous use
   if test -f queue.txt
     rm queue.txt
-  else
-    echo -n ''
   end
 
   for file in *.mkv  *.m4v *.avi *.ts *.mov *.wmv
@@ -31,8 +29,8 @@ function testmovies -d 'find HD movies >= 720p'
 
   if test -f queue.txt
     set -l num_of_files (awk 'END{print NR}' queue.txt)
-    echo -n $num_of_files; echo " HD movies added to queue.txt"
-    set_color green; echo "---  Added  ---"; set_color normal
+    echo -n $num_of_files; echo -n " HD movies added to"; set_color -i blue; echo " queue.txt"\n
+    set_color -o brblue; echo "   ---  Added movies  ---"; set_color normal
     cat queue.txt
   else
     echo "No HD movie-files found."
