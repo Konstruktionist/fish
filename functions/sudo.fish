@@ -1,3 +1,5 @@
+# from:
+# http://stackoverflow.com/questions/22650715/running-last-command-with-sudo-in-fish-only-works-if-it-has-no-arguments
 function sudo -d 'Run command using sudo (use !! for last command)'
   if test (count $argv) -gt 0
     switch $argv[1]
