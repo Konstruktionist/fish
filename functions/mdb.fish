@@ -13,8 +13,6 @@ function mdb -d 'Make a flatfile movie database'
   # clean up from previous use
   if test -f $HOME/Movies\ on\ $drive.txt
     rm $HOME/Movies\ on\ $drive.txt
-  else
-    echo -n ''
   end
 
   for file in *.mp4

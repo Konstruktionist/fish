@@ -17,13 +17,9 @@ function fixdate -d 'fix file creation & modification dates'
   #clean up from previous use
   if test -f fixdate_candidates.txt
     rm fixdate_candidates.txt
-  else
-    echo -n ''
   end
   if test -f fixdate_errors.txt
     rm fixdate_errors.txt
-  else
-    echo -n ''
   end
 
   # Assumption: date in filename is formatted as YYMMDD (6 digits)
