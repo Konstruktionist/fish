@@ -6,8 +6,10 @@
 * **build_iosevka** _depends on [nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]._
 * **chosts** _depends on [dateutils][fresse] & [wget][wget]_.
 * **img_size** _depends on [imagemagick][imagemagick]_.
-* **mdb** _depends on [tag][github]_.
+* **mdb** _depends on [tag][tag]_.
 * **testmovies** _depends on [mediainfo][mediaarea]_.
+* **tv** _depends on [transcode-video][donmelton]._
+* **vidl** _depends on [youtube-dl][ytdl]_.
 
 > These tools were installed with [brew][brew].
 
@@ -99,7 +101,7 @@ functions for the shell's own use.
    Copied from [jichu4n][jichu4n] and slightly adapted
 
    * **fish\_greeting**  
-   Display a short message at login.
+   Displays OS & uptime. 
 
    * **fish\_prompt**  
    Prompt line with git info.
@@ -120,7 +122,7 @@ Emulates the `free` function from Linux.
 Shows free & used memory in human readable format.
 
 * **fzf\_key\_bindings**  
-As the name implies key bindings for [fzf][github 2] (fuzzy finder).
+As the name implies key bindings for [fzf][fzf] (fuzzy finder).
 It's a symbolic link to keybindings for fzf which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
 
 * **getnet**  
@@ -175,13 +177,16 @@ Source sh/csh file. Seems useful, but I can't remember if I ever used it.
 Run command using sudo (use !! for last command).
 
 * **testmovies**  
-A script to extract the height of movie files in a directory & if it's over 720 put their names in a file for further processing with Don Melton's [video transcoding tools][github 3].
+A script to extract the height of movie files in a directory & if it's over 720 put their names in a file for further processing with Don Melton's [video transcoding tools][donmelton].
 
 * **totrash**  
 Move a specified file to the Trash.
 
 * **try_func**  
-A dummy function to try out a new script. This gives me time to think of a good name (_it doesn't always work out_).
+A dummy function to try out a new script. This gives me time to think of a good name (_it doesn't always work out_).  
+
+* **tv**  
+Transcode a video to 720p & add dutch subtitles if available. Uses Don Melton's [video transcoding tools][donmelton].  
 
 * **undopush**  
 Undo a `git push`
@@ -197,6 +202,9 @@ All to block ads & malware sites, trackers and other annoyances like facebook & 
 * **vimrc**  
 Open the .vimrc file.
 
+* **vidl**  
+Download a video with [youtube-dl][ytdl] with predefined setting.  
+
 * **weer**  
 The weather forecast for a city. Type in `city,country` (case insensitive) as arguments.
 
@@ -210,9 +218,9 @@ If you feel that I have missed something, open an Issue here.
 Also if you find bugs, ditto.
 
 [fresse]: http://www.fresse.org/dateutils
-[github]: https://github.com/jdberry/tag
-[github 2]: https://github.com/junegunn/fzf
-[github 3]: https://github.com/donmelton/video_transcoding
+[tag]: https://github.com/jdberry/tag
+[fzf]: https://github.com/junegunn/fzf
+[donmelton]: https://github.com/donmelton/video_transcoding
 [imagemagick]: https://imagemagick.org
 [mediaarea]: http://mediaarea.net
 [perpetual-beta]: https://www.perpetual-beta.org/weblog/blocking-facebook-on-os-x.html
@@ -228,5 +236,5 @@ Also if you find bugs, ditto.
 [nodejs]: http://nodejs.org/
 [ttfautohint]: http://www.freetype.org/ttfautohint/
 [otfcc]: https://github.com/caryll/otfcc
-
+[ytdl]: https://rg3.github.io/youtube-dl/
 
