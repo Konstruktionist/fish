@@ -19,11 +19,11 @@ set -gx fish_prompt_git_status_order added modified renamed copied deleted untra
 
 function prompt_git_status -d 'Write out the git status'
 
-  # Get the SHA1 value of a branch and keep it hidden if we're not in a git repo
+  # Get the SHA1 value of a branch and if we're not in a git repo, send to /dev/null
 
   set -l gitsha (git rev-parse --short HEAD ^/dev/null)
 
-  # Get the branch name and keep it hidden if we're not in a git repo
+  # Get the branch name and if we're not in a git repo, send to /dev/null
 
   set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
   if test -z $branch
@@ -33,7 +33,7 @@ function prompt_git_status -d 'Write out the git status'
   # If used in fish_right_prompt, comment out next line
   set_color $fish_color_separator; echo -n ':'
 
-  # Get the status of the repo and keep it hidden if we're not in a git repo, to see if there are any changes, NOT counting occurences
+  # Get the status of the repo, to see if there are any changes, NOT counting occurences
 
   set -l index (git status --porcelain ^/dev/null|cut -c 1-2|sort -u)
 
