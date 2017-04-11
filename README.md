@@ -11,7 +11,7 @@
 * **tv** _depends on [transcode-video][donmelton]._
 * **vidl** _depends on [youtube-dl][ytdl]_.
 
-> These tools were installed with [brew][brew].
+> These tools were installed with _[brew][brew]_.
 
 * **fixdate** _depends on **SetFile**_  
     SetFile is a macOS (OS X) tool installed by Xcode.  
