@@ -42,14 +42,14 @@ complete -c unmark -f -a '(ls ~/.marks)'
 set -gx LESS "-RMSX~gis"
 
 # Colorful man pages
-# from http://pastie.org/pastes/206041/text
-set -gx LESS_TERMCAP_mb (printf "\e[1;31m")        # begin blinking (red)
-set -gx LESS_TERMCAP_md (printf "\e[1;91m")        # begin bold (light red)
-set -gx LESS_TERMCAP_so (printf "\e[30;47m")       # begin standout-mode - info box (grey background, black text)
-set -gx LESS_TERMCAP_us (printf "\e[04;36m")       # begin underline (cyan)
-set -gx LESS_TERMCAP_se (printf "\e[0m")           # end standout-mode
-set -gx LESS_TERMCAP_ue (printf "\e[0m")           # end underline
-set -gx LESS_TERMCAP_me (printf "\e[0m")           # end mode
+# from http://stackoverflow.com/questions/34265221/how-to-colorize-man-page-in-fish-shell
+set -gx LESS_TERMCAP_mb \e'[1;31m'        # begin blinking (red)
+set -gx LESS_TERMCAP_md \e'[1;91m'        # begin bold (light red)
+set -gx LESS_TERMCAP_so \e'[30;47m'       # begin standout-mode - info box (grey background, black text)
+set -gx LESS_TERMCAP_us \e'[04;36m'       # begin underline (cyan)
+set -gx LESS_TERMCAP_se \e'[0m'           # end standout-mode
+set -gx LESS_TERMCAP_ue \e'[0m'           # end underline
+set -gx LESS_TERMCAP_me \e'[0m'           # end mode
 
 # grep colors
 set -gx GREP_COLOR '4;32' # green underlined
