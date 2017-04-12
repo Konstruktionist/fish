@@ -15,10 +15,9 @@ set -gx EDITOR mate
 set -gx HOMEBREW_EDITOR mate
 set -gx VISUAL mate
 
-# Add gem path to our $PATH as a first entry for commands
-if status --is-login
-  set PATH $HOME/.gem/ruby/2.0.0/bin $PATH
-end
+# NOTE: Do NOT add path's to $PATH here
+#  Why? See: file:///usr/local/Cellar/fish/2.5.0/share/doc/fish/tutorial.html#tut_path
+# ====================================================================================
 
 # expose PATH to graphical apps
 #launchctl setenv PATH $PATH
