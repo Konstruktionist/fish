@@ -1,5 +1,5 @@
 function fish_greeting
-  set_color $fish_color_autosuggestion
+  set_color --italics
   uname -mrs
   uptime
   set_color normal
