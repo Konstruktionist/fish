@@ -8,11 +8,11 @@
 #  How to get the change count into the prompt?
 #   Also how to get the ahead and behind count?
 
-set -gx fish_prompt_git_status_added '+'
+set -gx fish_prompt_git_status_added '✚'
 set -gx fish_prompt_git_status_modified '~'
 set -gx fish_prompt_git_status_renamed '›'
 set -gx fish_prompt_git_status_copied '»'
-set -gx fish_prompt_git_status_deleted '-'
+set -gx fish_prompt_git_status_deleted '✖︎'
 set -gx fish_prompt_git_status_untracked '?'
 set -gx fish_prompt_git_status_unmerged '!'
 set -gx fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
