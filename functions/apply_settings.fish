@@ -41,11 +41,16 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_git_dirty d14548      # red
 
   set -U fish_color_git_added 5f8700      # green
-  set -U fish_color_git_copied magenta
-  set -U fish_color_git_deleted 666
-  set -U fish_color_git_modified d75fff   # purple
-  set -U fish_color_git_renamed magenta
-  set -U fish_color_git_unmerged fae3a0   # yellow
-  set -U fish_color_git_untracked d14548  # red
+  set -U fish_color_git_copied d75fff     # purple
+  set -U fish_color_git_deleted d14548    # red
+  set -U fish_color_git_modified 6e93e2   # blue
+  set -U fish_color_git_renamed d75fff    # purple
+  set -U fish_color_git_unmerged d14548   # red
+  set -U fish_color_git_untracked fae3a0  # yellow
   set -U fish_color_git_sha 8a8a8a        # light gray
+
+  # Add /usr/local/sbin to $PATH (brew installed mtr lives there)
+  set -U fish_user_paths /usr/local/sbin $fish_user_paths
+  # Add gem path to our $PATH as a first entry for commands
+  set -U fish_user_paths $HOME/.gem/ruby/2.0.0/bin $fish_user_paths
 end
