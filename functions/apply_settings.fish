@@ -32,7 +32,7 @@ function apply_settings -d 'setup fish universal variables'
   # Custom colors used for prompt
 
   set -U fish_color_dimmed 808080
-  set -U fish_color_separator 999
+  set -U fish_color_separator 999999
 
   # git colors
 
