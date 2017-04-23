@@ -51,7 +51,7 @@ set -gx LESS_TERMCAP_ue \e'[0m'           # end underline
 set -gx LESS_TERMCAP_me \e'[0m'           # end mode
 
 # grep colors
-set -gx GREP_COLOR '4;32' # green underlined
+set -gx GREP_COLOR '4;32'                 # green underlined
 set -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
@@ -59,10 +59,10 @@ set -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
 
 # Settings for timing helper function
 source ~/.config/fish/functions/fish_command_timer.fish
-set fish_command_timer_enabled 1 # enable command timer
-set fish_command_timer_color 808080 # light gray
-set fish_command_timer_millis 1 # enable milli-seconds
-set fish_command_timer_time_format '%H:%M:%S' # print 24 hour clock with minutes & seconds
+set fish_command_timer_enabled 1                # enable command timer
+set fish_command_timer_color 808080             # light gray
+set fish_command_timer_millis 1                 # enable milli-seconds
+set fish_command_timer_time_format '%H:%M:%S'   # 24 hour clock with minutes & seconds
 
 # Change nvim cursor shape based on the mode we're in
 set -gx NVIM_TUI_ENABLE_CURSOR_SHAPE 1
