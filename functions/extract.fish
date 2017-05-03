@@ -1,34 +1,35 @@
-# Taken from: https://github.com/sch1zo/dot-files/blob/fish/.config/fish/functions/extract.fish
+# Taken from: https://github.com/oh-my-fish/plugin-extract/blob/master/functions/extract.fish
 
-function extract -d 'extract the given archive into a folder'
-  for file in $argv
-    if test -f $file
-      echo -s "Extracting " (set_color --bold yellow) $file (set_color normal)
-      switch $file
-        case *.tar
-          tar -xvf $file
-        case *.tar.bz2 *.tbz2
-          tar -jxvf $file
-        case *.tar.gz *.tgz
-          tar -zxvf $file
-        case *.bz2
-          bunzip2 $file
-          # Can also use: bzip2 -d $file
-        case *.gz
-          gunzip $file
-        case *.rar
-          unrar x $file
-        case *.zip *.ZIP
-          unzip $file
-        case *.pax
-          pax -r < $file
-        case *.Z
-          uncompress $file
-        case '*'
-          echo "Extension not recognized, cannot extract $file"
+function extract --description "Expand or extract bundled & compressed files"
+  set --local ext (echo $argv[1] | awk -F. '{print $NF}')
+  switch $ext
+    case tar  # non-compressed, just bundled
+      tar -xvf $argv[1]
+    case gz
+      if test (echo $argv[1] | awk -F. '{print $(NF-1)}') = tar  # tar bundle compressed with gzip
+        tar -zxvf $argv[1]
+      else  # single gzip
+        gunzip $argv[1]
       end
-    else
-      echo "$file is not a valid file"
-    end
+    case tgz  # same as tar.gz
+      tar -zxvf $argv[1]
+    case bz2  # tar compressed with bzip2
+      tar -jxvf $argv[1]
+    case rar
+      unrar x $argv[1]
+    case zip
+      unzip $argv[1]
+    case xz
+      unxz $argv[1]
+    case bz2
+      bunzip2 $argv[1]
+    case pax
+      pax -r < $argv[1]
+    case Z
+      uncompress $argv[1]
+    case 7z
+      7za x $argv[1]
+    case '*'
+      echo "unknown extension"
   end
 end
