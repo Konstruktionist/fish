@@ -33,8 +33,8 @@ I don't like the yellow boxes that show up in the default settings.
 Changed to green underlined matches, light yellow pathnames & light blue line numbers
 
 * **apply_settings**  
-Set up fish universal variables. At the moment mostly color related. Also the place to set up our PATH.   
-I'm using a customised SpaceGray theme. The standard colors fish comes with don't work very well with this theme. When I set up a Mac this function makes it easy to apply the colors that I found to be working best for me. It has taken an inordinate amount of time to get to these, so it's important to preserve them even if this function is never called again during the computers lifetime. 
+Set up fish universal variables. At the moment mostly color related. Also the place to set up our PATH.  
+I'm using a customized SpaceGray theme. The standard colors fish comes with don't work very well with this theme. When I set up a Mac this function makes it easy to apply the colors that I found to be working best for me. It has taken an inordinate amount of time to get to these, so it's important to preserve them even if this function is never called again during the computers lifetime.
 
 * **brdeps**  
 Print a list of `brew` installed tools and their dependencies.  
@@ -77,8 +77,8 @@ Decrypt a file.
 * **domaininfo**  
 Get information for a FQDN (fully qualified domain name). 
 It's a wrapper around `dig`, [ipinfo.io][ipinfo] & a `whois` query.  
- I used this to block Facebook, after reading [this][perpetual-beta] blogpost.
-Usefull to block tracking servers or other pests on the internet.
+I used this to block Facebook, after reading [this][perpetual-beta] blogpost.
+Useful to block tracking servers or other pests on the internet.
 
 * **down4me**  
 Checks whether a website is down just for you, or everybody.
@@ -101,7 +101,7 @@ functions for the shell's own use.
    Copied from [jichu4n][jichu4n] and slightly adapted
 
    * **fish\_greeting**  
-   Displays OS & uptime. 
+   Displays OS & uptime.
 
    * **fish\_prompt**  
    Prompt line with git info.
@@ -123,11 +123,11 @@ Shows free & used memory in human readable format.
 
 * **fzf\_key\_bindings**  
 As the name implies key bindings for [fzf][fzf] (fuzzy finder).
-It's a symbolic link to keybindings for fzf which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
+It's a symbolic link to key bindings for fzf which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
 
 * **getnet**  
 Get network information.  
-I don't use this anymore because newer Mac's may not have a physical ethernet port.  
+I don't use this anymore because newer Mac's may not have a physical Ethernet port.  
 Replacement is `netinfo`.
 
 * **hosts**  
@@ -154,12 +154,12 @@ Set a bookmark for the current directory or a named directory.
 Show a list of the defined bookmarks.
 
 * **mdb**  
-A script to create a simple plaintext movie database.
+A script to create a simple plain text movie database.
 
 * **netinfo**  
 Get network information.  
 The  successor of getnet.fish.  
-Works on Mac's without a physical ethernet port. See in the comments.
+Works on Mac's without a physical Ethernet port. See in the comments.
 
 * **nvimrc**  
 Open the init.vim file.
