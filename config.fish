@@ -64,9 +64,6 @@ set fish_command_timer_color 808080             # light gray
 set fish_command_timer_millis 1                 # enable milli-seconds
 set fish_command_timer_time_format '%H:%M:%S'   # 24 hour clock with minutes & seconds
 
-# Change nvim cursor shape based on the mode we're in
-set -gx NVIM_TUI_ENABLE_CURSOR_SHAPE 1
-
 # Get access to tokens
 source ~/.my_tokens
 
