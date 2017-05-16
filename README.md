@@ -12,8 +12,8 @@
 | testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_   |
 | tv            | _[transcode-video][donmelton]_                                  | _[brew][brew]_   |
 | vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_   |
-| fixdate       | _[SetFile*][SetFile]_                                           | _[Xcode][Xcode]_ |
-| xpstatus      | _[GetFileInfo*][GetFileInfo]_                                   | _[Xcode][Xcode]_ |
+| fixdate       | _[SetFile][SetFile]_ *                                           | _[Xcode][Xcode]_ |
+| xpstatus      | _[GetFileInfo][GetFileInfo]_ *                                   | _[Xcode][Xcode]_ |
 
 
   \* From its manpage:  
