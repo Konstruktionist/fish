@@ -1,27 +1,24 @@
 # A short description of the functions
 
-### Functions with dependencies on non-standard installed tools*
- _\* on macOS (OS X)_
 
-* **build_iosevka** _depends on [nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]._
-* **chosts** _depends on [dateutils][fresse] & [wget][wget]_.
-* **img_size** _depends on [imagemagick][imagemagick]_.
-* **mdb** _depends on [tag][tag]_.
-* **testmovies** _depends on [mediainfo][mediaarea]_.
-* **tv** _depends on [transcode-video][donmelton]._
-* **vidl** _depends on [youtube-dl][ytdl]_.
+  **Functions with dependencies on non-standard installed tools (on Mac OS X / macOS )**
 
-> These tools were installed with _[brew][brew]_.
+| function      | depends on                                                      | installed by   |
+| ------------- | --------------------------------------------------------------- | -------------- |
+| build_iosevka | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_ |
+| chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_ |
+| img_size      | _[imagemagick][imagemagick]_                                    | _[brew][brew]_ |
+| mdb           | _[tag][tag]_                                                    | _[brew][brew]_ |
+| testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_ |
+| tv            | _[transcode-video][donmelton]_                                  | _[brew][brew]_ |
+| vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_ |
+| fixdate       | SetFile*                                                        | Xcode          |
+| xpstatus      | GetFileInfo*                                                    | Xcode          |
 
-* **fixdate** _depends on **SetFile**_  
-    SetFile is a macOS (OS X) tool installed by Xcode.  
-    * From its manpage :  
-    _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
-    * Its documentation says it is deprecated, but for now it works. (With Xcode 8 it still gets installed).  
-* **xpstatus** _depends on **GetFileInfo**_  
-Like _SetFile_ also a deprecated tool installed by Xcode.  
+  \* From its manpage :  
+   _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
 
-
+>   **Note:** Its documentation says it is deprecated, but for now it works. (With Xcode 8 it still gets installed).  
 
 ---
 
