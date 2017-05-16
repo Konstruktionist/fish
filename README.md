@@ -33,7 +33,7 @@ I don't like the yellow boxes that show up in the default settings.
 Changed to green underlined matches, light yellow pathnames & light blue line numbers
 
 * **apply_settings**  
-Set up fish universal variables. At the moment mostly color related. Also the place to set up our PATH.  
+Set up fish universal variables. At the moment all color related.    
 I'm using a customized SpaceGray theme. The standard colors fish comes with don't work very well with this theme. When I set up a Mac this function makes it easy to apply the colors that I found to be working best for me. It has taken an inordinate amount of time to get to these, so it's important to preserve them even if this function is never called again during the computers lifetime.
 
 * **brdeps**  
