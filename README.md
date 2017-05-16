@@ -3,19 +3,20 @@
 
   **Functions with dependencies on non-standard installed tools (on Mac OS X / macOS )**
 
-| function      | depends on                                                      | installed by   |
-| ------------- | --------------------------------------------------------------- | -------------- |
-| build_iosevka | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_ |
-| chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_ |
-| img_size      | _[imagemagick][imagemagick]_                                    | _[brew][brew]_ |
-| mdb           | _[tag][tag]_                                                    | _[brew][brew]_ |
-| testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_ |
-| tv            | _[transcode-video][donmelton]_                                  | _[brew][brew]_ |
-| vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_ |
-| fixdate       | SetFile*                                                        | Xcode          |
-| xpstatus      | GetFileInfo*                                                    | Xcode          |
+| function      | depends on                                                      | installed by     |
+| ------------- | --------------------------------------------------------------- | ---------------- |
+| build_iosevka | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_   |
+| chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_   |
+| img_size      | _[imagemagick][imagemagick]_                                    | _[brew][brew]_   |
+| mdb           | _[tag][tag]_                                                    | _[brew][brew]_   |
+| testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_   |
+| tv            | _[transcode-video][donmelton]_                                  | _[brew][brew]_   |
+| vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_   |
+| fixdate       | _[SetFile*][SetFile]_                                           | _[Xcode][Xcode]_ |
+| xpstatus      | _[GetFileInfo*][GetFileInfo]_                                   | _[Xcode][Xcode]_ |
 
-  \* From its manpage :  
+
+  \* From its manpage:  
    _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
 
 >   **Note:** Its documentation says it is deprecated, but for now it works. (With Xcode 8 it still gets installed).  
@@ -234,4 +235,6 @@ Also if you find bugs, ditto.
 [ttfautohint]: http://www.freetype.org/ttfautohint/
 [otfcc]: https://github.com/caryll/otfcc
 [ytdl]: https://rg3.github.io/youtube-dl/
-
+[SetFile]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/SetFile.1.html
+[GetFileInfo]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/GetFileInfo.1.html#//apple_ref/doc/man/1/GetFileInfo
+[Xcode]: https://developer.apple.com/xcode/
