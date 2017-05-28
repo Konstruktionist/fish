@@ -12,8 +12,7 @@ function brused -d 'list which tools uses what library/tool'
       echo -n (set_color blue) $value (set_color normal)'used by:' (set_color yellow)
 
       # print who uses that tool/library
-      echo -n (brew uses --installed $value)
-      echo ""
+      echo (brew uses --installed $value)
     end
   else
     # We have at least one argument, so let's diplay the results

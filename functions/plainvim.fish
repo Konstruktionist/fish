@@ -1,3 +1,3 @@
 function plainvim --description 'Start vim whithout plugins'
-	vim -u NONE -U NONE -N
+	vim -u NONE -N
 end

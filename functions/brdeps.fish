@@ -12,8 +12,7 @@ function brdeps -d 'List dependancies of packages'
       echo -n (set_color blue) $value (set_color normal)'depends on:' (set_color yellow)
 
       # print its dependancies
-      echo -n (brew deps $value)
-      echo ""
+      echo (brew deps $value)
     end
   else
     # We have at least one argument, so let's diplay the results
