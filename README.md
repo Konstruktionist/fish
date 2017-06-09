@@ -20,7 +20,7 @@
    _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
 
 >   **Note:** Its local documentation (_not yet on Apple's site_) says it is deprecated, but for now it works.  
->   (With Xcode 8 it still gets installed). It relies on the filesystem HFS+, to do its magic. I suspect it will die when the new filesystem APFS will become the default (macOS 10.13?)  
+>   (With Xcode 8 it still gets installed). It relies on the filesystem HFS+, to do its magic. I suspect it will die when the new filesystem APFS will become the default (macOS 10.13)  
 
 ---
 
@@ -105,10 +105,6 @@ functions for the shell's own use.
    * **fish\_prompt**  
    Prompt line with git info.
 
-   * **fish\_user\_key\_bindings**  
-   Sources _fzf\_key\_bindings_  
-   Dumped here by brew install fzf.
-
    * **fish**\__something\_else\_then\_above_  
    Usually a small helper function that is called from other functions.  
    ***Not*** to be used on its own! They are most likely to be destructive in nature.
@@ -119,10 +115,6 @@ Extract dates from filenames and put those in the date created & modified metada
 * **free**  
 Emulates the `free` function from Linux.  
 Shows free & used memory in human readable format.
-
-* **fzf\_key\_bindings**  
-As the name implies key bindings for [fzf][fzf] (fuzzy finder).
-It's a symbolic link to key bindings for fzf which lives in `/usr/local/opt/fzf/shell/key-bindings.fish`.
 
 * **getnet**  
 Get network information.  
@@ -218,7 +210,6 @@ Also if you find bugs, ditto.
 
 [fresse]: http://www.fresse.org/dateutils
 [tag]: https://github.com/jdberry/tag
-[fzf]: https://github.com/junegunn/fzf
 [donmelton]: https://github.com/donmelton/video_transcoding
 [imagemagick]: https://imagemagick.org
 [mediaarea]: http://mediaarea.net
