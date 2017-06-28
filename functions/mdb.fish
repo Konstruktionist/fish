@@ -26,7 +26,7 @@ function mdb -d 'Make a flatfile movie database'
     if test -z $tags
       echo $title '•' $width 'x' $height >> "$HOME/Movies on $drive.txt"
     else
-      echo $title '•' $width 'x' $height '🏷 ' $tags >> "$HOME/Movies on $drive.txt"
+      echo $title '•' $width 'x' $height '==> ' $tags >> "$HOME/Movies on $drive.txt"
     end
   end
 end
