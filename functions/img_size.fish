@@ -5,5 +5,6 @@
 #
 
 function img_size -d 'Show image dimensions'
-  gm identify -verbose $argv | egrep Geometry
+  echo -n 'Height: ' ; mdls $argv | grep 'kMDItemPixelHeight' | awk '{print $3}'
+  echo -n ' Width: ' ; mdls $argv | grep 'kMDItemPixelWidth' | awk '{print $3}'
 end

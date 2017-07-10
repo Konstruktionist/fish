@@ -7,7 +7,6 @@
 | ------------- | --------------------------------------------------------------- | ---------------- |
 | build_iosevka | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_   |
 | chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_   |
-| img_size      | _[graphicsmagick][gmagick]_                                     | _[brew][brew]_   |
 | mdb           | _[tag][tag]_                                                    | _[brew][brew]_   |
 | testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_   |
 | tv            | _[transcode-video][donmelton]_                                  | _[brew][brew]_   |
@@ -211,7 +210,6 @@ Also if you find bugs, ditto.
 [fresse]: http://www.fresse.org/dateutils
 [tag]: https://github.com/jdberry/tag
 [donmelton]: https://github.com/donmelton/video_transcoding
-[imagemagick]: https://imagemagick.org
 [mediaarea]: http://mediaarea.net
 [perpetual-beta]: https://www.perpetual-beta.org/weblog/blocking-facebook-on-os-x.html
 [someonewhocares]: http://someonewhocares.org/hosts/zero/hosts
@@ -230,4 +228,3 @@ Also if you find bugs, ditto.
 [SetFile]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/SetFile.1.html
 [GetFileInfo]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/GetFileInfo.1.html#//apple_ref/doc/man/1/GetFileInfo
 [Xcode]: https://developer.apple.com/xcode/
-[gmagick]: http://www.graphicsmagick.org
