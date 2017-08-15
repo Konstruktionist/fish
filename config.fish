@@ -58,7 +58,6 @@ set -gx GREP_OPTIONS "--color=auto"
 set -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
 
 # Settings for timing helper function
-source ~/.config/fish/functions/fish_command_timer.fish
 set fish_command_timer_enabled 1                # enable command timer
 set fish_command_timer_color 808080             # light gray
 set fish_command_timer_millis 1                 # enable milli-seconds

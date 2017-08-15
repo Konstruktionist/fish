@@ -219,3 +219,4 @@ function fish_command_timer_postexec -e fish_postexec
   # Finally, print output.
   echo -e "$output_str_colored"
 end
+
