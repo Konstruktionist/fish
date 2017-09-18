@@ -9,7 +9,7 @@
 | chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_   |
 | mdb           | _[tag][tag]_                                                    | _[brew][brew]_   |
 | testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_   |
-| tv            | _[transcode-video][donmelton]_                                  | _[brew][brew]_   |
+| tv            | _[transcode-video][donmelton]_                                  |                  |
 | vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_   |
 | fixdate       | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_ |
 | xpstatus      | _[GetFileInfo][GetFileInfo]_ *                                  | _[Xcode][Xcode]_ |

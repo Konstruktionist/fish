@@ -1,8 +1,5 @@
 # A function to determine image dimensions
 #
-#     dependency: graphicsmagick
-#     ==========================
-#
 
 function img_size -d 'Show image dimensions'
   echo -n 'Height: ' ; mdls $argv | grep 'kMDItemPixelHeight' | awk '{print $3}'
