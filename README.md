@@ -19,7 +19,7 @@
    _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
 
 >   **Note:** Its local documentation (_not yet on Apple's site_) says it is deprecated, but for now it works.  
->   (With Xcode 9 it still gets installed). I suspect it will die when the new filesystem APFS will become the default (macOS 10.13)  
+>   (With Xcode 9 it still gets installed). I suspect it will disappear when the new filesystem APFS will become the default (macOS 10.13?)  
 
 ---
 
