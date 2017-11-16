@@ -18,7 +18,7 @@
 >  \* From its local manpage:  
 >   _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
 >
->   ***Note: *** Its local documentation says it is deprecated, but for now it works.  
+>   ***Note:*** Its local documentation says it is deprecated, but for now it works.  
 >   On Apple's site it is in the _Retired Documents Library_ referencing _Xcode 5_.  
 >   With **Xcode 9** it still gets installed.  
 
