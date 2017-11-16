@@ -10,16 +10,17 @@
 | mdb           | _[tag][tag]_                                                    | _[brew][brew]_        |
 | testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_        |
 | tv            | _[transcode-video][donmelton]_                                  |                       |
-| vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
+| npodl & vidl  | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
 | fixdate       | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_      |
 | xpstatus      | _[GetFileInfo][GetFileInfo]_ *                                  | _[Xcode][Xcode]_      |
 
 
-  \* From its local manpage:  
-   _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
-
->   **Note:** Its local documentation (on Apple's site it is in the _Retired Documents Library_ referencing _Xcode 5_) says it is deprecated, but for now it works.  
->   (With Xcode 9 it still gets installed).  
+>  \* From its local manpage:  
+>   _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
+>
+>   ***Note: *** Its local documentation says it is deprecated, but for now it works.  
+>   On Apple's site it is in the _Retired Documents Library_ referencing _Xcode 5_.  
+>   With **Xcode 9** it still gets installed.  
 
 ---
 
