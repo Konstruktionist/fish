@@ -5,13 +5,19 @@
 #
 
 function try_func
-  # get a list of all the tools installed by brew
-  set tools (brew list)
-  for value in $tools
-    # print tools name
-    echo -n (set_color blue) $value (set_color brgreen) "used by:" (set_color white)
-    # print its dependancies
-    echo -n (brew uses --installed $value)
-      echo ""
+  # Check the EFI version of a Mac
+  set current_efi_version (/usr/libexec/efiupdater | grep "Raw" | cut -d ':' -f2 | sed 's/ //')
+  echo "Current EFI version $current_efi_version"
+  set latest_efi_version (ls -La /usr/libexec/firmwarecheckers/eficheck/EFIAllowListShipping.bundle/allowlists/ | grep "$current_efi_version")
+  echo "Latest EFI version  $latest_efi_version"
+
+  if test -z $latest_efi_version
+    set_color red
+    echo "EFI FAILED"
+    set_color normal
+  else
+    set_color green
+    echo "EFI PASSED"
+    set_color normal
   end
 end
