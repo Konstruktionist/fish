@@ -179,9 +179,6 @@ A script to extract the height of movie files in a directory & if it's over 720 
 * **totrash**  
 Move a specified file to the Trash.
 
-* **try_func**  
-A dummy function to try out a new script. This gives me time to think of a good name (_it doesn't always work out_).  
-
 * **tv**  
 Transcode a video to 720p & add dutch subtitles if available. Uses Don Melton's [video transcoding tools][donmelton].  
 
