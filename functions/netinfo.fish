@@ -11,22 +11,23 @@
 #   This also should display all network interfaces, not just Ethernet & Wi-Fi.
 #   I have not tested this assumption, for lack of specific hardware.
 #
-#   version 1.9
-#   24-8-2017
+#   version 2.0
+#   14-11-2017
 
 function netinfo -d "get network information"
 
   # Get public ip address
   set public (dig +short myip.opendns.com @resolver1.opendns.com)
+  set hostname (uname -n)
 
-  if test -z "$public" # No Internet connection
+  if test -z "$public" # We got an empty string, meaning:
     set public "No Internet connection available"
   end
 
-  echo " "
-  echo -n "    Public IP: "; echo $public
-  echo -n "     Hostname: "; echo (uname -n)
-  echo " "
+  echo ''
+  echo "    Public IP: $public"
+  echo "     Hostname: $hostname"
+  echo ''
 
   # Get all available hardware ports
   set ports (ifconfig -uv | grep '^[a-z0-9]' | awk -F : '{print $1}')
@@ -60,7 +61,7 @@ function netinfo -d "get network information"
           case Wi-Fi
             # Get WiFi network name
             set wifi_name (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep '\sSSID:' | sed 's/.*: //')
-            echo -n ' Network Name: '; echo $wifi_name
+            echo " Network Name: $wifi_name"
             # Networkspeed for Wi-Fi
             set networkspeed (/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep lastTxRate: | sed 's/.*: //' | sed 's/$/ Mbps/')
           case '*'
@@ -68,13 +69,13 @@ function netinfo -d "get network information"
             set networkspeed (ifconfig -uv $val | grep 'link rate:' | awk '{print $3, $4}')
         end
 
-        echo -n '   IP-address: ' ; echo $ipaddress
-        echo -n '  Subnet Mask: ' ; echo $netmask
-        echo -n '       Router: ' ; echo $router
-        echo -n '   DNS Server: ' ; echo $dnsserver
-        echo -n '  MAC-address: ' ; echo $macaddress
-        echo -n 'Network Speed: ' ; echo $networkspeed
-        echo -n ' Link quality: ' ; echo $quality
+        echo "   IP-address: $ipaddress"
+        echo "  Subnet Mask: $netmask"
+        echo "       Router: $router"
+        echo "   DNS Server: $dnsserver"
+        echo "  MAC-address: $macaddress"
+        echo "Network Speed: $networkspeed"
+        echo " Link quality: $quality"
         echo ''
       end
 
