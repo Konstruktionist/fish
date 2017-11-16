@@ -1,25 +1,25 @@
 # A short description of the functions
 
 
-  **Functions with dependencies on non-standard installed tools (on Mac OS X / macOS )**
+  **Functions with dependencies on non-standard installed tools (on macOS 10.13)**
 
-| function      | depends on                                                      | installed by     |
-| ------------- | --------------------------------------------------------------- | ---------------- |
-| build_iosevka | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_   |
-| chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_   |
-| mdb           | _[tag][tag]_                                                    | _[brew][brew]_   |
-| testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_   |
-| tv            | _[transcode-video][donmelton]_                                  |                  |
-| vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_   |
-| fixdate       | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_ |
-| xpstatus      | _[GetFileInfo][GetFileInfo]_ *                                  | _[Xcode][Xcode]_ |
+| function      | depends on                                                      | which is installed by |
+| ------------- | --------------------------------------------------------------- | --------------------- |
+| build_iosevka | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_        |
+| chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_        |
+| mdb           | _[tag][tag]_                                                    | _[brew][brew]_        |
+| testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_        |
+| tv            | _[transcode-video][donmelton]_                                  |                       |
+| vidl          | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
+| fixdate       | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_      |
+| xpstatus      | _[GetFileInfo][GetFileInfo]_ *                                  | _[Xcode][Xcode]_      |
 
 
   \* From its local manpage:  
    _`Tools supporting Carbon development, including /usr/bin/SetFile, were deprecated with Xcode 6.`_  
 
->   **Note:** Its local documentation (_not yet on Apple's site_) says it is deprecated, but for now it works.  
->   (With Xcode 9 it still gets installed). I suspect it will disappear when the new filesystem APFS will become the default (macOS 10.13?)  
+>   **Note:** Its local documentation (on Apple's site it is in the _Retired Documents Library_ referencing _Xcode 5_) says it is deprecated, but for now it works.  
+>   (With Xcode 9 it still gets installed).  
 
 ---
 
@@ -28,7 +28,7 @@
 * **ag**  
 Change the colors of ag (the silver searcher) output.
 I don't like the yellow boxes that show up in the default settings.
-Changed to green underlined matches, light yellow pathnames & light blue line numbers
+Changed to green underlined matches, light yellow pathnames & light blue line numbers.
 
 * **apply_settings**  
 Set up fish universal variables. At the moment all color related.    
@@ -149,7 +149,10 @@ A script to create a simple plain text movie database.
 * **netinfo**  
 Get network information.  
 The  successor of getnet.fish.  
-Works on Mac's without a physical Ethernet port. See in the comments.
+Works on Mac's without a physical Ethernet port. See in the comments.  
+
+* **npodl**  
+Download a video with [youtube-dl][ytdl] with predefined setting.
 
 * **nvimrc**  
 Open the init.vim file.
