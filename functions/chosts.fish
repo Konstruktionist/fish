@@ -5,10 +5,15 @@
 #     =============================
 #     installed via homebrew
 #
-#     version 1.3
-#     05-11-2016
+#     version 1.4
+#     16-11-2017
 
 function chosts -d 'check online hosts files for last update'
+
+  # Save current working directory, so we can excecute this anywhere in the file system.
+  set current_working_directory $PWD
+
+  cd ~/workspace
 
   # Re-usable colors
   set normal (set_color normal)
@@ -88,5 +93,9 @@ function chosts -d 'check online hosts files for last update'
 
   # Clean up after ourselves
   rm *_headers.txt
+
+  # Return to where we came from
+  cd $current_working_directory
+  
 end
 
