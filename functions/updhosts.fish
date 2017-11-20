@@ -1,23 +1,22 @@
 function updhosts -d 'Update my /etc/hosts file'
 
-  # Relies on a helper function: fish_cleanup_hosts
-
   # Save current working directory, so we can excecute this anywhere in the file system.
   set current_working_directory $PWD
 
+  # Go to a safe place
   cd ~/workspace
-  
-  function fish_cleanup_hosts -d "Helper function for cleaning up downloaded hosts file"
 
+  # Helper function for cleaning up downloaded hosts file
+  function fish_cleanup_hosts
     # files downloaded from:
     #   http://someonewhocares.org/hosts/zero/hosts
     #   http://winhelp2002.mvps.org/hosts.txt
     #   https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-social/hosts
     #   https://pgl.yoyo.org
 
-    sed 's/127.0.0.1/0.0.0.0/g;' |  grep 0.0.0.0 | sed 's/[[:space:]]*#.*$//g;' | grep -v localhost | tr ' ' '\t' | tr -s '\t' | tr -d '\015'
+    sed 's/127.0.0.1/0.0.0.0/g;' | grep 0.0.0.0 | sed 's/[[:space:]]*#.*$//g;' | grep -v localhost | tr ' ' '\t' | tr -s '\t' | tr -d '\015'
   end
-  
+
   # Clean up my blocklist
   # This is a list which I maintain with reasons why the sites are on there. If
   # in the future things seem odd, I can review if I broke something.
@@ -42,12 +41,13 @@ function updhosts -d 'Update my /etc/hosts file'
   # Sort entries, remove duplicates & append to my_temp_hosts
   cat hosts_temp | sort -u >> my_temp_hosts
 
-  # Put it in the right place
+  # Put it in the right place with the right name
+  # It's in protected property so we need sudo privileges
   sudo mv my_temp_hosts /private/etc/hosts
 
   # clear DNS caches
   # The commands have changed over the years with OS versions
-  # This is for macOS 10.12 Sierra
+  # This is for macOS 10.12 Sierra and higher
   sudo dscacheutil -flushcache
   sudo killall -HUP mDNSResponder
 
