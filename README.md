@@ -9,7 +9,7 @@
 | chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_        |
 | mdb           | _[tag][tag]_                                                    | _[brew][brew]_        |
 | testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_        |
-| tv            | _[transcode-video][donmelton]_                                  |                       |
+| tv            | _[video_transcoding][donmelton]_                                | _[gem][gem]_          |
 | npodl & vidl  | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
 | fixdate       | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_      |
 | xpstatus      | _[GetFileInfo][GetFileInfo]_ *                                  | _[Xcode][Xcode]_      |
@@ -232,3 +232,4 @@ Also if you find bugs, ditto.
 [SetFile]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/SetFile.1.html
 [GetFileInfo]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/GetFileInfo.1.html#//apple_ref/doc/man/1/GetFileInfo
 [Xcode]: https://developer.apple.com/xcode/
+[gem]: https://rubygems.org
