@@ -150,6 +150,9 @@ Show a list of the defined bookmarks.
 * **mdb**  
 A script to create a simple plain text movie database.
 
+* **mwp_status**. 
+Check Apple's malware protection status
+
 * **netinfo**  
 Get network information.  
 The  successor of getnet.fish.  
