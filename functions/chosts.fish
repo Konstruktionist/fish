@@ -17,7 +17,7 @@ function chosts -d 'check online hosts files for last update'
 
   # Re-usable colors
   set normal (set_color normal)
-  set decor (set_color 87afff) # blue
+  set decor (set_color 87afff) # blueish purple
 
   # With curl we download the complete file and grep the date from it,
   # this takes time. If we only get the HTTP headers and grep those for the date
