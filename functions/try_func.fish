@@ -6,9 +6,9 @@
 
 function try_func -d "Experiments in fish scripting"
 
-  function columns
-    column -s '}' -t -x
-  end
+  # Re-usable colors
+  set normal (set_color normal)
+  set decor (set_color 87afff) # blue
 
   # Files & their Paths:
   set -l XProtect '/System/Library/CoreServices/XProtect.bundle/Contents/version.plist'
@@ -17,58 +17,43 @@ function try_func -d "Experiments in fish scripting"
   set -l MRT '/System/Library/CoreServices/MRT.app/Contents/version.plist'
   set -l CoreSuggest '/System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/Versions/A/Resources/Assets.suggestionsassets/Contents/Info.plist'
   set -l IncompatibleKernelExt '/System/Library/Extensions/AppleKextExcludeList.kext/Contents/version.plist'
-  # set -l ChineseWordList '/usr/share/mecabra/updates/com.apple.inputmethod.SCIM.bundle/Contents/version.plist'
   set -l CoreLSDK '/usr/share/kdrl.bundle/info.plist'
 
   set -l fileName XProtect Gatekeeper SIP MRT CoreSuggest IncompatibleKernelExt CoreLSDK
-  # set -l filePath Xprotect Gatekeeper SIP SMRT CoreSuggest IncompatibleKernelExt CoreLSDK
-  # set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}')
 
-  echo "Versions of Apple malware protection"
-  echo "------------------------------------"
+  # Get the versions of the files & display dates in understandable way
+  echo "Name                    Version  Date"
+  echo "--------------------------------------------"
   for val in $fileName
     switch $val
       case XProtect
         set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $XProtect)
-        echo "$val               $version"
+        set datum (GetFileInfo $XProtect | grep 'modified' | awk '{print $2}' | strptime -i "%m/%d/%Y" -f "%d %b %Y")
+        echo "$val               $decor $version $normal    $datum"
       case Gatekeeper
         set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $Gatekeeper)
-        echo "$val             $version"
+        set datum (GetFileInfo $Gatekeeper | grep 'modified' | awk '{print $2}' | strptime -i "%m/%d/%Y" -f "%d %b %Y")
+        echo "$val             $decor $version $normal     $datum"
       case SIP
         set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $SIP)
-        # echo "$val                    $version"
+        set datum (GetFileInfo $SIP | grep 'modified' | awk '{print $2}' | strptime -i "%m/%d/%Y" -f "%d %b %Y")
+        echo "$val                    $decor $version $normal    $datum"
       case MRT
         set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $MRT)
-        # echo "$val                    $version"
+        set datum (GetFileInfo $MRT | grep 'modified' | awk '{print $2}' | strptime -i "%m/%d/%Y" -f "%d %b %Y")
+        echo "$val                    $decor $version $normal    $datum"
       case CoreSuggest
         set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $CoreSuggest)
-        # echo "$val            $version"
+        set datum (GetFileInfo $CoreSuggest | grep 'modified' | awk '{print $2}' | strptime -i "%m/%d/%Y" -f "%d %b %Y")
+        echo "$val            $decor $version $normal    $datum"
       case IncompatibleKernelExt
         set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $IncompatibleKernelExt)
-        # echo "$val  $version"
+        set datum (GetFileInfo $IncompatibleKernelExt | grep 'modified' | awk '{print $2}' | strptime -i "%m/%d/%Y" -f "%d %b %Y")
+        echo "$val  $decor $version $normal  $datum"
       case CoreLSDK
         set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $CoreLSDK)
-        # echo "$val               $version"
+        set datum (GetFileInfo $CoreLSDK | grep 'modified' | awk '{print $2}' | strptime -i "%m/%d/%Y" -f "%d %b %Y")
+        echo "$val               $decor $version $normal       $datum"        
     end
-    echo "$val}$version" | columns
-
-  end
-  for value in $version
-    string length $value
   end
 end
-
-#  Values we are looking for: 
-# var versionKeyInDefaultsSystem: String {
-#     switch self {
-#     case .XProtect:
-#         return "Version"
-#     case .Gatekeeper, .SIP, .MRT, .CoreSuggestions, .IncompatibleKernelExt:
-#         return "CFBundleShortVersionString"
-#     case .ChineseWordList:
-#         return "SUVersionString"
-#     case .CoreLSDK:
-#         return "CFBundleVersion"
-#     }lL
-
-# end
