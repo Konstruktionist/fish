@@ -13,8 +13,6 @@ function updhosts -d 'Update my /etc/hosts file'
   cat my_blocklist | sed 's/[[:space:]]*#.*$//g;' | tr ' ' '\t' | tr -s '\t' | tr -d '\015' | sort -u > hosts_temp
 
   # Get blocklists online, clean them up & append them to our temp file
-  # The StevenBlack list contains the other lists as well. So if any one of
-  # them fails, they still get included.
   # If all of them fail we end up with the standard hosts file provided by the
   # OS with my personal blocklist appended.
 
