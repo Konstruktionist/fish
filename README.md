@@ -150,7 +150,7 @@ Show a list of the defined bookmarks.
 * **mdb**  
 A script to create a simple plain text movie database.
 
-* **mwp_status**. 
+* **mwp_status**  
 Check Apple's malware protection status
 
 * **netinfo**  
