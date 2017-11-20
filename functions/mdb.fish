@@ -22,7 +22,6 @@ function mdb -d 'Make a flatfile movie database'
     set tags (tag -lN $file)
 
     # If file has no tags, don't try to put it in database
-    # Make tags standout by using the 'Label' Unicode symbol
     if test -z $tags
       echo $title '•' $width 'x' $height >> "$HOME/Movies on $drive.txt"
     else
