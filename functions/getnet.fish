@@ -1,6 +1,9 @@
 #   Deprecated. Use netinfo.fish instead
 #
-#     This is not correct on machines witout a physical Ethernet port
+# This is not correct on machines without a physical Ethernet port
+# PROBLEM: getnet.fish has en0 & en1 hardcoded to Ethernet & Wi-Fi.
+#   This works if there is a physical ethernet port on the computer
+#   but current Macs may not have one.
 
 function getnet -d "get network information"
 
