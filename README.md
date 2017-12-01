@@ -164,6 +164,9 @@ Download a video with [youtube-dl][ytdl] with predefined setting.
 * **nvimrc**  
 Open the init.vim file.
 
+* **print\_fish\_colors**  
+Prints a table of colors used by fish.
+
 * **prompt\_git\_status**  
 Helper function for fish_prompt.
 
