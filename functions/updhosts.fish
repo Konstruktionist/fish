@@ -41,8 +41,9 @@ function updhosts -d 'Update my /etc/hosts file'
   # Sort entries, remove duplicates & append to my_temp_hosts
   cat hosts_temp | sort -u >> my_temp_hosts
 
-  # Put it in the right place with the right name
+  # Put it in the right place with the right name & inform the user
   # It's in protected property so we need sudo privileges
+  echo "Updating the current hosts file"
   sudo mv my_temp_hosts /private/etc/hosts
 
   # clear DNS caches
