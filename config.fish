@@ -30,6 +30,7 @@ complete -c jump -f -a '(ls ~/.marks)'
 complete -c unmark -f -a '(ls ~/.marks)'
 
 # LESS with colors (options explained)
+# F   automatically exit if entire file fits on the first screen
 # R   allow raw control chars. ANSI only
 # M   causes less to prompt even more verbosely than more
 # S   cut off long lines, i.e. don't fold or wrap
@@ -38,7 +39,7 @@ complete -c unmark -f -a '(ls ~/.marks)'
 # g   highlight only last search matches
 # i   smart case search
 # s   causes consecutive blank lines to be squeezed into a single blank line
-set -gx LESS "-RMSX~gis"
+set -gx LESS "-FRMSX~gis"
 
 # Colorful man pages
 # from http://stackoverflow.com/questions/34265221/how-to-colorize-man-page-in-fish-shell
