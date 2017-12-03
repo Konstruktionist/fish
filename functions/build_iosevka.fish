@@ -1,5 +1,10 @@
 function build_iosevka -d "build custom version Iosevka font"
 
+  # Dependencies: nodejs, ttfautohint & otfcc
+  # =========================================
+  # installed via homebrew
+
+
   # Save current working directory, so we can excecute this anywhere in the file system.
   set current_working_directory $PWD
 
