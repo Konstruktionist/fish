@@ -16,7 +16,7 @@ set -gx HOMEBREW_EDITOR mate
 set -gx VISUAL mate
 
 # NOTE: Do NOT add path's to $PATH here
-#  Why? See: file:///usr/local/Cellar/fish/2.5.0/share/doc/fish/tutorial.html#tut_path
+#  Why? See: https://fishshell.com/docs/current/tutorial.html#tut_path
 # ====================================================================================
 
 # expose PATH to graphical apps
