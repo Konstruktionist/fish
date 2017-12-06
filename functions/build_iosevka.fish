@@ -17,7 +17,7 @@ function build_iosevka -d "build custom version Iosevka font"
   # Install required libraries for nodejs
   npm install
   # The custom configuration
-  # using (brew installed) gmake because macOS version is to old
+  # using (brew installed) gmake because macOS version is too old
   gmake custom-config design='v-asterisk-low v-underscore-low v-brace-straight v-numbersign-slanted'
   # Build font
   gmake custom
