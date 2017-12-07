@@ -52,10 +52,13 @@ set branch_format "$branch_prefix∬$branch_ref∬$branch_hash∬$branch_date∬
 
 # Logs
 function gitl -d 'l = all commits, only current branch'
-  # first string replace: remove all ' ago' only in date column
-  # second string replace: replace (2 years, 5 months) with (2 years)
-  # TODO: find out how to color the merge commits subjects
-  git log --graph --pretty="tformat:$log_format" $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r '(Merge(\s\w+).+)' '$1' | column -t -s '∬' | less -FXRS
+  # 1st string replace: remove all ' ago' only in date column
+  # 2nd string replace: replace (2 years, 5 months) with (2 years)
+  # 3rd string replace: print Merge commit messages in red
+  # NOTE: to get the merge commit messages printed red we can not use the obove
+  # declared variables rcolor & ncolor. If we do we get an error stating:
+  #   Variables may not be used as commands.
+  git log --graph --pretty="tformat:$log_format" $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge\s.*' (set_color brred)'$0'(set_color normal) | column -t -s '∬' | less -FXRS
 end
 
 function gitla -d 'la = all commits, all reachable refs'
