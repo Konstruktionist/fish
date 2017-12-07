@@ -125,6 +125,12 @@ Get network information.
 I don't use this anymore because newer Mac's may not have a physical Ethernet port.  
 Replacement is `netinfo`.
 
+* **git_helpers**  
+get a nice git log output with colors and in neat columns.  
+A reconstruction of Gary Bernhardt's `githelpers.sh` script & his `.gitconfig` aliasses.  
+This is how it looks:  
+![git log output][imgur]
+
 * **hosts**  
 Open the hosts file in my favorite editor.
 
@@ -240,3 +246,4 @@ Also if you find bugs, ditto.
 [GetFileInfo]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/GetFileInfo.1.html#//apple_ref/doc/man/1/GetFileInfo
 [Xcode]: https://developer.apple.com/xcode/
 [gem]: https://rubygems.org
+[imgur]: https://i.imgur.com/UKjSzMN.png
