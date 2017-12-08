@@ -85,9 +85,9 @@ end
 
 # Branches
 function gitb -d 'b = all branches'
-  git branch -v --format=$branch_format $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r '(Merge(\s\w+).+)' '$1' | column -t -s '∬' | less -FXRS
+  git branch -v --format=$branch_format $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) | column -t -s '∬' | less -FXRS
 end
 
 function gitbs -d 'bs = all branches, sorted by last commit date'
-  git branch -v --format=$branch_format --sort=-committerdate $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r '(Merge(\s\w+).+)' '$1' | column -t -s '∬' | less -FXRS
+  git branch -v --format=$branch_format --sort=-committerdate $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) | column -t -s '∬' | less -FXRS
 end
