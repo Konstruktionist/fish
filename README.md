@@ -127,7 +127,7 @@ Replacement is `netinfo`.
 
 * **git_helpers**  
 get a nice git log output with colors and in neat columns.  
-A reconstruction of Gary Bernhardt's `githelpers.sh` script & his `.gitconfig` aliasses.  
+A reconstruction of [Gary Bernhardt][GB]'s `githelpers.sh` script & his `.gitconfig` aliasses.  
 This is how it looks:  
 ![git log output][imgur]
 
@@ -246,4 +246,5 @@ Also if you find bugs, ditto.
 [GetFileInfo]: https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/GetFileInfo.1.html#//apple_ref/doc/man/1/GetFileInfo
 [Xcode]: https://developer.apple.com/xcode/
 [gem]: https://rubygems.org
-[imgur]: https://i.imgur.com/UKjSzMN.png
+[imgur]: https://i.imgur.com/fS9Xm9M.png
+[GB]: https://github.com/garybernhardt/dotfiles
