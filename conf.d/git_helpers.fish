@@ -54,11 +54,12 @@ set branch_format "$branch_prefix∬$branch_ref∬$branch_hash∬$branch_date∬
 function gitl -d 'l = all commits, only current branch'
   # 1st string replace: remove all ' ago' only in date column
   # 2nd string replace: replace (2 years, 5 months) with (2 years)
-  # 3rd string replace: print Merge commit messages in red
-  # NOTE: to get the merge commit messages printed red we can not use the obove
+  # 3rd - 5th string replace: print Merge commit messages in cyan
+  # NOTE: to get the merge commit messages printed cyan we can not use the above
   # declared variables rcolor & ncolor. If we do we get an error stating:
-  #   Variables may not be used as commands.
-  git log --graph --pretty="tformat:$log_format" $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge\s.*' (set_color brred)'$0'(set_color normal) | column -t -s '∬' | less -FXRS
+  # 'Variables may not be used as commands' or 'string replace: Expected
+  # argument"
+  git log --graph --pretty="tformat:$log_format" $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) |column -t -s '∬' | less -FXRS
 end
 
 function gitla -d 'la = all commits, all reachable refs'
