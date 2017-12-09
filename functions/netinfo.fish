@@ -37,7 +37,7 @@ function netinfo -d "get network information"
     set activated (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
 
     # We want information about active network ports...
-    if test $activated = 'active' ^/dev/null
+    if test "$activated" = 'active' ^/dev/null
       set ipaddress (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
 
       # and of these, the ones with an IP-address assigned to it
@@ -80,7 +80,7 @@ function netinfo -d "get network information"
       end
 
       # Don't display the inactive ports.
-    else if test $activated = 'inactive' ^/dev/null
+    else if test "$activated" = 'inactive' ^/dev/null
     end
   end
 end

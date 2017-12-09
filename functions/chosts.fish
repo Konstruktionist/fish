@@ -76,7 +76,7 @@ function chosts -d 'check online hosts files for last update'
 
     # Figure out if remote is ahead (positive difference) or behind (negative
     # difference) and adjust color and message to it.
-    if test $difference -le 0
+    if test "$difference" -le 0
       # We don't want to show negative numbers. (We have to calculate the
       # absolute value whithin double quotes, to allow variable substitution.
       # If we don't we get a wildcard error message)

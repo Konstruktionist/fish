@@ -15,10 +15,10 @@
 
 function fixdate -d 'fix file creation & modification dates'
   #clean up from previous use
-  if test -f fixdate_candidates.txt
+  if test -f "fixdate_candidates.txt"
     rm fixdate_candidates.txt
   end
-  if test -f fixdate_errors.txt
+  if test -f "fixdate_errors.txt"
     rm fixdate_errors.txt
   end
 

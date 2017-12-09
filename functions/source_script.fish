@@ -71,7 +71,7 @@ function source_script -d 'Source sh/csh file'
         eval set value (echo $value | tr : ' ')
         for pt in $value
           contains $pt $PATH; and continue
-          if not test -d $pt
+          if not test -d "$pt"
             echo "Unable to add '$pt' to \$PATH. Check existance."
             continue
           end

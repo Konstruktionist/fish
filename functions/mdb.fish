@@ -11,7 +11,7 @@ function mdb -d 'Make a flatfile movie database'
   set drive (pwd | awk -F / '{print $3}')
 
   # clean up from previous use
-  if test -f $HOME/Movies\ on\ $drive.txt
+  if test -f > "$HOME/Movies on $drive.txt"
     rm $HOME/Movies\ on\ $drive.txt
   end
 
@@ -22,7 +22,7 @@ function mdb -d 'Make a flatfile movie database'
     set tags (tag -lN $file)
 
     # If file has no tags, don't try to put it in database
-    if test -z $tags
+    if test -z "$tags"
       echo $title '•' $width 'x' $height >> "$HOME/Movies on $drive.txt"
     else
       echo $title '•' $width 'x' $height '==> ' $tags >> "$HOME/Movies on $drive.txt"

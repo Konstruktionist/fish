@@ -1,8 +1,8 @@
 function jump -d "Jump to previously set bookmark for a directory"
-  if test (count $argv) -ne 1
+  if test (count "$argv") -ne 1
     echo "Usage: jump <MARK_NAME>"
   else
-    if test -d $MARKPATH/$argv[1] -a -L $MARKPATH/$argv[1]
+    if test -d "$MARKPATH/$argv[1]" -a -L "$MARKPATH/$argv[1]"
       cd $MARKPATH/$argv[1]
     else
       echo "No such mark: $argv[1]"
