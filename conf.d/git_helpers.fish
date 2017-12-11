@@ -59,7 +59,23 @@ function gitl -d 'l = all commits, only current branch'
   # declared variables rcolor & ncolor. If we do we get an error stating:
   # 'Variables may not be used as commands' or 'string replace: Expected
   # argument"
-  git log --graph --pretty="tformat:$log_format" $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) |column -t -s '∬' | less -FXRS
+  git log --graph --pretty="tformat:$log_format" $argv |\
+    string replace -r '(^[^<]*)\sago\)' '$1)' |\
+    string replace -r ',\s\d+?\s\w+\s?' '' |\
+    string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) |\
+    # TODO: Ideally these last 3 would be replaced by
+    #
+    #   string replace -r ([\s]{3}Merge.*) (set_color cyan)'$1'(set_color normal)
+    #
+    # but somehow fish doesn't understand this and ignores it. There are no
+    # error messages, it just ignores the set_color commands & prints the
+    # commit message in normal color. It works in RegExR & online regex
+    # testers.
+    # Needs further investigation.
+    column -t -s '∬' |\
+    less -FXRS
 end
 
 function gitla -d 'la = all commits, all reachable refs'
@@ -84,10 +100,23 @@ function githp -d 'hp = head with patch'
 end
 
 # Branches
+#   This follows the same logic as in the Logs section
 function gitb -d 'b = all branches'
-  git branch -v --format=$branch_format $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) | column -t -s '∬' | less -FXRS
+  git branch -v --format=$branch_format $argv |\
+    string replace -r '(^[^<]*)\sago\)' '$1)' |\
+    string replace -r ',\s\d+?\s\w+\s?' '' |\
+    string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) |\
+    column -t -s '∬' | less -FXRS
 end
 
 function gitbs -d 'bs = all branches, sorted by last commit date'
-  git branch -v --format=$branch_format --sort=-committerdate $argv | string replace -r '(^[^<]*)\sago\)' '$1)' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) | string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) | column -t -s '∬' | less -FXRS
+  git branch -v --format=$branch_format --sort=-committerdate $argv |\
+    string replace -r '(^[^<]*)\sago\)' '$1)' |\
+    string replace -r ',\s\d+?\s\w+\s?' '' |\
+    string replace -r 'Merge branch\s.*' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r 'Merge pull request\s.*' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r 'Merge remote-tracking branch\s.*' (set_color cyan)'$0'(set_color normal) |\
+    column -t -s '∬' | less -FXRS
 end
