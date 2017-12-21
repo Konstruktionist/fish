@@ -160,7 +160,7 @@ Show a list of the defined bookmarks.
 A script to create a simple plain text movie database.
 
 * **mwp_status**  
-Check Apple's malware protection status
+Check Apple's malware protection status.  
 It shows version number & date/time last updated of:  
 
     * XProtect
