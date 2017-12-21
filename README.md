@@ -161,6 +161,15 @@ A script to create a simple plain text movie database.
 
 * **mwp_status**  
 Check Apple's malware protection status
+It shows version number & date/time last updated of:  
+
+    * XProtect
+    * Gatekeeper
+    * SIP
+    * MRT
+    * CoreSuggest
+    * IncompatibelKernelExt
+    * CoreLSDK
 
 * **netinfo**  
 Get network information.  
@@ -214,8 +223,6 @@ Download a video with [youtube-dl][ytdl] with predefined setting.
 * **weer**  
 The weather forecast for a city. Type in `city,country` (case insensitive) as arguments.
 
-* **xpstatus**  
-Shows the version of Apple's XProtect tool and the last time it was updated.
 
 ---
 
