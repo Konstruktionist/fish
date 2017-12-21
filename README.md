@@ -13,7 +13,6 @@
 | tv            | _[video_transcoding][donmelton]_                                | _[gem][gem]_          |
 | npodl & vidl  | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
 | fixdate       | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_      |
-| xpstatus      | _[dateutils][fresse]_                                           | _[brew][brew]_        |
 
 
 >  \* From its local manpage:  
