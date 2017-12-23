@@ -23,6 +23,7 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_status ff8c00
   set -U fish_color_user 76c376
   set -U fish_color_valid_path --underline
+  set -U fish_color_selection 383f4c --bold  --background=00d400
 
   set -U fish_pager_color_prefix 6bb9f0 # blue - the color of the prefix string, i.e. the string that is to be completed
   set -U fish_pager_color_completion 00bbff # bright blue - the color of the completion itself
