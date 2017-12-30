@@ -56,7 +56,7 @@ set -gx GREP_COLOR '4;32'                 # green underlined
 set -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
-set -gx LSCOLORS 'gxfxbgaeBxxfhehbaghbad'          # see man ls
+set -gx LSCOLORS 'gxfxbgdxBxxfhehbagabad'          # see man ls
 
 # Settings for timing helper function
 set fish_command_timer_enabled 1                # enable command timer

@@ -23,8 +23,8 @@
 set -l ycolor (set_color bryellow)
 set -l ncolor (set_color normal)
 set -l gcolor (set_color brgreen)
-set -l bcolor (set_color blue)
-set -l rcolor (set_color brred)
+set -l bcolor (set_color brcyan)
+set -l rcolor (set_color red)
 
 set -l log_hash "$ycolor%h"
 set -l log_relative_time "$gcolor(%ar)"
