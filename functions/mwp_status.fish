@@ -76,4 +76,6 @@ function mwp_status -d "Check Apple's malware protection status"
         echo "$file               $decor $version $normal       $datum"
     end
   end
+  echo '---'
+  csrutil status
 end
