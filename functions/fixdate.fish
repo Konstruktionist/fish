@@ -9,15 +9,12 @@
 #
 # SetFile is deprecated as of Xcode 6, may not work in the future
 #
-#   version 1.4
-#   17-02-2016
+#   version 1.5
+#   13-02-2018
 #
 
 function fixdate -d 'fix file creation & modification dates'
   #clean up from previous use
-  if test -f "fixdate_candidates.txt"
-    rm fixdate_candidates.txt
-  end
   if test -f "fixdate_errors.txt"
     rm fixdate_errors.txt
   end
@@ -31,9 +28,7 @@ function fixdate -d 'fix file creation & modification dates'
       # we will ignore these
       echo $file >> fixdate_errors.txt
     else if test (echo $file | egrep '[0-9]{6}') # match dates with 6 digits
-      echo $file >> fixdate_candidates.txt
-      # we don't know where the date appears, so let's grab only the
-      #  matching part
+      # we don't know where the date appears, so let's grab the matching part
       set datum (echo $file | egrep -o '[0-9]{6}')
       # get the individual year, month and day items
       set year (echo $datum | cut -c 1-2)
