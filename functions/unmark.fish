@@ -1,5 +1,5 @@
 function unmark -d "Remove a bookmark"
-  if test (count "$argv") -eq 0
+  if test (count $argv) -eq 0
     echo "Usage: unmark <MARK_NAME>..."
   else
     for mark_name in $argv

@@ -26,7 +26,7 @@ function prompt_git_status -d 'Write out the git status'
   # Get the branch name and if we're not in a git repo, send to /dev/null
 
   set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
-  if test -z "$branch"
+  if test -z $branch
     return
   end
 
@@ -39,7 +39,7 @@ function prompt_git_status -d 'Write out the git status'
 
   # We are in a clean repo
 
-  if test -z "$index"
+  if test -z $index
     set_color $fish_color_git_clean; echo -n $branch
 
     echo -n ' '
@@ -87,7 +87,7 @@ function prompt_git_status -d 'Write out the git status'
 
   echo -n $branch
 
-  if test -n "$gitsha"
+  if test -n $gitsha
 
     echo -n ' '
 

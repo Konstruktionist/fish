@@ -20,7 +20,7 @@ function netinfo -d "get network information"
   set public (dig +short myip.opendns.com @resolver1.opendns.com)
   set hostname (uname -n)
 
-  if test -z "$public" # We got an empty string, meaning:
+  if test -z $public # We got an empty string, meaning:
     set public "No Internet connection available"
   end
 
@@ -37,11 +37,11 @@ function netinfo -d "get network information"
     set activated (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
 
     # We want information about active network ports...
-    if test "$activated" = 'active' ^/dev/null
+    if test $activated = 'active' ^/dev/null
       set ipaddress (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
 
       # and of these, the ones with an IP-address assigned to it
-      if test -n "$ipaddress" ^/dev/null
+      if test -n $ipaddress ^/dev/null
 
         # Do we have an IP address?
         # Then give us the information
@@ -80,7 +80,7 @@ function netinfo -d "get network information"
       end
 
       # Don't display the inactive ports.
-    else if test "$activated" = 'inactive' ^/dev/null
+    else if test $activated = 'inactive' ^/dev/null
     end
   end
 end

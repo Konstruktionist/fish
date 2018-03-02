@@ -22,12 +22,12 @@ function testmovies -d 'find HD movies >= 720p'
 
   for file in *.mkv  *.m4v *.avi *.ts *.mov *.wmv
     set -l film_Height (mediainfo $file | grep 'Height' | awk '{print $3 $4 $5}' | cut -d p -f 1)
-    if test "$film_Height" -ge 720
+    if test $film_Height -ge 720
       echo $file >> queue.txt
     end
   end
 
-  if test -f "queue.txt"
+  if test -f queue.txt
     set -l num_of_files (awk 'END{print NR}' queue.txt)
     echo -n $num_of_files; echo -n " HD movies added to"; set_color -i blue; echo " queue.txt"\n
     set_color -o brblue; echo "   ---  Added movies  ---"; set_color normal
