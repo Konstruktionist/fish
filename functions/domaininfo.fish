@@ -12,7 +12,7 @@ function domaininfo -d "Get information for a FQDN"
 
   # if we don't get an argument we'll use our public IP address
 
-  if test -z $argv
+  if test -z "$argv"
     set dig_response (curl -s http://ipecho.net/plain)
     set_color brred; echo "Querying your own public IP address"
     echo "This is probably not what you want, enter a domain name as argument"; set_color normal
@@ -25,7 +25,7 @@ function domaininfo -d "Get information for a FQDN"
     # display the information of the requested domain
     curl -s ipinfo.io/$val | sed -e '/[{}]/d' | sed 's/\"//g' | sed 's/  //g' | sed 's/,$//'
     # If we are querying our own public IP address (no input argument) we stop here
-    if test -z $argv
+    if test -z "$argv"
       break
     else
       # get the ASN

@@ -1,7 +1,7 @@
 function brused -d 'list which tools uses what library/tool'
 
   # Test if we have an argument
-  if test -z $argv
+  if test -z "$argv"
     # apparently no argument so we list all the installed tools
 
     # get a list of all the tools installed by brew
