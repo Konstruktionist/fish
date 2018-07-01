@@ -53,7 +53,6 @@ set -gx LESS_TERMCAP_me \e'[0m'           # end mode
 
 # grep colors
 set -gx GREP_COLOR '4;32'                 # green underlined
-set -gx GREP_OPTIONS "--color=auto"
 
 # ls colors
 set -gx LSCOLORS 'gxfxbgdxBxxfhehbagabad'          # see man ls
