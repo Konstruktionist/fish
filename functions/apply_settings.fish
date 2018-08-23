@@ -12,7 +12,7 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_param 89c4f4
   set -U fish_color_comment d2d7d3  --italics
   set -U fish_color_match dadfe1
-  set -U fish_color_search_match 383f4c --background=bdc3c7  # gray background
+  set -U fish_color_search_match 383f4c --background=ffffff  # white background
   set -U fish_color_operator d4b300 # dark yellow
   set -U fish_color_escape ffd700 # like backslahes for spaces
   set -U fish_color_cwd f7ca18 #yellow
