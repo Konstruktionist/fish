@@ -26,6 +26,9 @@ set -gx VISUAL mate
 set -gx MARKPATH $HOME/.marks
 command mkdir -p $MARKPATH
 
+# setup ripgrep's config path
+set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/ripgreprc
+
 complete -c jump -f -a '(ls ~/.marks)'
 complete -c unmark -f -a '(ls ~/.marks)'
 
