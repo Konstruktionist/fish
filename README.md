@@ -98,7 +98,7 @@ Extract the given archive into a folder.
 * **fish\__some\_function_**
 functions for the shell's own use.
 
-   * **fish\_command\_timer**  
+   * **fish\_command\_timer**  _(within `conf.d`)_
    Time stamp & command execution time at the right hand side of the terminal.  
    Copied from [jichu4n][jichu4n] and slightly adapted
 
@@ -107,10 +107,6 @@ functions for the shell's own use.
 
    * **fish\_prompt**  
    Prompt line with git info.
-
-   * **fish**\__something\_else\_then\_above_  
-   Usually a small helper function that is called from other functions.  
-   ***Not*** to be used on its own! They are most likely to be destructive in nature.
 
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
@@ -124,7 +120,7 @@ Get network information.
 I don't use this anymore because newer Mac's may not have a physical Ethernet port.  
 Replacement is `netinfo`.
 
-* **git_helpers**  
+* **git_helpers**  _(within `conf.d`)_
 get a nice git log output with colors and in neat columns.  
 A reconstruction of [Gary Bernhardt][GB]'s `githelpers.sh` script & his `.gitconfig` aliases.  
 This is how it looks:  
@@ -170,6 +166,8 @@ It shows version number & date/time last updated of:
     * IncompatibelKernelExt
     * CoreLSDK
 
+  and SIP status disabled or enabled
+
 * **netinfo**  
 Get network information.  
 The  successor of getnet.fish.  
@@ -201,9 +199,6 @@ Move a specified file to the Trash.
 
 * **tv**  
 Transcode a video to 720p & add dutch subtitles if available. Uses Don Melton's [video transcoding tools][donmelton].  
-
-* **undopush**  
-Undo a `git push`
 
 * **unmark**  
 Remove a bookmark.
