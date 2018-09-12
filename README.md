@@ -98,7 +98,7 @@ Extract the given archive into a folder.
 * **fish\__some\_function_**
 functions for the shell's own use.
 
-   * **fish\_command\_timer**  _(within `conf.d`)_
+   * **fish\_command\_timer**  _(within `conf.d`)_. 
    Time stamp & command execution time at the right hand side of the terminal.  
    Copied from [jichu4n][jichu4n] and slightly adapted
 
@@ -120,7 +120,7 @@ Get network information.
 I don't use this anymore because newer Mac's may not have a physical Ethernet port.  
 Replacement is `netinfo`.
 
-* **git_helpers**  _(within `conf.d`)_
+* **git_helpers**  _(within `conf.d`)_. 
 get a nice git log output with colors and in neat columns.  
 A reconstruction of [Gary Bernhardt][GB]'s `githelpers.sh` script & his `.gitconfig` aliases.  
 This is how it looks:  
