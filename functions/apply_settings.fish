@@ -27,7 +27,7 @@ function apply_settings -d 'setup fish universal variables'
 
   set -U fish_pager_color_prefix 6bb9f0 # blue - the color of the prefix string, i.e. the string that is to be completed
   set -U fish_pager_color_completion ffffff # white- the color of the completion itself
-  set -U fish_pager_color_description 808080 --italics # gray - the color of the completion description
+  set -U fish_pager_color_description 808080 --italics # grey - the color of the completion description
   set -U fish_pager_color_progress 383f4c --background=bdc3c7 # the color of the progress bar at the bottom left corner
   set -U fish_pager_color_secondary add8e6 # the background color of the every second completion
 
@@ -49,5 +49,5 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_git_renamed f39c12    # purple
   set -U fish_color_git_unmerged ff8787   # red
   set -U fish_color_git_untracked f2ca27  # yellow
-  set -U fish_color_git_sha a9a9a9        # light gray
+  set -U fish_color_git_sha a9a9a9        # light grey
 end
