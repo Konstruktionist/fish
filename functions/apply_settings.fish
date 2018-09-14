@@ -16,7 +16,7 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_operator d4b300 # dark yellow
   set -U fish_color_escape ffd700 # like backslahes for spaces
   set -U fish_color_cwd f7ca18 #yellow
-  set -U fish_color_autosuggestion 00ced1  # cyan-like
+  set -U fish_color_autosuggestion 808080  # grey
   set -U fish_color_cwd_root f1a9a0
   set -U fish_color_history_current bdb0bb
   set -U fish_color_host 19b5fe
@@ -26,8 +26,8 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_selection 383f4c --bold  --background=00d400
 
   set -U fish_pager_color_prefix 6bb9f0 # blue - the color of the prefix string, i.e. the string that is to be completed
-  set -U fish_pager_color_completion 00bbff # bright blue - the color of the completion itself
-  set -U fish_pager_color_description 34b9db --italics # gray - the color of the completion description
+  set -U fish_pager_color_completion ffffff # white- the color of the completion itself
+  set -U fish_pager_color_description 808080 --italics # gray - the color of the completion description
   set -U fish_pager_color_progress 383f4c --background=bdc3c7 # the color of the progress bar at the bottom left corner
   set -U fish_pager_color_secondary add8e6 # the background color of the every second completion
 
