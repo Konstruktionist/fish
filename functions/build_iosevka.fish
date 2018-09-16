@@ -5,15 +5,24 @@ function build_iosevka -d "build custom version Iosevka font"
   # installed via homebrew
 
 
-  # Save current working directory, so we can excecute this anywhere in the file system.
+  # Save current working directory, so we can excecute this anywhere in the
+  # file system
   set current_working_directory $PWD
 
-  # cd ~/GitRepos
-  cd ~/GitRepos/Iosevka
+  # Are we on a machine without a Iosevka git-repository?
+  if not test -d "$HOME/GitRepos/Iosevka"
+    # Then create one
+    cd $HOME/GitRepos
+    git clone https://github.com/be5invis/Iosevka.git
+  end
+
+  # We have one, so let's move to the repository
+  cd $HOME/GitRepos/Iosevka
   # Start from a clean slate i.e. remove build & dist folders
   set_color f7ca18; echo "Cleaning up from last build"; set_color normal
   rm  -rf ./build ./dist
 
+  # Update to latest version
   git pull
 
   # Upgrade to latest version of required tools
@@ -29,17 +38,22 @@ function build_iosevka -d "build custom version Iosevka font"
 
   # Put the custom configuration in place
   cp ~/workspace/Iosevka_private-build-plans.toml private-build-plans.toml
+
   # Build font
   set_color f7ca18; echo "Building Iosevka...."; set_color normal
   npm run build -- contents:iosevka-custom
 
-  cd dist/iosevka-custom/ttf
-  set_color f7ca18; echo "Archiving fonts on desktop"; set_color normal
-  7z a -t7z Iosevka-custom
-  mv Iosevka-custom.7z ~/Desktop/
-  set_color f7ca18; echo "Placing fonts into ~/Library/Fonts"; set_color normal
-
-  mv *.ttf ~/Library/Fonts/
+  # Check for build errors and bail out if there are any
+  if test $status -ne 0
+    set_color ff2600; echo " => Building Iosevka FAILED!"; set_color normal
+  else
+    cd dist/iosevka-custom/ttf
+    set_color f7ca18; echo "Archiving fonts on desktop"; set_color normal
+    7z a -t7z Iosevka-custom
+    mv Iosevka-custom.7z ~/Desktop/
+    set_color f7ca18; echo "Placing fonts into ~/Library/Fonts"; set_color normal
+    mv *.ttf ~/Library/Fonts/
+  end
 
   # Return to where we came from
   cd $current_working_directory
