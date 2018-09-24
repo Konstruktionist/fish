@@ -37,7 +37,7 @@ function build_iosevka -d "build custom version Iosevka font"
   npm update --dev
 
   # Put the custom configuration in place
-  cp ~/workspace/Iosevka_private-build-plans.toml private-build-plans.toml
+  cp $HOME/workspace/Iosevka_private-build-plans.toml private-build-plans.toml
 
   # Build font
   set_color f7ca18; echo "Building Iosevka...."; set_color normal
@@ -50,9 +50,9 @@ function build_iosevka -d "build custom version Iosevka font"
     cd dist/iosevka-custom/ttf
     set_color f7ca18; echo "Archiving fonts on desktop"; set_color normal
     7z a -t7z Iosevka-custom
-    mv Iosevka-custom.7z ~/Desktop/
-    set_color f7ca18; echo "Placing fonts into ~/Library/Fonts"; set_color normal
-    mv *.ttf ~/Library/Fonts/
+    mv Iosevka-custom.7z $HOME/Desktop/
+    set_color f7ca18; echo "Placing fonts into $HOME/Library/Fonts"; set_color normal
+    mv *.ttf $HOME/Library/Fonts/
   end
 
   # Return to where we came from
