@@ -30,6 +30,9 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/ripgreprc
 complete -c jump -f -a '(ls ~/.marks)'
 complete -c unmark -f -a '(ls ~/.marks)'
 
+# setup bat's default theme
+set -gx BAT_THEME OneHalfDark
+
 # LESS with colors (options explained)
 # F   automatically exit if entire file fits on the first screen
 # R   allow raw control chars. ANSI only
