@@ -15,7 +15,7 @@ set -gx VISUAL mate
 
 # NOTE: Do NOT add path's to $PATH here
 #  Why? See: https://fishshell.com/docs/current/tutorial.html#tut_path
-# ====================================================================================
+# ====================================================================
 
 # expose PATH to graphical apps
 #launchctl setenv PATH $PATH
@@ -24,11 +24,11 @@ set -gx VISUAL mate
 set -gx MARKPATH $HOME/.marks
 command mkdir -p $MARKPATH
 
-# setup ripgrep's config path
-set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/ripgreprc
-
 complete -c jump -f -a '(ls ~/.marks)'
 complete -c unmark -f -a '(ls ~/.marks)'
+
+# setup ripgrep's config path
+set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/ripgreprc
 
 # setup bat's default theme
 set -gx BAT_THEME OneHalfDark
