@@ -83,8 +83,9 @@ function __k_userFriendlyDatum
   #             `functions -a`.
   #             __k_ prefix is used for my hidden semi-private functions.
   #
-  #   Put everything on it's own line with
-  #     tr '\ ' '\n'
+  #   We got info from `stat` in a space separated format.
+  #     Put everything on it's own line with:
+  #       tr '\ ' '\n'
   #   stat gives 4 timestamps in this order: st_atime, st_mtime, st_ctime, st_birthtime
   #      st_atime = last access time in seconds since the epoch
   #      st_mtime = last modify time in seconds since the epoch
@@ -92,9 +93,9 @@ function __k_userFriendlyDatum
   #      st_birthtime = time when the inode was created in seconds since the epoch
   #   The timestamp we need is st_ctime, it is the time that the file was changed on OUR disk,
   #     the other timestamps represent the time that Apple modified the file
-  #   Search for the inode changed time with
+  #   Search for the inode changed time with:
   #     egrep -i 'st_ctime'
-  #   Let cut grab the value we are interested in
+  #   Let cut grab the value we are interested in:
   #     cut -d = -f 2
   #   This is the epoch value (i.e. time since unix began)
   #   Transform this into a human readable format taking into account locale setting (-l)
