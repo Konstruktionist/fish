@@ -82,9 +82,6 @@ Useful to block tracking servers or other pests on the internet.
 * **down4me**  
 Checks whether a website is down just for you, or everybody.
 
-* **efi-check**  
-Check to see if the EFI version is up to date.
-
 * **emptytrash**  
 Empty the Trash on all mounted volumes and the main HDD.  
 Also, clear Apple’s System Logs (asl) to improve shell startup speed.
