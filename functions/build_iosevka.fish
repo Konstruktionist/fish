@@ -44,7 +44,7 @@ function build_iosevka -d "build custom version Iosevka font"
   npm run build -- contents:iosevka-custom
 
   # Check for build errors and bail out if there are any
-  if test $status -ne 0
+  if test "$status" -ne 0
     set_color ff2600; echo " => Building Iosevka FAILED!"; set_color normal
   else
     cd dist/iosevka-custom/ttf

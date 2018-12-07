@@ -60,7 +60,7 @@ function fish_prompt -d 'Write out the prompt'
   set_color normal;                prompt_git_status
 
   echo
-  if not test $last_status -eq 0
+  if not test "$last_status" -eq 0
     set_color $fish_color_error
   end
   echo -n '▶︎ '
