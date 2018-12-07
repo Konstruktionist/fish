@@ -20,7 +20,7 @@
 >
 >   ***Note:*** Its local documentation says it is deprecated, but for now it works.  
 >   On Apple's site it is in the _Retired Documents Library_ referencing _Xcode 5_.  
->   With **Xcode 9** it still gets installed.  
+>   With **Xcode 10** it still gets installed.  
 
 ---
 
