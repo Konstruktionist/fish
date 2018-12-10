@@ -1,69 +1,48 @@
-# Copied from https://github.com/sgoumaz/dotfiles
-
 function fish_prompt -d 'Write out the prompt'
+
+  # What the prompt has to show
+  #
+  #   1. display username & host when in a ssh session
+  #   2. current directory
+  #   3. 1. git branch name (if we are in a git repo)
+  #      2. wether or not the working copy is dirty
+  #      3. git sha hash
+  #      4. display up/down arrow if there is stuff to be pushed/pulled (this
+  #           will probably go into the prompt_git_status function)
+  #   4. display prompt symbol (in red if last command exited with an error)
+
   set last_status $status
 
-  # HACK: workaround to force new sessions not to display dimmed;
-  # prompt seems to be called multiple times which makes our change detection logic ineffective,
-  # comparing the time attempts to detect such cases
-  set date (date)
+  # Get the current working directory & simplify $HOME to ~
+  set -l cur_wd (echo $PWD | sed -e "s|^$HOME|~|" -e 's|^/private||')
 
-  # set default colors
+  # 1. ssh session
+  if test -n "$SSH_CONNECTION"
+    set -l host (hostname -s)
+    set -l user (whoami)
 
-  set user_color $fish_color_user
-  set host_color $fish_color_host
-  set cwd_color $fish_color_cwd
-
-  # get current values
-
-  set cur_user (whoami)
-  set cur_host (hostname -s)
-  set cur_cwd (echo $PWD | sed -e "s|^$HOME|~|" -e 's|^/private||')
-
-  # check changes and dim color if no change
-
-  if test "$fish_prompt_last_date" != $date
-    if test "$fish_prompt_last_user" = $cur_user
-      set user_color $fish_color_dimmed
+    # color of user@host is set by $user, either red (root) or blue (non-root)
+    if test "$user" = "root"
+      set user (set_color -r $fish_color_error)"$user"
+    else
+      set user (set_color 6bb9f0)"$user"
     end
 
-    if test "$fish_prompt_last_host" = $cur_host
-      set host_color $fish_color_dimmed
-    end
-
-    if test "$fish_prompt_last_cwd" = $cur_cwd
-      set cwd_color $fish_color_dimmed
-    end
+    set user_host "$user@$host"; echo -n $user_host; set_color normal ; echo -n " "
   end
 
-  # save "last" values
+  # 2. current directory
+  set_color $fish_color_cwd; echo -n $cur_wd; set_color normal
 
-  set -g fish_prompt_last_user $cur_user
-  set -g fish_prompt_last_host $cur_host
-  set -g fish_prompt_last_cwd $cur_cwd
+  # 3. Git info
+  prompt_git_status
+  echo    # effectivly sets a newline (\n)
 
-  # HACK continuation (see above)
-  set -g prompt_last_date $date
-
-  # write prompt
-
-  set_color $user_color;           echo -n $cur_user
-
-  set_color $fish_color_separator; echo -n '@'
-
-  set_color $host_color;           echo -n $cur_host
-
-  set_color $fish_color_separator; echo -n ':'
-
-  set_color $cwd_color;            echo -n $cur_cwd
-
-  set_color normal;                prompt_git_status
-
-  echo
-  if not test "$last_status" -eq 0
-    set_color $fish_color_error
+  # 4. Prompt symbol
+  if test "$last_status" -ne 0
+    set_color $fish_color_error # Red
   end
-  echo -n '▶︎ '
-
+   echo -n '▶︎ '
   set_color normal
+
 end
