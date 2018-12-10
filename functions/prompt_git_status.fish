@@ -20,11 +20,9 @@ set -gx fish_prompt_git_status_order added modified renamed copied deleted untra
 function prompt_git_status -d 'Write out the git status'
 
   # Get the SHA1 value of a branch and if we're not in a git repo, send to /dev/null
-
   set -l gitsha (git rev-parse --short HEAD ^/dev/null)
 
   # Get the branch name and if we're not in a git repo, send to /dev/null
-
   set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
   if test -z "$branch"
     return
@@ -34,32 +32,22 @@ function prompt_git_status -d 'Write out the git status'
   set_color $fish_color_separator; echo -n ':'
 
   # Get the status of the repo, to see if there are any changes, NOT counting occurences
-
-  set -l index (git status --porcelain ^/dev/null|cut -c 1-2|sort -u)
+  set -l index (git status --porcelain ^/dev/null | cut -c 1-2 | sort -u)
 
   # We are in a clean repo
-
   if test -z "$index"
     set_color $fish_color_git_clean; echo -n $branch
-
     echo -n ' '
-
     set_color $fish_color_git_sha; echo -n $gitsha; set_color normal
-
     echo -n ' '
-
     set_color $fish_color_separator; echo -n '['
-
     set_color $fish_color_git_clean; echo -n '✓'
-
     set_color $fish_color_separator; echo -n ']'
-
     set_color normal
     return
   end
 
   # Handling dirty repo's
-
   set -l gs
   set -l staged
 
@@ -111,4 +99,29 @@ function prompt_git_status -d 'Write out the git status'
   set_color $fish_color_separator; echo -n ']'
 
   set_color normal
+
+  # Check if there is an upstream configured
+  set -l git_arrows ""
+  set -l git_arrow_up "↑"
+  set -l git_arrow_down "↓"
+
+  command git rev-parse --abbrev-ref '@{upstream}' >/dev/null ^&1; and set -l has_upstream
+  if set -q has_upstream
+    command git rev-list --left-right --count 'HEAD...@{upstream}' | read -la git_status
+
+    set -l git_arrow_left $git_status[1]  # commits ahead
+    set -l git_arrow_right $git_status[2] # commits behind
+
+    # If arrow is not 0, it means it's dirty
+    if test "$git_arrow_left" -ne "0"
+      set git_arrows $git_arrow_up $gitstatus[1]
+    end
+
+    if test "$git_arrow_right" -ne "0"
+      set git_arrows $git_arrow_down $git_status[2]
+    end
+
+    set_color blue; echo -n " " $git_arrows
+    set_color normal
+  end
 end
