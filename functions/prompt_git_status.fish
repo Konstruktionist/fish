@@ -1,26 +1,19 @@
-# Copied from https://github.com/sgoumaz/dotfiles
-#
-# Added comments so I know what's going on a few weeks from now
-# Added SHA1 value code
-# ---------------------------------------------------------------------------------------------------------------------
-
-#
-#  How to get the change count into the prompt?
-#   Also how to get the ahead and behind count?
-
-set -gx fish_prompt_git_status_added '✚'
-set -gx fish_prompt_git_status_modified '~'
-set -gx fish_prompt_git_status_renamed '›'
-set -gx fish_prompt_git_status_copied '»'
-set -gx fish_prompt_git_status_deleted '✖︎'
-set -gx fish_prompt_git_status_untracked '?'
-set -gx fish_prompt_git_status_unmerged '!'
-set -gx fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
-
 function prompt_git_status -d 'Write out the git status'
 
-  # Get the SHA1 value of a branch and if we're not in a git repo, send to /dev/null
-  set -l gitsha (git rev-parse --short HEAD ^/dev/null)
+  # Set up status indicators/variables
+  set -l fish_prompt_git_status_added '✚'
+  set -l fish_prompt_git_status_modified '~'
+  set -l fish_prompt_git_status_renamed '›'
+  set -l fish_prompt_git_status_copied '»'
+  set -l fish_prompt_git_status_deleted '✖︎'
+  set -l fish_prompt_git_status_untracked '?'
+  set -l fish_prompt_git_status_unmerged '!'
+  set -l fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
+  set -l git_arrows ""
+  set -l git_arrow_up "⇡"
+  set -l git_arrow_down "⇣"
+  set -l dirty_status
+  set -l staged
 
   # Get the branch name and if we're not in a git repo, send to /dev/null
   set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
@@ -28,45 +21,40 @@ function prompt_git_status -d 'Write out the git status'
     return
   end
 
-  # If used in fish_right_prompt, comment out next line
+  # Get the SHA1 value of a branch and if we're not in a git repo, send to /dev/null
+  set -l gitsha (git rev-parse --short HEAD ^/dev/null)
+
   set_color $fish_color_separator; echo -n ':'
 
   # Get the status of the repo, to see if there are any changes, NOT counting occurences
-  set -l index (git status --porcelain ^/dev/null | cut -c 1-2 | sort -u)
+  set -l status_index (git status --porcelain ^/dev/null | cut -c 1-2 | sort -u)
 
-  # We are in a clean repo
-  if test -z "$index"
+  # Handling clean repo's
+  if test -z "$status_index"
     set_color $fish_color_git_clean; echo -n $branch
     echo -n ' '
     set_color $fish_color_git_sha; echo -n $gitsha; set_color normal
-    echo -n ' '
-    set_color $fish_color_separator; echo -n '['
-    set_color $fish_color_git_clean; echo -n '✓'
-    set_color $fish_color_separator; echo -n ']'
-    set_color normal
     return
   end
 
   # Handling dirty repo's
-  set -l gs
-  set -l staged
-
-  for i in $index
+  for i in $status_index
     if echo $i | grep '^[AMRCD]' >/dev/null
       set staged 1
     end
 
     switch $i
-      case 'A '               ; set gs $gs added
-      case 'M ' ' M'          ; set gs $gs modified
-      case 'R '               ; set gs $gs renamed
-      case 'C '               ; set gs $gs copied
-      case 'D ' ' D'          ; set gs $gs deleted
-      case '\?\?'             ; set gs $gs untracked
-      case 'U*' '*U' 'DD' 'AA'; set gs $gs unmerged
+      case 'A '               ; set dirty_status $dirty_status added
+      case 'M ' ' M'          ; set dirty_status $dirty_status modified
+      case 'R '               ; set dirty_status $dirty_status renamed
+      case 'C '               ; set dirty_status $dirty_status copied
+      case 'D ' ' D'          ; set dirty_status $dirty_status deleted
+      case '\?\?'             ; set dirty_status $dirty_status untracked
+      case 'U*' '*U' 'DD' 'AA'; set dirty_status $dirty_status unmerged
     end
   end
 
+  # Handling staging
   if set -q staged[1]
     set_color $fish_color_git_staged
   else
@@ -75,6 +63,7 @@ function prompt_git_status -d 'Write out the git status'
 
   echo -n $branch
 
+  # Handling sha's
   if test -n "$gitsha"
 
     echo -n ' '
@@ -85,43 +74,36 @@ function prompt_git_status -d 'Write out the git status'
 
   end
 
-  set_color $fish_color_separator; echo -n '['
-
+  # Handling dirty states
   for i in $fish_prompt_git_status_order
-    if contains $i in $gs
+    if contains $i in $dirty_status
+      set_color $fish_color_separator; echo -n '['
       set -l color_name fish_color_git_$i
       set -l status_name fish_prompt_git_status_$i
 
       set_color $$color_name; echo -n $$status_name
+      set_color $fish_color_separator; echo -n ']'; set_color normal
     end
   end
 
-  set_color $fish_color_separator; echo -n ']'
-
-  set_color normal
-
-  # Check if there is an upstream configured
-  set -l git_arrows ""
-  set -l git_arrow_up "↑"
-  set -l git_arrow_down "↓"
-
+  # Handling remote repo's
   command git rev-parse --abbrev-ref '@{upstream}' >/dev/null ^&1; and set -l has_upstream
   if set -q has_upstream
     command git rev-list --left-right --count 'HEAD...@{upstream}' | read -la git_status
 
-    set -l git_arrow_left $git_status[1]  # commits ahead
-    set -l git_arrow_right $git_status[2] # commits behind
+    set -l git_commits_ahead $git_status[1]
+    set -l git_commits_behind $git_status[2]
 
     # If arrow is not 0, it means it's dirty
-    if test "$git_arrow_left" -ne "0"
-      set git_arrows $git_arrow_up $gitstatus[1]
+    if test "$git_commits_ahead" -ne "0"
+      set git_arrows $git_arrow_up" "$git_commits_ahead
     end
 
-    if test "$git_arrow_right" -ne "0"
-      set git_arrows $git_arrow_down $git_status[2]
+    if test "$git_commits_behind" -ne "0"
+      set git_arrows $git_arrow_down" "$git_commits_behind
     end
 
-    set_color blue; echo -n " " $git_arrows
+    set_color -o brgreen; echo -n " "$git_arrows
     set_color normal
   end
 end
