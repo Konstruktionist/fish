@@ -39,7 +39,7 @@ function apply_settings -d 'setup fish universal variables'
   # git colors
 
   set -U fish_color_git_clean 3cf73c      # green
-  set -U fish_color_git_staged ffd700     # yellow
+  set -U fish_color_git_staged f1f227     # bright yellow
   set -U fish_color_git_dirty ff8787      # red
 
   set -U fish_color_git_added 00d400      # green
