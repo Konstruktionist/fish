@@ -10,8 +10,8 @@ function prompt_git_status -d 'Write out the git status'
   set -l fish_prompt_git_status_unmerged '!'
   set -l fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
   set -l git_arrows ""
-  set -l git_arrow_up "⇡"
-  set -l git_arrow_down "⇣"
+  set -l git_arrow_up "▲"
+  set -l git_arrow_down "▼"
   set -l dirty_status
   set -l staged
 
@@ -94,16 +94,16 @@ function prompt_git_status -d 'Write out the git status'
     set -l git_commits_ahead $git_status[1]
     set -l git_commits_behind $git_status[2]
 
-    # If arrow is not 0, it means it's dirty
+    # If either one of them is not 0, it means we're ahead/behind of remote
     if test "$git_commits_ahead" -ne "0"
-      set git_arrows $git_arrow_up" "$git_commits_ahead
+      set git_arrows $git_arrow_up$git_commits_ahead
     end
 
     if test "$git_commits_behind" -ne "0"
-      set git_arrows $git_arrow_down" "$git_commits_behind
+      set git_arrows $git_arrow_down$git_commits_behind
     end
 
-    set_color -o brgreen; echo -n " "$git_arrows
+    set_color $fish_color_status; echo -n " "$git_arrows
     set_color normal
   end
 end
