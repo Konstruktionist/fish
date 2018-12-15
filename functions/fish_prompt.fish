@@ -25,7 +25,7 @@ function fish_prompt -d 'Write out the prompt'
     if test "$user" = "root"
       set user (set_color -r $fish_color_error)"$user"
     else
-      set user (set_color 6bb9f0)"$user"
+      set user (set_color -r 6bb9f0)"$user"
     end
 
     set user_host "$user@$host"; echo -n $user_host; set_color normal ; echo -n " "
