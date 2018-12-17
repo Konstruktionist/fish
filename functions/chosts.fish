@@ -31,7 +31,8 @@ function chosts -d 'check online hosts files for last update'
   # Steven Black is a git repository on github, and refuses to give the
   # Last-Modified header so we have to download the whole lot and use grep and
   # awk to find the date
-  set -l sb_date ( curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | egrep 'Date:' | awk '{print $4, substr($3,1,3), $5}')
+  # set -l sb_date ( curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | egrep 'Date:' | awk '{print $4 substr($3,1,3), $5}')
+  set -l sb_date ( curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts | egrep 'Date:' | awk '{print $3, $4, $5}')
 
   # Extract the dates
   set -l swc_date (cat swc_headers.txt | egrep -i 'Last-Modified' | awk '{print $3, $4, $5}')
