@@ -1,22 +1,21 @@
-# Source https://github.com/sgoumaz/dotfiles/blob/master/apply-settings.fish
 function apply_settings -d 'setup fish universal variables'
 
   # setup fish universal variables
 
   set -U fish_color_normal fefefe
-  set -U fish_color_command 38f689  # green
+  set -U fish_color_command 38f689                               # green
   set -U fish_color_quote f5d76e
   set -U fish_color_redirection dda0dd
-  set -U fish_color_end f4b350   # orange
+  set -U fish_color_end f4b350                                   # orange
   set -U fish_color_error ff8787 --bold
   set -U fish_color_param 89c4f4
-  set -U fish_color_comment d2d7d3  --italics
+  set -U fish_color_comment d2d7d3 --italics
   set -U fish_color_match dadfe1
-  set -U fish_color_search_match 383f4c --background=ffffff  # white background
-  set -U fish_color_operator d4b300 # dark yellow
-  set -U fish_color_escape ffd700 # like backslahes for spaces
-  set -U fish_color_cwd f7ca18 #yellow
-  set -U fish_color_autosuggestion 808080  # grey
+  set -U fish_color_search_match 383f4c --background=ffffff      # white background
+  set -U fish_color_operator d4b300                              # dark yellow
+  set -U fish_color_escape ffd700                                # like backslahes for spaces
+  set -U fish_color_cwd f7ca18                                   # yellow
+  set -U fish_color_autosuggestion 808080                        # grey
   set -U fish_color_cwd_root f1a9a0
   set -U fish_color_history_current bdb0bb
   set -U fish_color_host 19b5fe
@@ -25,11 +24,11 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_color_valid_path --underline
   set -U fish_color_selection 383f4c --bold  --background=00d400
 
-  set -U fish_pager_color_prefix 6bb9f0 # blue - the color of the prefix string, i.e. the string that is to be completed
-  set -U fish_pager_color_completion ffffff # white- the color of the completion itself
-  set -U fish_pager_color_description 808080 --italics # grey - the color of the completion description
-  set -U fish_pager_color_progress 383f4c --background=bdc3c7 # the color of the progress bar at the bottom left corner
-  set -U fish_pager_color_secondary add8e6 # the background color of the every second completion
+  set -U fish_pager_color_prefix 6bb9f0                          # blue - the color of the prefix string, i.e. the string that is to be completed
+  set -U fish_pager_color_completion ffffff                      # white- the color of the completion itself
+  set -U fish_pager_color_description 808080 --italics           # grey - the color of the completion description
+  set -U fish_pager_color_progress 383f4c --background=bdc3c7    # the color of the progress bar at the bottom left corner
+  set -U fish_pager_color_secondary add8e6                       # the background color of the every second completion
 
   # Custom colors used for prompt
 
@@ -38,16 +37,16 @@ function apply_settings -d 'setup fish universal variables'
 
   # git colors
 
-  set -U fish_color_git_clean 3cf73c      # green
-  set -U fish_color_git_staged f1f227     # bright yellow
-  set -U fish_color_git_dirty ff8787      # red
+  set -U fish_color_git_clean 3cf73c                             # green
+  set -U fish_color_git_staged f1f227                            # bright yellow
+  set -U fish_color_git_dirty ff8787                             # red
 
-  set -U fish_color_git_added 00d400      # green
-  set -U fish_color_git_copied aeabd3     # purple
-  set -U fish_color_git_deleted ff8787    # red
-  set -U fish_color_git_modified 00bfff   # blue
-  set -U fish_color_git_renamed f39c12    # purple
-  set -U fish_color_git_unmerged ff8787   # red
-  set -U fish_color_git_untracked f2ca27  # yellow
-  set -U fish_color_git_sha a9a9a9        # light grey
+  set -U fish_color_git_added ffff00 --bold                      # yellow
+  set -U fish_color_git_copied aeabd3 --bold                     # purple
+  set -U fish_color_git_deleted ff8787                           # red
+  set -U fish_color_git_modified 00bfff --bold                   # blue
+  set -U fish_color_git_renamed f39c12 --bold                    # purple
+  set -U fish_color_git_unmerged ff8787 --bold                   # red
+  set -U fish_color_git_untracked f2ca27 --bold                  # yellow
+  set -U fish_color_git_sha a9a9a9                               # light grey
 end
