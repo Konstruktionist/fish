@@ -10,8 +10,8 @@ function prompt_git_status3 -d 'Write out the git status'
   set fish_prompt_git_status_unmerged '!'
   set fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
   set git_arrows ""
-  set git_arrow_up (set_color $fish_color_status; echo -n "▲"; set_color normal)
-  set git_arrow_down (set_color $fish_color_status; echo -n "▼"; set_color normal)
+  set git_arrow_up (set_color $fish_pager_color_prefix; echo -n "▲"; set_color normal)
+  set git_arrow_down (set_color $fish_pager_color_prefix; echo -n "▼"; set_color normal)
   set dirty_status
   set staged
   set colon (set_color $fish_color_separator; echo -n ':')
@@ -19,13 +19,14 @@ function prompt_git_status3 -d 'Write out the git status'
   set close_bracket (set_color $fish_color_separator; echo -n ']')
   set space ' '
 
-  # Get the branch name and if we're not in a git repo, send to /dev/null
+  # Try to get a branch name, if $branch is empty then this is not a git repo,
+  #   and we have nothing to do
   set branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
   if test -z "$branch"
     return
   end
 
-  # Get the SHA1 value of a branch and if we're not in a git repo, send to /dev/null
+  # Get the SHA1 value of a branch
   set gitsha (git rev-parse --short HEAD ^/dev/null)
 
   # Get the status of the repo, to see if there are any changes, NOT counting occurences
