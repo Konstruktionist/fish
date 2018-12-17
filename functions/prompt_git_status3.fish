@@ -29,7 +29,8 @@ function prompt_git_status3 -d 'Write out the git status'
   # Get the SHA1 value of a branch
   set gitsha (git rev-parse --short HEAD ^/dev/null)
 
-  # Get the status of the repo, to see if there are any changes, NOT counting occurences
+  # Get the status of the repo, to see if there are any changes, NOT counting
+  # occurences
   set status_index (git status --porcelain ^/dev/null | cut -c 1-2 | sort -u)
   # Get the status of the repo, we use this to count occurences of changes
   set counting_index (git status --porcelain ^/dev/null | cut -c 1-2)
@@ -81,7 +82,7 @@ function prompt_git_status3 -d 'Write out the git status'
       set status_name fish_prompt_git_status_$i
       # set counted (count fish_prompt_git_status_$i)
 
-      set dirty_state (set_color $$color_name; echo -n $$status_name; set_color $fish_color_dimmed; echo -n $counted; set_color normal)
+      set dirty_state (set_color $$color_name; echo -n $$status_name; set_color normal; echo -n $counted)
     end
   end
 
