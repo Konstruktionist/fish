@@ -1,4 +1,4 @@
-function prompt_git_status3 -d 'Write out the git status'
+function prompt_git_status -d 'Write out the git status'
 
   # Try to get a branch name, if $branch is empty then this is not a git repo,
   #   and we have nothing to do
@@ -17,8 +17,8 @@ function prompt_git_status3 -d 'Write out the git status'
   set fish_prompt_git_status_unmerged '!'
   set fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
   set git_arrows ""
-  set git_arrow_up (set_color $fish_pager_color_prefix; echo -n "▲"; set_color normal)
-  set git_arrow_down (set_color $fish_pager_color_prefix; echo -n "▼"; set_color normal)
+  set git_arrow_up (set_color $fish_color_status; echo -n "▲"; set_color normal)
+  set git_arrow_down (set_color $fish_color_status; echo -n "▼"; set_color normal)
   set dirty_status
   set staged
   set colon (set_color $fish_color_separator; echo -n ':')
@@ -30,9 +30,9 @@ function prompt_git_status3 -d 'Write out the git status'
   set gitsha (git rev-parse --short HEAD ^/dev/null)
 
   # Get the status of the repo, to see if there are any changes, NOT counting
-  # occurences
+  # occurrences
   set status_index (git status --porcelain ^/dev/null | cut -c 1-2 | sort -u)
-  # Get the status of the repo, we use this to count occurences of changes
+  # Get the status of the repo, we use this to count number of changed files
   set counting_index (git status --porcelain ^/dev/null | cut -c 1-2)
 
   # Handling clean repo's
@@ -47,13 +47,13 @@ function prompt_git_status3 -d 'Write out the git status'
     end
 
     switch $i
-      case 'A '               ; set dirty_status $dirty_status added; set counted (count $counting_index)
-      case 'M ' ' M'          ; set dirty_status $dirty_status modified; set counted (count $counting_index)
-      case 'R '               ; set dirty_status $dirty_status renamed; set counted (count $counting_index)
-      case 'C '               ; set dirty_status $dirty_status copied; set counted (count $counting_index)
-      case 'D ' ' D'          ; set dirty_status $dirty_status deleted; set counted (count $counting_index)
-      case '\?\?'             ; set dirty_status $dirty_status untracked; set counted (count $counting_index)
-      case 'U*' '*U' 'DD' 'AA'; set dirty_status $dirty_status unmerged; set counted (count $counting_index)
+      case 'A '                ; set dirty_status $dirty_status added     ; set counted (count $counting_index)
+      case 'M ' ' M'           ; set dirty_status $dirty_status modified  ; set counted (count $counting_index)
+      case 'R '                ; set dirty_status $dirty_status renamed   ; set counted (count $counting_index)
+      case 'C '                ; set dirty_status $dirty_status copied    ; set counted (count $counting_index)
+      case 'D ' ' D'           ; set dirty_status $dirty_status deleted   ; set counted (count $counting_index)
+      case '\?\?'              ; set dirty_status $dirty_status untracked ; set counted (count $counting_index)
+      case 'U*' '*U' 'DD' 'AA' ; set dirty_status $dirty_status unmerged  ; set counted (count $counting_index)
     end
   end
 
@@ -80,7 +80,6 @@ function prompt_git_status3 -d 'Write out the git status'
     if contains $i in $dirty_status
       set color_name fish_color_git_$i
       set status_name fish_prompt_git_status_$i
-      # set counted (count fish_prompt_git_status_$i)
 
       set dirty_state (set_color $$color_name; echo -n $$status_name; set_color normal; echo -n $counted)
     end

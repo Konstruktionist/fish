@@ -30,9 +30,9 @@ function prompt_git_status -d 'Write out the git status'
   set gitsha (git rev-parse --short HEAD ^/dev/null)
 
   # Get the status of the repo, to see if there are any changes, NOT counting
-  # occurences
+  # occurrences
   set status_index (git status --porcelain ^/dev/null | cut -c 1-2 | sort -u)
-  # Get the status of the repo, we use this to count occurences of changes
+  # Get the status of the repo, we use this to count number of changed files
   set counting_index (git status --porcelain ^/dev/null | cut -c 1-2)
 
   # Handling clean repo's
@@ -47,13 +47,13 @@ function prompt_git_status -d 'Write out the git status'
     end
 
     switch $i
-      case 'A '               ; set dirty_status $dirty_status added; set counted (count $counting_index)
-      case 'M ' ' M'          ; set dirty_status $dirty_status modified; set counted (count $counting_index)
-      case 'R '               ; set dirty_status $dirty_status renamed; set counted (count $counting_index)
-      case 'C '               ; set dirty_status $dirty_status copied; set counted (count $counting_index)
-      case 'D ' ' D'          ; set dirty_status $dirty_status deleted; set counted (count $counting_index)
-      case '\?\?'             ; set dirty_status $dirty_status untracked; set counted (count $counting_index)
-      case 'U*' '*U' 'DD' 'AA'; set dirty_status $dirty_status unmerged; set counted (count $counting_index)
+      case 'A '                ; set dirty_status $dirty_status added     ; set counted (count $counting_index)
+      case 'M ' ' M'           ; set dirty_status $dirty_status modified  ; set counted (count $counting_index)
+      case 'R '                ; set dirty_status $dirty_status renamed   ; set counted (count $counting_index)
+      case 'C '                ; set dirty_status $dirty_status copied    ; set counted (count $counting_index)
+      case 'D ' ' D'           ; set dirty_status $dirty_status deleted   ; set counted (count $counting_index)
+      case '\?\?'              ; set dirty_status $dirty_status untracked ; set counted (count $counting_index)
+      case 'U*' '*U' 'DD' 'AA' ; set dirty_status $dirty_status unmerged  ; set counted (count $counting_index)
     end
   end
 
