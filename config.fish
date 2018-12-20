@@ -20,6 +20,9 @@ set -gx VISUAL mate
 # expose PATH to graphical apps
 #launchctl setenv PATH $PATH
 
+# Set length of dir names if path is larger than 60 chars
+set fish_prompt_pwd_dir_length 3
+
 # Setup the bookmark functionality
 set -gx MARKPATH $HOME/.marks
 command mkdir -p $MARKPATH
