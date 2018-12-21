@@ -3,7 +3,7 @@ function fish_prompt -d 'Write out the prompt'
   # What the prompt has to show
   #
   #   1. display username & host when in a ssh session
-  #   2. username if we're logged in as root
+  #   2. username if we're logged in as root on localhost
   #   3. current directory
   #      a. shortened to 'x' chars per directory if path length is > 60 chars long
   #           where 'x' is defined by fish_prompt_pwd_dir_length (default = 1)
@@ -17,8 +17,6 @@ function fish_prompt -d 'Write out the prompt'
   #   5. display prompt symbol (in red if last command exited with an error)
 
   set -l last_status $status
-  set -l ssh_root_color ff8787
-  set -l ssh_user_color 6bb9f0
   set -l user (whoami)
 
   # Get the current working directory & simplify $HOME to ~
@@ -38,21 +36,24 @@ function fish_prompt -d 'Write out the prompt'
 
     # color of user@host is set by $user, either red (root) or blue (non-root)
     if test "$user" = "root"
-      set user (set_color -r $ssh_root_color)"$user"
+      set user (set_color -r red)"$user"
     else
-      set user (set_color -r $ssh_user_color)"$user"
+      set user (set_color -r blue)"$user"
     end
 
-    set user_host "$user@$host"; echo -n $user_host; set_color normal ; echo -n " "
+    set user_host "$user@$host"
+    echo -n $user_host; set_color normal ; echo -n ' '
   end
 
-  # 2. Are we logged in as root?
-  if test "$user" = "root"
-    set user (set_color -r red)"$user"
-    echo -n $user; set_color normal; echo -n ' '
-  else
-    set user ''
-  echo -n $user
+  # 2. Are we logged in as root on localhost?
+  if test -z "$SSH_CONNECTION"
+    if test "$user" = "root"
+      set user (set_color -r red)"$user"
+      echo -n $user; set_color normal; echo -n ' '
+    else
+      set user ''
+      echo -n $user
+    end
   end
 
   # 3. current directory
