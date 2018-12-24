@@ -62,7 +62,7 @@ function gitl -d 'l = all commits, only current branch'
   git log --graph --pretty="tformat:$log_format" $argv |\
     string replace -r '(^[^<]*)\sago\)' '$1)' |\
     string replace -r ',\s\d+?\s\w+\s?' '' |\
-    string replace -r '(Merge (branch|remote-tracking branch|pull request) .*$)' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r '((\s{3})(Merge.*$))' (set_color cyan)'$0'(set_color normal) |\
     column -t -s '∬' |\
     less -FXRS
 end
@@ -94,7 +94,7 @@ function gitb -d 'b = all branches'
   git branch -v --format=$branch_format $argv |\
     string replace -r '(^[^<]*)\sago\)' '$1)' |\
     string replace -r ',\s\d+?\s\w+\s?' '' |\
-    string replace -r '(Merge (branch|remote-tracking branch|pull request) .*$)' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r '((\s{3})(Merge.*$))' (set_color cyan)'$0'(set_color normal) |\
     column -t -s '∬' | less -FXRS
 end
 
@@ -102,6 +102,6 @@ function gitbs -d 'bs = all branches, sorted by last commit date'
   git branch -v --format=$branch_format --sort=-committerdate $argv |\
     string replace -r '(^[^<]*)\sago\)' '$1)' |\
     string replace -r ',\s\d+?\s\w+\s?' '' |\
-    string replace -r '(Merge (branch|remote-tracking branch|pull request) .*$)' (set_color cyan)'$0'(set_color normal) |\
+    string replace -r '((\s{3})(Merge.*$))' (set_color cyan)'$0'(set_color normal) |\
     column -t -s '∬' | less -FXRS
 end
