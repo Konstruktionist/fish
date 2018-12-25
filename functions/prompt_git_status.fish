@@ -8,13 +8,6 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Since we are in a git repo, set up status indicators/variables
-  set fish_prompt_git_status_added '✚'
-  set fish_prompt_git_status_modified '~'
-  set fish_prompt_git_status_renamed '›'
-  set fish_prompt_git_status_copied '»'
-  set fish_prompt_git_status_deleted '✖︎'
-  set fish_prompt_git_status_untracked '?'
-  set fish_prompt_git_status_unmerged '!'
   set fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
   set git_arrows ""
   set git_arrow_up (set_color $fish_color_status; echo -n "▲"; set_color normal)
@@ -22,8 +15,8 @@ function prompt_git_status -d 'Write out the git status'
   set dirty_status
   set staged
   set colon (set_color $fish_color_separator; echo -n ':')
-  set open_bracket (set_color $fish_color_separator; echo -n '['; set_color normal)
-  set close_bracket (set_color $fish_color_separator; echo -n ']'; set_color normal)
+  set obracket (set_color $fish_color_separator; echo -n '['; set_color normal)
+  set cbracket (set_color $fish_color_separator; echo -n ']'; set_color normal)
   set space ' '
 
   # Get the SHA1 value of a branch
@@ -31,9 +24,9 @@ function prompt_git_status -d 'Write out the git status'
 
   # Get the status of the repo, to see if there are any changes, NOT counting
   # occurrences
-  set status_index (git status --porcelain ^/dev/null | cut -c 1-2 | sort -u)
+  set status_index (git status --porcelain ^/dev/null | string sub -l 2 | sort -u)
   # Get the status of the repo, we use this to count number of changed files
-  set counting_index (git status --porcelain ^/dev/null | cut -c 1-2)
+  set counting_index (git status --porcelain ^/dev/null | string sub -l 2)
 
   # Handling clean repo's
   if test -z "$status_index"
@@ -46,14 +39,39 @@ function prompt_git_status -d 'Write out the git status'
       set staged 1
     end
 
-    switch $i
-      case 'A '                ; set dirty_status $dirty_status added     ; set counted (count $counting_index)
-      case 'M ' ' M'           ; set dirty_status $dirty_status modified  ; set counted (count $counting_index)
-      case 'R '                ; set dirty_status $dirty_status renamed   ; set counted (count $counting_index)
-      case 'C '                ; set dirty_status $dirty_status copied    ; set counted (count $counting_index)
-      case 'D ' ' D'           ; set dirty_status $dirty_status deleted   ; set counted (count $counting_index)
-      case '\?\?'              ; set dirty_status $dirty_status untracked ; set counted (count $counting_index)
-      case 'U*' '*U' 'DD' 'AA' ; set dirty_status $dirty_status unmerged  ; set counted (count $counting_index)
+    set status_added 0
+    set status_modified 0
+    set status_renamed 0
+    set status_deleted 0
+    set status_untracked 0
+    set status_unmerged 0
+    for line in $counting_index
+      if test "$line" = '??'
+        set status_untracked 1
+        set unt_counted (count (echo $counting_index | string match -ar '\?\?'))
+        continue
+      end
+      if string match -r '^(?:AA|DD|U.|.U)$' "$line" >/dev/null
+        set status_unmerged 1
+        set unm_counted (count (echo $counting_index | string match -ar 'U.|.U|DD|AA'))
+        continue
+      end
+      if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" >/dev/null
+        set status_added 1
+        set add_counted (count (echo $counting_index | string match -ar 'A '))
+      end
+      if string match -r '^[ ACMRT]D$' "$line" >/dev/null
+        set status_deleted 1
+        set del_counted (count (echo $counting_index | string match -ar 'D | D'))
+      end
+      if string match -r '^.[MT]$' "$line" >/dev/null
+        set status_modified 1
+        set mod_counted (count (echo $counting_index | string match -ar 'M | M'))
+      end
+      if string match -e 'R' "$line" >/dev/null
+        set status_renamed 1
+        set ren_counted (count (echo $counting_index | string match -ar 'R '))
+      end
     end
   end
 
@@ -73,16 +91,6 @@ function prompt_git_status -d 'Write out the git status'
   # Handling sha's
   if test -n "$gitsha"
     set sha (set_color $fish_color_git_sha; echo -n "$gitsha")
-  end
-
-  # Handling dirty states
-  for i in $fish_prompt_git_status_order
-    if contains $i in $dirty_status
-      set color_name fish_color_git_$i
-      set status_name fish_prompt_git_status_$i
-
-      set dirty_state (set_color $$color_name; echo -n $$status_name; set_color normal; echo -n $counted)
-    end
   end
 
   # Handling remote repo's
@@ -109,14 +117,33 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Creating the prompt
-  if test -z "$dirty_state"
+  if test -z "$status_index"
     # Clean repo so we don't show the dirty state, but may have a difference with
     # upstream. Because it is the last item in the list it will not show if there
     # is no difference with upstream.
-    echo -n "$colon$branch_name$space$sha$space$git_arrows"
+    echo -n "$colon$branch_name $sha $git_arrows"
   else
-    # Dirty repo, so we show the that with symbols, for upstream same logic
+    # Dirty repo, so we show that with symbols, for upstream same logic
     # applies as for clean repo
-    echo -n "$colon$branch_name$space$sha$space$open_bracket$dirty_state$close_bracket$space$git_arrows"
+    echo -n "$colon$branch_name $sha $obracket"
+    if test $status_added -ne 0
+      echo -n (set_color ffff00 --bold)"+$add_counted"
+    end
+    if test $status_modified -ne 0
+      echo -n (set_color 00bfff --bold)"~$mod_counted"
+    end
+    if test $status_renamed -ne 0
+      echo -n (set_color f39c12 --bold)"›$ren_counted"
+    end
+    if test $status_deleted -ne 0
+      echo -n (set_color ff8787 --bold)"X$del_counted"
+    end
+    if test $status_untracked -ne 0
+      echo -n (set_color f2ca27 --bold)"?$unt_counted"
+    end
+    if test $status_unmerged -ne 0
+      echo -n (set_color aeabd3 --bold)"!$unm_counted"
+    end
+    echo -n "$cbracket$space$git_arrows"
   end
 end
