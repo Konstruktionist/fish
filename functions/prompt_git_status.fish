@@ -1,3 +1,7 @@
+# With thanks to Leonard Hecker who reworked the sorin theme for fish.
+# Mostly for its logic, see:
+# https://github.com/fish-shell/fish-shell/blob/082450b1e711c75f6722bf7d8651cda8f835fd1e/share/tools/web_config/sample_prompts/sorin.fish#L111-L140
+
 function prompt_git_status -d 'Write out the git status'
 
   # Try to get a branch name, if $branch is empty then this is not a git repo,
