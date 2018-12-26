@@ -8,16 +8,15 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Since we are in a git repo, set up status indicators/variables
-  set fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
   set git_arrows ""
   set git_arrow_up (set_color $fish_color_status; echo -n "▲"; set_color normal)
   set git_arrow_down (set_color $fish_color_status; echo -n "▼"; set_color normal)
-  set dirty_status
   set staged
   set colon (set_color $fish_color_separator; echo -n ':')
-  set obracket (set_color $fish_color_separator; echo -n '['; set_color normal)
-  set cbracket (set_color $fish_color_separator; echo -n ']'; set_color normal)
+  set obracket (set_color $fish_color_separator; echo -n '┤'; set_color normal)
+  set cbracket (set_color $fish_color_separator; echo -n '├'; set_color normal)
   set space ' '
+  set git_dir (git rev-parse --git-dir)
 
   # Get the SHA1 value of a branch
   set gitsha (git rev-parse --short HEAD ^/dev/null)
@@ -133,10 +132,10 @@ function prompt_git_status -d 'Write out the git status'
       echo -n (set_color 00bfff --bold)"~$mod_counted"
     end
     if test $status_renamed -ne 0
-      echo -n (set_color f39c12 --bold)"›$ren_counted"
+      echo -n (set_color f39c12 --bold)"≫$ren_counted"
     end
     if test $status_deleted -ne 0
-      echo -n (set_color ff8787 --bold)"X$del_counted"
+      echo -n (set_color ff8787 --bold)"✖︎$del_counted"
     end
     if test $status_untracked -ne 0
       echo -n (set_color f2ca27 --bold)"?$unt_counted"
