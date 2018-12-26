@@ -58,7 +58,7 @@ function prompt_git_status -d 'Write out the git status'
       end
       if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" >/dev/null
         set status_added 1
-        set add_counted (count (echo $counting_index | string match -ar 'A '))
+        set add_counted (count (echo $counting_index | string match -ar 'A |MM'))
       end
       if string match -r '^[ ACMRT]D$' "$line" >/dev/null
         set status_deleted 1
@@ -92,6 +92,17 @@ function prompt_git_status -d 'Write out the git status'
   #   Get the SHA1 value of a branch
   set gitsha (git rev-parse --short HEAD ^/dev/null)
   set sha (set_color $fish_color_git_sha; echo -n "$gitsha")
+
+  # Handling stash status
+  # (git stash list) is very slow. => Avoid using it.
+  set status_stashed 0
+  if test -f "$git_dir/refs/stash"
+    set status_stashed 1
+  else if test -r "$git_dir/commondir"
+    read -d \n -l commondir <"$git_dir/commondir"
+    if test -f "$commondir/refs/stash"
+      set status_stashed 1
+    end
   end
 
   # Handling remote repo's
@@ -145,6 +156,9 @@ function prompt_git_status -d 'Write out the git status'
     if test $status_unmerged -ne 0
       echo -n (set_color aeabd3 --bold)"!$unm_counted"
     end
-    echo -n "$cbracket$space$git_arrows"
+    if test $status_stashed -ne 0
+      echo -n " "(set_color cyan)'●'
+    end
+    echo -n "$cbracket $git_arrows"
   end
 end
