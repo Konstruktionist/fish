@@ -18,9 +18,6 @@ function prompt_git_status -d 'Write out the git status'
   set space ' '
   set git_dir (git rev-parse --git-dir)
 
-  # Get the SHA1 value of a branch
-  set gitsha (git rev-parse --short HEAD ^/dev/null)
-
   # Get the status of the repo, to see if there are any changes, NOT counting
   # occurrences
   set status_index (git status --porcelain ^/dev/null | string sub -l 2 | sort -u)
@@ -88,8 +85,9 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Handling sha's
-  if test -n "$gitsha"
-    set sha (set_color $fish_color_git_sha; echo -n "$gitsha")
+  #   Get the SHA1 value of a branch
+  set gitsha (git rev-parse --short HEAD ^/dev/null)
+  set sha (set_color $fish_color_git_sha; echo -n "$gitsha")
   end
 
   # Handling remote repo's
