@@ -97,12 +97,12 @@ function prompt_git_status1 -d 'Write out the git status'
   # (git stash list) is very slow. => Avoid using it.
   set status_stashed 0
   if test -f "$git_dir/refs/stash"
-      set status_stashed 1
+    set status_stashed 1
   else if test -r "$git_dir/commondir"
-      read -d \n -l commondir <"$git_dir/commondir"
-      if test -f "$commondir/refs/stash"
-          set status_stashed 1
-      end
+    read -d \n -l commondir <"$git_dir/commondir"
+    if test -f "$commondir/refs/stash"
+      set status_stashed 1
+    end
   end
 
   # Handling remote repo's
@@ -157,8 +157,8 @@ function prompt_git_status1 -d 'Write out the git status'
       echo -n (set_color aeabd3 --bold)"!$unm_counted"
     end
     if test $status_stashed -ne 0
-        echo -n " "(set_color cyan)'●'
+      echo -n " "(set_color cyan)'●'
     end
     echo -n "$cbracket $git_arrows"
-    end
+  end
 end

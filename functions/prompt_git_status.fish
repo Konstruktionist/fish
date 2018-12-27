@@ -58,15 +58,15 @@ function prompt_git_status -d 'Write out the git status'
       end
       if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" >/dev/null
         set status_added 1
-        set add_counted (count (echo $counting_index | string match -ar 'A |MM'))
+        set add_counted (count (echo $counting_index | string match -ar 'A |AD|AM|D |M.'))
       end
       if string match -r '^[ ACMRT]D$' "$line" >/dev/null
         set status_deleted 1
-        set del_counted (count (echo $counting_index | string match -ar 'D | D'))
+        set del_counted (count (echo $counting_index | string match -ar 'AD| D|MD|RD|D '))
       end
       if string match -r '^.[MT]$' "$line" >/dev/null
         set status_modified 1
-        set mod_counted (count (echo $counting_index | string match -ar 'M | M'))
+        set mod_counted (count (echo $counting_index | string match -ar 'M.|.M'))
       end
       if string match -e 'R' "$line" >/dev/null
         set status_renamed 1
