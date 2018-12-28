@@ -2,7 +2,7 @@
 # Mostly for its logic, see:
 # https://github.com/fish-shell/fish-shell/blob/082450b1e711c75f6722bf7d8651cda8f835fd1e/share/tools/web_config/sample_prompts/sorin.fish#L111-L140
 
-function prompt_git_status1 -d 'Write out the git status'
+function prompt_git_status -d 'Write out the git status'
 
   # Try to get a branch name, if $branch is empty then this is not a git repo,
   #   and we have nothing to do
@@ -12,25 +12,46 @@ function prompt_git_status1 -d 'Write out the git status'
   end
 
   # Since we are in a git repo, set up status indicators/variables
+ 
+  # Colors
+  #   branch
+  set color_git_clean (set_color 3cf73c)              # green
+  set color_git_staged (set_color f1f227)             # bright yellow
+  set color_git_dirty (set_color ff8787)              # red
+  #  states
+  set color_git_added (set_color ffff00 --bold)       # yellow
+  # set color_git_copied (set_color aeabd3 --bold)      # purple
+  set color_git_deleted (set_color ff8787 --bold)     # red
+  set color_git_modified (set_color 00bfff --bold)    # blue
+  set color_git_renamed (set_color f39c12 --bold)     # purple
+  set color_git_unmerged (set_color ff8787 --bold)    # red
+  set color_git_untracked (set_color f2ca27 --bold)   # yellow
+  set color_git_stashed (set_color cyan)
+  #  other
+  set color_git_sha (set_color a9a9a9)                # light grey
+  set color_separator (set_color abb7b7)              # grey
+  set color_arrow (set_color ff8c00)                  # orange
+  set color_reset (set_color normal)
+
   set git_arrows ""
-  set git_arrow_up (set_color $fish_color_status; echo -n "▲"; set_color normal)
-  set git_arrow_down (set_color $fish_color_status; echo -n "▼"; set_color normal)
+  set git_arrow_up $color_arrow'▲'$color_reset
+  set git_arrow_down $color_arrow'▼'$color_reset
   set staged
-  set colon (set_color $fish_color_separator; echo -n ':')
-  set obracket (set_color $fish_color_separator; echo -n '┤'; set_color normal)
-  set cbracket (set_color $fish_color_separator; echo -n '├'; set_color normal)
+  set colon $color_separator':'
+  set obracket $color_separator'┤'$color_reset
+  set cbracket $color_separator'├'$color_reset
   set space ' '
   set git_dir (git rev-parse --git-dir)
 
   # Get the status of the repo, to see if there are any changes, NOT counting
   # occurrences
   set status_index (git status --porcelain ^/dev/null | string sub -l 2 | sort -u)
-  # Get the status of the repo, we use this to count number of changed files
+  # Get the status of the repo, we use this to iterate over the occuring states
   set counting_index (git status --porcelain ^/dev/null | string sub -l 2)
 
   # Handling clean repo's
   if test -z "$status_index"
-    set clean_branch (set_color $fish_color_git_clean)
+    set clean_branch $color_git_clean
   end
 
   # Handling dirty repo's
@@ -46,52 +67,60 @@ function prompt_git_status1 -d 'Write out the git status'
     set status_untracked 0
     set status_unmerged 0
     for line in $counting_index
+        #  NOTE: The method below doesn't work.
+        #   set add_counted (count (echo $counting_index | string match -ar 'A |AD|AM|D |M.'))
+        #  Because the echo $counting_index puts the characters on one line we
+        #  wind up with something like:
+        #  A   D ??
+        #  which is seen as a match with A-space & D-space & gives a count of 2
+        #  instead of A-space space-D which would give the correct count of 1
+        #  Replacing $counting_index with the actual call does work.
       if test "$line" = '??'
         set status_untracked 1
-        set unt_counted (count (echo $counting_index | string match -ar '\?\?'))
+        set unt_counted (count (git status --porcelain ^/dev/null  | string match -ar '\?\?'))
         continue
       end
       if string match -r '^(?:AA|DD|U.|.U)$' "$line" >/dev/null
         set status_unmerged 1
-        set unm_counted (count (echo $counting_index | string match -ar 'U.|.U|DD|AA'))
+        set unm_counted (count (git status --porcelain ^/dev/null | string match -ar 'U.|.U|DD|AA'))
         continue
       end
       if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" >/dev/null
         set status_added 1
-        set add_counted (count (echo $counting_index | string match -ar 'A |AD|AM|D |M.'))
+        set add_counted (count (git status --porcelain ^/dev/null | string sub -l 2 | string match -ar 'A |AD|AM|D |M.'))
       end
       if string match -r '^[ ACMRT]D$' "$line" >/dev/null
         set status_deleted 1
-        set del_counted (count (echo $counting_index | string match -ar 'AD| D|MD|RD|D '))
+        set del_counted (count (git status --porcelain ^/dev/null | string match -ar 'AD| D|MD|RD|D '))
       end
       if string match -r '^.[MT]$' "$line" >/dev/null
         set status_modified 1
-        set mod_counted (count (echo $counting_index | string match -ar 'M.|.M'))
+        set mod_counted (count (git status --porcelain ^/dev/null | string match -ar 'M.|.M'))
       end
       if string match -e 'R' "$line" >/dev/null
         set status_renamed 1
-        set ren_counted (count (echo $counting_index | string match -ar 'R '))
+        set ren_counted (count (git status --porcelain ^/dev/null | string match -ar 'R '))
       end
     end
   end
 
   # Handling staging
   if set -q staged[1]
-    set dirty_branch (set_color $fish_color_git_staged)
+    set dirty_branch $color_git_staged
   else
-    set dirty_branch (set_color $fish_color_git_dirty)
+    set dirty_branch $color_git_dirty
   end
 
   if test -z "$status_index"
-    set branch_name ( echo -n "$clean_branch$branch")
+    set branch_name $clean_branch$branch
   else
-    set branch_name (echo -n "$dirty_branch$branch")
+    set branch_name $dirty_branch$branch
   end
 
   # Handling sha's
   #   Get the SHA1 value of a branch
   set gitsha (git rev-parse --short HEAD ^/dev/null)
-  set sha (set_color $fish_color_git_sha; echo -n "$gitsha")
+  set sha $color_git_sha$gitsha
 
   # Handling stash status
   # (git stash list) is very slow. => Avoid using it.
@@ -134,31 +163,34 @@ function prompt_git_status1 -d 'Write out the git status'
     # upstream. Because it is the last item in the list it will not show if there
     # is no difference with upstream.
     echo -n "$colon$branch_name $sha $git_arrows"
+    if test $status_stashed -ne 0
+      echo -n " $color_git_stashed●$color_reset"
+    end
   else
     # Dirty repo, so we show that with symbols, for upstream same logic
     # applies as for clean repo
     echo -n "$colon$branch_name $sha $obracket"
     if test $status_added -ne 0
-      echo -n (set_color ffff00 --bold)"+$add_counted"
+      echo -n "$color_git_added+$add_counted"
     end
     if test $status_modified -ne 0
-      echo -n (set_color 00bfff --bold)"~$mod_counted"
+      echo -n "$color_git_modified~$mod_counted"
     end
     if test $status_renamed -ne 0
-      echo -n (set_color f39c12 --bold)"≫$ren_counted"
+      echo -n "$color_git_renamed≫$ren_counted"
     end
     if test $status_deleted -ne 0
-      echo -n (set_color ff8787 --bold)"✖︎$del_counted"
+      echo -n "$color_git_deleted✖︎$del_counted"
     end
     if test $status_untracked -ne 0
-      echo -n (set_color f2ca27 --bold)"?$unt_counted"
+      echo -n "$color_git_untracked?$unt_counted"
     end
     if test $status_unmerged -ne 0
-      echo -n (set_color aeabd3 --bold)"!$unm_counted"
-    end
-    if test $status_stashed -ne 0
-      echo -n " "(set_color cyan)'●'
+      echo -n "$color_git_unmerged!$unm_counted"
     end
     echo -n "$cbracket $git_arrows"
+    if test $status_stashed -ne 0
+      echo -n " $color_git_stashed●$color_reset"
+    end
   end
 end
