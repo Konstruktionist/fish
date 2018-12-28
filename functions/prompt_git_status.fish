@@ -58,7 +58,10 @@ function prompt_git_status -d 'Write out the git status'
       end
       if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" >/dev/null
         set status_added 1
-        set add_counted (count (echo $counting_index | string match -ar 'A |AD|AM|D |M.'))
+        set add_counted (count (git status --porcelain ^/dev/null | string sub -l 2 | string match -ar 'A |AD|AM|D |M.'))
+        #  NOTE: For some reason the method below doesn't work. Replacing
+        #  $counting_index with the actual call does work.
+        # set add_counted (count $counting_index | string match -ar 'A |AD|AM|D |M.')
       end
       if string match -r '^[ ACMRT]D$' "$line" >/dev/null
         set status_deleted 1
