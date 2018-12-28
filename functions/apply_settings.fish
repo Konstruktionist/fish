@@ -29,24 +29,4 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_pager_color_description 808080 --italics           # grey - the color of the completion description
   set -U fish_pager_color_progress 383f4c --background=bdc3c7    # the color of the progress bar at the bottom left corner
   set -U fish_pager_color_secondary add8e6                       # the background color of the every second completion
-
-  # Custom colors used for prompt
-
-  set -U fish_color_dimmed a8a8a8
-  set -U fish_color_separator abb7b7
-
-  # git colors
-
-  set -U fish_color_git_clean 3cf73c                             # green
-  set -U fish_color_git_staged f1f227                            # bright yellow
-  set -U fish_color_git_dirty ff8787                             # red
-
-  set -U fish_color_git_added ffff00 --bold                      # yellow
-  set -U fish_color_git_copied aeabd3 --bold                     # purple
-  set -U fish_color_git_deleted ff8787                           # red
-  set -U fish_color_git_modified 00bfff --bold                   # blue
-  set -U fish_color_git_renamed f39c12 --bold                    # purple
-  set -U fish_color_git_unmerged ff8787 --bold                   # red
-  set -U fish_color_git_untracked f2ca27 --bold                  # yellow
-  set -U fish_color_git_sha a9a9a9                               # light grey
 end
