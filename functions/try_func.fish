@@ -3,134 +3,114 @@
 #
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-function try_func -d "Experiments in fish scripting"
+function try_func
 
-# Building Gary Bernhardt's githelpers bash script in fish
+  # Try to get a branch name, if $branch is empty then this is not a git repo,
+  #   and we have nothing to do
+  set branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
+  if test -z "$branch"
+    return
+  end
 
-# Define colors
-set -l ycolor (set_color bryellow)
-set -l ncolor (set_color normal)
-set -l gcolor (set_color brgreen)
-set -l bcolor (set_color blue)   # bold blue
-set -l rcolor (set_color brred)
+  # Colors
+  set color_separator (set_color abb7b7)            # grey
+  set color_git_clean (set_color 3cf73c)            # green
+  set color_git_staged (set_color f1f227)           # bright yellow
+  set color_git_dirty (set_color ff8787)            # red
 
-set log_hash "$ycolor%h"
-set log_relative_time "$gcolor%ar"
-set log_author "$bcolor%an$ncolor"
-set log_refs "$rcolor%d$ncolor"
-set log_subject "%s"
+  set color_git_added (set_color ffff00 --bold)     # yellow
+  set color_git_copied (set_color aeabd3 --bold)    # purple
+  set color_git_deleted (set_color ff8787)          # red
+  set color_git_modified (set_color 00bfff --bold)  # blue
+  set color_git_renamed (set_color f39c12 --bold)   # purple
+  set color_git_unmerged (set_color ff8787 --bold)  # red
+  set color_git_untracked (set_color f2ca27 --bold) # yellow
+  set color_git_sha (set_color a9a9a9)              # light grey
+  set color_git_status (set_color ff8c00)           # orange
 
-# Use a special character to separate our fields so strings with spaces in
-# them (like names & subjects) will not split on them.
-# Character used is U+222C (DOUBLE INTEGRAL). I'm guessing I will not use that
-# in commit messages.
+  # Status indicators/variables
+  set git_arrows ''
+  set git_arrow_up '▲'
+  set git_arrow_down '▼'
+  set staged
+  set colon ':'
+  set obracket '┤'
+  set cbracket '├'
+  set space ' '
+  set git_prompt_char_cleanstate '✔'
+  set git_prompt_char_dirtystate '~'
+  set git_prompt_char_invalidstate '✖'
+  set git_prompt_char_stagedstate '●'
+  set git_prompt_char_stashstate '$'
+  set git_prompt_char_stateseparator '|'
+  set git_prompt_char_untrackedfiles '?'
+  set git_prompt_char_upstream_ahead '↑'
+  set git_prompt_char_upstream_behind '↓'
+  set git_prompt_char_upstream_diverged '<>'
+  set git_prompt_char_upstream_equal '='
+  set git_prompt_char_upstream_prefix ''
 
-set log_format "$log_hash∬$log_relative_time∬$log_author∬$log_refs $log_subject"
+  set git_dir (git rev-parse --git-dir)
 
-set branch_prefix "%HEAD"
-set branch_ref "$rcolor%refname:short$ncolor"
-set branch_hash "$ycolor%objectname:short$ncolor"
-set branch_date "$gcolor%committerdate:relative$ncolor"
-set branch_author "$bcolor<%authorname>$ncolor"
-set branch_contents "%contents:subject"
+set -g ___fish_git_prompt_status_order stagedstate invalidstate dirtystate untrackedfiles
+set -gx fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
 
-set branch_format "$branch_prefix∬$branch_ref∬$branch_hash∬$branch_date∬$branch_author∬$branch_contents"
+  # Get the status of the repo, to see if there are any changes, NOT counting
+  # occurrences
+  set status_index (git status --porcelain ^/dev/null | string sub -l 2 | sort -u)
 
-set ANSI_RED '\033[31m'
-set ANSI_RESET '\033[0m'
+  # Handling sha's
+  #   Get the SHA1 value of a branch
+  set gitsha (git rev-parse --short HEAD ^/dev/null)
+  set sha "$color_git_sha$gitsha"
 
+  if test -z "$status_index"
+    set branch_name ( echo -n "$clean_branch$branch")
+  else
+    set branch_name (echo -n "$dirty_branch$branch")
+  end
 
-function gitl #   l = all commits, only current branch
-  # first string replace: remove all ' ago' in date column
-  # second string replace: replace (2 years, 5 months) with (2 years)
-  git log --graph --pretty="tformat:$log_format" $argv | string replace ' ago' '' | string replace -r ',\s\d+?\s\w+\s?' '' | string replace -r '(Merge(\s\w+).+)' '$1' | column -t -s '∬' | less -FXRS
-end
+  set changedFiles (command git diff --name-status | string match -r \\w)
+  set stagedFiles (command git diff --staged --name-status | string match -r \\w)
 
-function gitla  #   la = all commits, all reachable refs
-  gitl --all
-end
+  set dirtystate (math (count $changedFiles) - (count (string match -r "U" -- $changedFiles)) ^/dev/null)
+  set invalidstate (count (string match -r "U" -- $stagedFiles))
+  set stagedstate (math (count $stagedFiles) - $invalidstate ^/dev/null)
+  set untrackedfiles (command git ls-files --others --exclude-standard | wc -l | string trim)
 
-function gitr #   r = recent commits, only current branch
-  gitl -30
-end
+  set info
 
-function gitra  #   ra = recent commits, all reachable refs
-  gitr --all
-end
+  # If `math` fails for some reason, assume the state is clean - it's the simpler path
+  set -l state (math $dirtystate + $invalidstate + $stagedstate + $untrackedfiles ^/dev/null)
+  if test -z "$state"
+    or test "$state" = 0
+    # Clean repo so we don't show the dirty state, but may have a difference with
+    # upstream. Because it is the last item in the list it will not show if there
+    # is no difference with upstream.
+    set info "$color_separator$colon$color_git_clean$branch$space$sha$space$git_arrows"
+  else
 
-function gith #   h = head
-  gitl -1
-  git show -p --pretty="tformat:"
-end
+    #       set -l color_var ___fish_git_prompt_color_$i
+    #       set -l color_done_var ___fish_git_prompt_color_{$i}_done
+    #       set -l symbol_var ___fish_git_prompt_char_$i
+    #
+    #       set -l color $$color_var
+    #       set -l color_done $$color_done_var
+    #       set -l symbol $$symbol_var
+    #
+    #       set -l count
+    #
+    #       if not set -q __fish_git_prompt_hide_$i
+    #         set count $$i
+    #       end
+    #
+    #       set info "$info$color$symbol$count$color_done"
+    #     end
+    #   end
+    # end
+    #
 
-# function gitl
-#   pretty_git_log | pretty_git_format
-# end
-
-function show_git_head
-  pretty_git_log -1
-  git show -p --pretty="tformat:"
-end
-
-function pretty_git_log
-  # git log --graph --pretty="tformat:$log_format" $argv | pretty_git_format
-  git log --graph --pretty="tformat:$log_format" $argv | string replace ' ago' ''
-end
-
-# function pretty_git_branch
-#   git branch -v --format=$branch_format $argv | pretty_git_format
-# end
-#
-# function pretty_git_branch_sorted
-#   git branch -v --format=$branch_format --sort=-committerdate $argv | pretty_git_format
-# end
-
-
-function remove_ago
-  # Replace (2 years ago) with (2 years)
-  # sed -Ee 's/(^[^<]*) ago\)/\1)/'
-  string replace ' ago' ''
-end
-
-function remove_months_from_years
-  # Replace (2 years, 5 months) with (2 years)
-  string replace -r ',\s\d+?\s\w+\s?' ''
-end
-
-function columns
-  # Line columns up based on ∬ delimiter
-  column -s '∬' -t
-end
-
-# function color_merge -d 'Color merge commits specially'
-#   sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf $ANSI_RED)\1$(printf $ANSI_RESET)/"
-# end
-
-function page_all
-    # Page only if needed.
-    less -FXRS
-end
-
-function pretty_git_format
-  remove_ago | remove_months_from_years | columns | page_all
-end
-
-# function pretty_git_format
-#   # Replace (2 years ago) with (2 years)
-#   sed -Ee 's/(^[^<]*) ago\)/\1)/' |
-#   # Replace (2 years, 5 months) with (2 years)
-#   sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
-#   # Line columns up based on ∬ delimiter
-#   column -s '∬' -t |
-#   # Color merge commits specially
-#   sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf $ANSI_RED)\1$(printf $ANSI_RESET)/" |
-#   # Page only if we're asked to.
-#   if [ -n "$GIT_NO_PAGER" ]
-#       cat
-#   else
-#       # Page only if needed.
-#       less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
-#   end
-# end
-
+    echo "Dirty"
+  end
+    echo $info
 end
