@@ -11,14 +11,13 @@
 #   This also should display all network interfaces, not just Ethernet & Wi-Fi.
 #   I have not tested this assumption, for lack of specific hardware.
 #
-#   version 2.0
-#   14-11-2017
+#   version 2.1
+#   29-12-2018
 
 function netinfo -d "get network information"
 
   # Get public ip address
   set public (dig +short myip.opendns.com @resolver1.opendns.com)
-  set hostname (uname -n)
 
   if test -z "$public" # We got an empty string, meaning:
     set public "No Internet connection available"
@@ -37,11 +36,11 @@ function netinfo -d "get network information"
     set activated (ifconfig -uv $val | grep 'status: ' | awk '{print $2}')
 
     # We want information about active network ports...
-    if test "$activated" = 'active' ^/dev/null
+    if test "$activated" = 'active' 2>/dev/null
       set ipaddress (ifconfig -uv $val | grep 'inet ' | awk '{print $2}')
 
       # and of these, the ones with an IP-address assigned to it
-      if test -n "$ipaddress" ^/dev/null
+      if test -n "$ipaddress" 2>/dev/null
 
         # Do we have an IP address?
         # Then give us the information
@@ -80,7 +79,7 @@ function netinfo -d "get network information"
       end
 
       # Don't display the inactive ports.
-    else if test "$activated" = 'inactive' ^/dev/null
+    else if test "$activated" = 'inactive' 2>/dev/null
     end
   end
 end

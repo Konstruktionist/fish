@@ -96,12 +96,12 @@ end
 # Command to print out a timestamp using fish_command_timer_time_format. The
 # timestamp should be in seconds. This is required because the "date" command in
 # Linux and OS X use different arguments to specify the timestamp to print.
-if date --date='@0' '+%s' > /dev/null ^ /dev/null
+if date --date='@0' '+%s' > /dev/null 2> /dev/null
   # Linux.
   function fish_command_timer_print_time
     date --date="@$argv[1]" +"$fish_command_timer_time_format"
   end
-else if date -r 0 '+%s' > /dev/null ^ /dev/null
+else if date -r 0 '+%s' > /dev/null 2> /dev/null
   # macOS / BSD.
   function fish_command_timer_print_time
     date -r "$argv[1]" +"$fish_command_timer_time_format"
@@ -116,15 +116,15 @@ end
 # Command to print out the length of a string. This is required because the expr
 # command behaves differently on Linux and OS X. On fish 2.3+, we will use the
 # "string" builtin.
-if type string > /dev/null ^ /dev/null
+if type string > /dev/null 2> /dev/null
   function fish_command_timer_strlen
     string length "$argv[1]"
   end
-else if expr length + "1" > /dev/null ^ /dev/null
-  function fish_command_timer_strlen
+else if expr length + "1" > /dev/null 2> /dev/null
+  function fish_command_timer_strlenCMD_DURATION
     expr length + "$argv[1]"
   end
-else if type wc > /dev/null ^ /dev/null; and type tr > /dev/null ^ /dev/null
+else if type wc > /dev/null 2> /dev/null; and type tr > /dev/null 2> /dev/null
   function fish_command_timer_strlen
     echo -n "$argv[1]" | wc -c | tr -d ' '
   end
@@ -157,11 +157,11 @@ function fish_command_timer_postexec -e fish_postexec
   set -l HOUR 3600000
   set -l DAY 86400000
 
-  set -l num_days (math "$CMD_DURATION / $DAY")
-  set -l num_hours (math "$CMD_DURATION % $DAY / $HOUR")
-  set -l num_mins (math "$CMD_DURATION % $HOUR / $MIN")
-  set -l num_secs (math "$CMD_DURATION % $MIN / $SEC")
-  set -l num_millis (math "$CMD_DURATION % $SEC")
+  set -l num_days (math --scale=0 "$CMD_DURATION / $DAY")
+  set -l num_hours (math --scale=0 "$CMD_DURATION % $DAY / $HOUR")
+  set -l num_mins (math --scale=0 "$CMD_DURATION % $HOUR / $MIN")
+  set -l num_secs (math --scale=0 "$CMD_DURATION % $MIN / $SEC")
+  set -l num_millis (math --scale=0 "$CMD_DURATION % $SEC")
   set -l time_str ""
   if [ $num_days -gt 0 ]
     set time_str {$time_str}{$num_days}"d "

@@ -81,7 +81,7 @@ function chosts -d 'check online hosts files for last update'
       # We don't want to show negative numbers. (We have to calculate the
       # absolute value whithin double quotes, to allow variable substitution.
       # If we don't we get a wildcard error message)
-      set abs ( math "$difference*-1")
+      set abs ( math --scale=0 "$difference*-1")
       set display_color (set_color green)
       set ah_beh "behind"
     else

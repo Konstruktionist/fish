@@ -27,21 +27,21 @@ function free -d "an osx substitution for linux 'free' command"
     set total_mem (sysctl -n hw.memsize)
 
     # Arithmetics
-    set total_mem (math "$total_mem / 1073741824")
-    set pfree (math -s2 "$pfree * 4096 / 1073741824")
-    set pwired (math -s2 "$pwired * 4096 / 1073741824")
-    set pinact (math -s2 "$pinact * 4096 / 1073741824")
-    set panon (math -s2 "$panon * 4096 / 1073741824")
-    set pcomp (math -s2 "$pcomp * 4096 / 1073741824")
-    set ppurge (math -s2 "$ppurge * 4096 / 1073741824")
-    set pfback (math -s2 "$pfback * 4096 / 1073741824")
+    set total_mem (math --scale=0 "$total_mem / 1073741824")
+    set pfree (math --scale=0 -s2 "$pfree * 4096 / 1073741824")
+    set pwired (math --scale=0 -s2 "$pwired * 4096 / 1073741824")
+    set pinact (math --scale=0 -s2 "$pinact * 4096 / 1073741824")
+    set panon (math --scale=0 -s2 "$panon * 4096 / 1073741824")
+    set pcomp (math --scale=0 -s2 "$pcomp * 4096 / 1073741824")
+    set ppurge (math --scale=0 -s2 "$ppurge * 4096 / 1073741824")
+    set pfback (math --scale=0 -s2 "$pfback * 4096 / 1073741824")
 
     # OSX Activity monitor formulas
     # thanks to http://apple.stackexchange.com/questions/81581/why-does-free-active-inactive-speculative-wired-not-equal-total-ram
-    set free (math -s2 "$pfree + $pinact" )
-    set cached (math "$pfback + $ppurge" )
-    set appmem  (math -s2 "$panon - $ppurge")
-    set used (math -s2 "$appmem + $pwired + $pcomp")
+    set free (math --scale=0 -s2 "$pfree + $pinact" )
+    set cached (math --scale=0 "$pfback + $ppurge" )
+    set appmem  (math --scale=0 -s2 "$panon - $ppurge")
+    set used (math --scale=0 -s2 "$appmem + $pwired + $pcomp")
 
     # Display the hud
     printf '                 total     used     free   appmem    wired   compressed\n'

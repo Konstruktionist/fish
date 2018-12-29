@@ -6,7 +6,7 @@ function prompt_git_status -d 'Write out the git status'
 
   # Try to get a branch name, if $branch is empty then this is not a git repo,
   #   and we have nothing to do
-  set branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
+  set branch (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test -z "$branch"
     return
   end
@@ -44,9 +44,9 @@ function prompt_git_status -d 'Write out the git status'
 
   # Get the status of the repo, to see if there are any changes, NOT counting
   # occurrences
-  set status_index (git status --porcelain ^/dev/null | string sub -l 2 | sort -u)
+  set status_index (git status --porcelain 2> /dev/null | string sub -l 2 | sort -u)
   # Get the status of the repo, we use this to iterate over the occuring states
-  set counting_index (git status --porcelain ^/dev/null | string sub -l 2)
+  set counting_index (git status --porcelain 2> /dev/null | string sub -l 2)
 
   # Handling clean repo's
   if test -z "$status_index"
@@ -55,7 +55,7 @@ function prompt_git_status -d 'Write out the git status'
 
   # Handling dirty repo's
   for i in $status_index
-    if echo $i | grep '^[AMRCD]' >/dev/null
+    if echo $i | grep '^[AMRCD]' > /dev/null
       set staged 1
     end
 
@@ -76,29 +76,29 @@ function prompt_git_status -d 'Write out the git status'
         #  Replacing $counting_index with the actual call does work.
       if test "$line" = '??'
         set status_untracked 1
-        set unt_counted (count (git status --porcelain ^/dev/null  | string match -ar '\?\?'))
+        set unt_counted (count (git status --porcelain 2> /dev/null  | string match -ar '\?\?'))
         continue
       end
-      if string match -r '^(?:AA|DD|U.|.U)$' "$line" >/dev/null
+      if string match -r '^(?:AA|DD|U.|.U)$' "$line" > /dev/null
         set status_unmerged 1
-        set unm_counted (count (git status --porcelain ^/dev/null | string match -ar 'U.|.U|DD|AA'))
+        set unm_counted (count (git status --porcelain 2> /dev/null | string match -ar 'U.|.U|DD|AA'))
         continue
       end
-      if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" >/dev/null
+      if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" > /dev/null
         set status_added 1
-        set add_counted (count (git status --porcelain ^/dev/null | string sub -l 2 | string match -ar 'A |AD|AM|D |M.'))
+        set add_counted (count (git status --porcelain 2> /dev/null | string sub -l 2 | string match -ar 'A |AD|AM|D |M.'))
       end
-      if string match -r '^[ ACMRT]D$' "$line" >/dev/null
+      if string match -r '^[ ACMRT]D$' "$line" > /dev/null
         set status_deleted 1
-        set del_counted (count (git status --porcelain ^/dev/null | string match -ar 'AD| D|MD|RD|D '))
+        set del_counted (count (git status --porcelain 2> /dev/null | string match -ar 'AD| D|MD|RD|D '))
       end
-      if string match -r '^.[MT]$' "$line" >/dev/null
+      if string match -r '^.[MT]$' "$line" > /dev/null
         set status_modified 1
-        set mod_counted (count (git status --porcelain ^/dev/null | string match -ar 'M.|.M'))
+        set mod_counted (count (git status --porcelain 2> /dev/null | string match -ar 'M.|.M'))
       end
-      if string match -e 'R' "$line" >/dev/null
+      if string match -e 'R' "$line" > /dev/null
         set status_renamed 1
-        set ren_counted (count (git status --porcelain ^/dev/null | string match -ar 'R '))
+        set ren_counted (count (git status --porcelain 2> /dev/null | string match -ar 'R '))
       end
     end
   end
@@ -118,7 +118,7 @@ function prompt_git_status -d 'Write out the git status'
 
   # Handling sha's
   #   Get the SHA1 value of a branch
-  set gitsha (git rev-parse --short HEAD ^/dev/null)
+  set gitsha (git rev-parse --short HEAD 2> /dev/null)
   set sha $color_git_sha$gitsha
 
   # Handling stash status
@@ -134,7 +134,7 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Handling remote repo's
-  command git rev-parse --abbrev-ref '@{upstream}' >/dev/null ^&1; and set has_upstream
+  command git rev-parse --abbrev-ref '@{upstream}' > /dev/null ^&1; and set has_upstream
   if set -q has_upstream
     command git rev-list --left-right --count 'HEAD...@{upstream}' | read -la git_status
 
