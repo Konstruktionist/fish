@@ -23,13 +23,6 @@ set -gx VISUAL mate
 # Set length of dir names if path is larger than 60 chars
 set fish_prompt_pwd_dir_length 3
 
-# Setup the bookmark functionality
-set -gx MARKPATH $HOME/.marks
-command mkdir -p $MARKPATH
-
-complete -c jump -f -a '(ls ~/.marks)'
-complete -c unmark -f -a '(ls ~/.marks)'
-
 # setup ripgrep's config path
 set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/ripgreprc
 
