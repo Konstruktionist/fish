@@ -11,7 +11,6 @@ function prompt_git_status -d 'Write out the git status'
     return
   end
 
-  # Since we are in a git repo, set up status indicators/variables
   # Colors
   #   branch
   set color_git_clean (set_color 3cf73c)              # green
@@ -40,7 +39,6 @@ function prompt_git_status -d 'Write out the git status'
   set obracket $color_separator'┤'$color_reset
   set cbracket $color_separator'├'$color_reset
   set space ' '
-  set git_dir (git rev-parse --git-dir)
 
   # Get the status of the repo, to see if there are any changes, NOT counting
   # occurrences
@@ -54,8 +52,8 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Handling dirty repo's
-  for i in $status_index
-    if echo $i | grep '^[AMRCD]' > /dev/null
+  for status_chars in $status_index
+    if echo $status_chars | grep '^[AMRCD]' > /dev/null
       set staged 1
     end
 
@@ -81,7 +79,7 @@ function prompt_git_status -d 'Write out the git status'
       end
       if string match -r '^(?:AA|DD|U.|.U)$' "$line" > /dev/null
         set status_unmerged 1
-        set unm_counted (count (git status --porcelain 2> /dev/null | string match -ar 'U.|.U|DD|AA'))
+        set unm_counted (count (git status --porcelain 2> /dev/null | string match -ar 'AA|UU|DU|UD'))
         continue
       end
       if string match -r '^(?:[ACDMT][ MT]|[ACMT]D)$' "$line" > /dev/null
@@ -94,7 +92,7 @@ function prompt_git_status -d 'Write out the git status'
       end
       if string match -r '^.[MT]$' "$line" > /dev/null
         set status_modified 1
-        set mod_counted (count (git status --porcelain 2> /dev/null | string match -ar 'M.|.M'))
+        set mod_counted (count (git status --porcelain 2> /dev/null | string match -ar 'AM|MM|RM| M'))
       end
       if string match -e 'R' "$line" > /dev/null
         set status_renamed 1
@@ -117,7 +115,7 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Handling sha's
-  #   Get the SHA1 value of a branch
+  #   Get the SHA1 value of current branch
   set gitsha (git rev-parse --short HEAD 2> /dev/null)
   set sha $color_git_sha$gitsha
 
@@ -134,7 +132,7 @@ function prompt_git_status -d 'Write out the git status'
   end
 
   # Handling remote repo's
-  command git rev-parse --abbrev-ref '@{upstream}' > /dev/null ^&1; and set has_upstream
+  command git rev-parse --abbrev-ref '@{upstream}' > /dev/null 2>&1; and set has_upstream
   if set -q has_upstream
     command git rev-list --left-right --count 'HEAD...@{upstream}' | read -la git_status
 
@@ -158,16 +156,15 @@ function prompt_git_status -d 'Write out the git status'
 
   # Creating the prompt
   if test -z "$status_index"
-    # Clean repo so we don't show the dirty state, but may have a difference with
-    # upstream. Because it is the last item in the list it will not show if there
-    # is no difference with upstream.
+    # Clean repo so we don't show the states, but may have a difference with
+    # upstream or have something stashed. Show those if this is the case
     echo -n "$colon$branch_name $sha $git_arrows"
     if test $status_stashed -ne 0
       echo -n " $color_git_stashed●$color_reset"
     end
   else
-    # Dirty repo, so we show that with symbols, for upstream same logic
-    # applies as for clean repo
+    # Dirty repo, so we show status with symbols & counts, for upstream and
+    #  stashes same logic applies as for clean repo
     echo -n "$colon$branch_name $sha $obracket"
     if test $status_added -ne 0
       echo -n "$color_git_added+$add_counted"
