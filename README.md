@@ -131,9 +131,6 @@ Open the hosts file in my favorite editor.
 * **img_size**  
 Find out the dimensions of an image.
 
-* **jump**  
-Jump to previously set bookmark for a directory.
-
 * **lmas**  
 List all applications that were downloaded from the Mac App Store.
 
@@ -141,12 +138,6 @@ List all applications that were downloaded from the Mac App Store.
 Search for something in a man page.  
 `mans manpage searchterm`  
 Displays paginated result with colored search terms and seven lines surrounding each hit.
-
-* **mark**  
-Set a bookmark for the current directory or a named directory.
-
-* **marks**  
-Show a list of the defined bookmarks.
 
 * **mdb**  
 A script to create a simple plain text movie database.
@@ -196,9 +187,6 @@ Move a specified file to the Trash.
 
 * **tv**  
 Transcode a video to 720p & add dutch subtitles if available. Uses Don Melton's [video transcoding tools][donmelton].  
-
-* **unmark**  
-Remove a bookmark.
 
 * **updhosts**  
 Update my /private/etc/hosts file from [four][someonewhocares] [different][mvps] [online][yoyo] [sources][SB] and append my personal blocklist to it.  
