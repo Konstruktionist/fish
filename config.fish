@@ -7,6 +7,10 @@
 # Set architecture flags
 set -gx ARCHFLAGS "-arch x86_64"
 
+# Set terminal language to english
+#  I don't like it when vim & others give me dutch warnings
+set -gx LC_MESSAGES "en_US.UTF-8"
+
 # Set the editor
 set -gx EDITOR mate
 # Let homebrew know about my preferred editor
