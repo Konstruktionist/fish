@@ -67,7 +67,7 @@ function fish_prompt -d 'Write out the prompt'
   if test "$last_status" -ne 0
     set_color $fish_color_error # Red
   end
-  echo -n '▶︎ '
+  echo -n '▶︎'  # BLACK RIGHT-POINTING TRIANGLE (U+25B6 U+FE0E)
   set_color normal
 
 end
