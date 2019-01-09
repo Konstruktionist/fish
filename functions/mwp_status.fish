@@ -27,7 +27,7 @@ function mwp_status -d "Check Apple's malware protection status"
   for file in $fileName
     switch $file
       case XProtect
-        set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $XProtect)
+        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $XProtect)
 
         #   How the 'datum' part works:
         #   The stat utility displays info about the file pointed to by '$file'.
@@ -36,31 +36,31 @@ function mwp_status -d "Check Apple's malware protection status"
         #   Pass it to __k_userFriendlyDatum function
 
         set datum (stat -s  $XProtect | __k_userFriendlyDatum)
-        echo "$file               $version_color $version $normal    $datum"
+        echo "$file               $version_color $k_version $normal    $datum"
       case Gatekeeper
-        set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $Gatekeeper)
+        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $Gatekeeper)
         set datum (stat -s  $Gatekeeper | __k_userFriendlyDatum)
-        echo "$file             $version_color $version $normal     $datum"
+        echo "$file             $version_color $k_version $normal     $datum"
       case SIP
-        set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $SIP)
+        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $SIP)
         set datum (stat -s  $SIP | __k_userFriendlyDatum)
-        echo "$file                    $version_color $version $normal    $datum"
+        echo "$file                    $version_color $k_version $normal    $datum"
       case MRT
-        set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $MRT)
+        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $MRT)
         set datum (stat -s  $MRT | __k_userFriendlyDatum)
-        echo "$file                    $version_color $version $normal    $datum"
+        echo "$file                    $version_color $k_version $normal    $datum"
       case CoreSuggest
-        set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $CoreSuggest)
+        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $CoreSuggest)
         set datum (stat -s  $CoreSuggest | __k_userFriendlyDatum)
-        echo "$file            $version_color $version $normal    $datum"
+        echo "$file            $version_color $k_version $normal    $datum"
       case IncompatibleKernelExt
-        set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $IncompatibleKernelExt)
+        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $IncompatibleKernelExt)
         set datum (stat -s  $IncompatibleKernelExt | __k_userFriendlyDatum)
-        echo "$file  $version_color $version $normal  $datum"
+        echo "$file  $version_color $k_version $normal  $datum"
       case CoreLSDK
-        set version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $CoreLSDK)
+        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $CoreLSDK)
         set datum (stat -s  $CoreLSDK | __k_userFriendlyDatum)
-        echo "$file               $version_color $version $normal       $datum"
+        echo "$file               $version_color $k_version $normal       $datum"
     end
   end
 
