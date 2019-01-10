@@ -30,9 +30,4 @@ function apply_settings -d 'setup fish universal variables'
   set -U fish_pager_color_progress 383f4c --background=bdc3c7    # the color of the progress bar at the bottom left corner
   set -U fish_pager_color_secondary add8e6                       # the background color of the every second completion
   
-  # fix character width for emoji's (affects the prompt character)
-  # As reported: https://github.com/fish-shell/fish-shell/issues/5501
-  # Terminal > Profiles > Advanced: check Unicode East Asian Ambiguous characters are wide
-  # iTerm > Profiles > Text: check Ambiguous characters are double-width
-  set -U fish_emoji_width 2
 end
