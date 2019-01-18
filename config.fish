@@ -61,6 +61,11 @@ set -gx GREP_COLOR '4;32'                 # green underlined
 # ls colors
 set -gx LSCOLORS 'gxfxbgdxBxxfhehbagabad'          # see man ls
 
+# tree colors (make them the same as LSCOLORS)
+#   using https://geoff.greer.fm/lscolors/
+#   it is using the Linux format strings
+set -gx TREE_COLORS 'di=36:ln=35:so=31;46:pi=33:ex=1;31:bd=0;45:cd=37;44:su=37;41:sg=30;46:tw=30;41:ow=30;43'
+
 # Settings for timing helper function
 set fish_command_timer_enabled 1                # enable command timer
 set fish_command_timer_color 808080             # light gray
