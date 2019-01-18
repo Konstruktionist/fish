@@ -30,8 +30,8 @@ set fish_prompt_pwd_dir_length 3
 # setup ripgrep's config path
 set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/ripgreprc
 
-# setup bat's default theme
-set -gx BAT_THEME OneHalfDark
+# setup bat's config path
+set -gx BAT_CONFIG_PATH $HOME/.config/bat/bat.conf 
 
 # LESS with colors (options explained)
 # F   automatically exit if entire file fits on the first screen
@@ -60,6 +60,9 @@ set -gx GREP_COLOR '4;32'                 # green underlined
 
 # ls colors
 set -gx LSCOLORS 'gxfxbgdxBxxfhehbagabad'          # see man ls
+
+# FZF config
+set -gx FZF_DEFAULT_OPTS "--height 40% --layout=reverse --inline-info --preview 'bat {}'"
 
 # tree colors (make them the same as LSCOLORS)
 #   using https://geoff.greer.fm/lscolors/
