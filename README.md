@@ -1,7 +1,7 @@
 # A short description of the functions
 
 
-  **Functions with dependencies on non-standard installed tools (on macOS 10.13)**
+  **Functions with dependencies on non-standard installed tools (on macOS 10.14)**
 
 | function      | depends on                                                      | which is installed by |
 | ------------- | --------------------------------------------------------------- | --------------------- |
@@ -112,6 +112,9 @@ Extract dates from filenames and put those in the date created & modified metada
 Emulates the `free` function from Linux.  
 Shows free & used memory in human readable format.
 
+* **fzf**
+The famous [fzf][fzf] (fuzzy finder) is also present here, with some keybindings files. `fish_user_key_bindings.fish` and a sym-linked file `fzf_key_bindings.fish`.  
+
 * **getnet**  
 Get network information.  
 I don't use this anymore because newer Mac's may not have a physical Ethernet port.  
@@ -158,14 +161,14 @@ It shows version number & date/time last updated of:
 
 * **netinfo**  
 Get network information.  
-The  successor of getnet.fish.  
+The  successor of `getnet.fish`.  
 Works on Mac's without a physical Ethernet port. See in the comments.  
 
 * **npodl**  
 Download a video with [youtube-dl][ytdl] with predefined setting.
 
 * **nvimrc**  
-Open the init.vim file.
+Open the `init.vim` file.
 
 * **print\_fish\_colors**  
 Prints a table of colors used by fish.
@@ -189,18 +192,22 @@ Move a specified file to the Trash.
 Transcode a video to 720p & add dutch subtitles if available. Uses Don Melton's [video transcoding tools][donmelton].  
 
 * **updhosts**  
-Update my /private/etc/hosts file from [four][someonewhocares] [different][mvps] [online][yoyo] [sources][SB] and append my personal blocklist to it.  
+Update my `/private/etc/hosts` file from [four][someonewhocares] [different][mvps] [online][yoyo] [sources][SB] and append my personal blocklist to it.  
 Then flush the DNS cache to make the changes take effect.  
 All to block ads & malware sites, trackers and other annoyances like facebook & co.
 
 * **vimrc**  
-Open the .vimrc file.
+Open the `.vimrc` file.
 
 * **vidl**  
 Download a video with [youtube-dl][ytdl] with predefined setting.  
 
 * **weer**  
 The weather forecast for a city. Type in `city,country` (case insensitive) as arguments.
+
+* **z**  
+[z][z] lets you jump around directories. It learns while you `cd` to directories and scores how often you go to a particular directory. It uses that info to decide where to go. You don't have to be precise with dir-names, it does some sort of fuzzy finding.  
+The `z` command lives in `conf.d` & sets up the whole system. Inside `functions` there are `__z*` files that perform various actions. The last file of this is the `uninstall.fish` which removes the files that `z` creates.  
 
 
 ---
@@ -234,3 +241,5 @@ Also if you find bugs, ditto.
 [imgur]: https://i.imgur.com/6fxypDK.png
 [GB]: https://github.com/garybernhardt/dotfiles
 [Textual]: https://i.imgur.com/IEm8pXQ.png
+[z]: https://github.com/jethrokuan/z
+[fzf]: https://github.com/junegunn/fzf
