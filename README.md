@@ -112,7 +112,7 @@ Extract dates from filenames and put those in the date created & modified metada
 Emulates the `free` function from Linux.  
 Shows free & used memory in human readable format.
 
-* **fzf**
+* **fzf**  
 The famous [fzf][fzf] (fuzzy finder) is also present here, with some keybindings files. `fish_user_key_bindings.fish` and a sym-linked file `fzf_key_bindings.fish`.  
 
 * **getnet**  
