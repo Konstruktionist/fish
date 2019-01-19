@@ -27,10 +27,8 @@ set -gx VISUAL mate
 # Set length of dir names if path is larger than 60 chars
 set fish_prompt_pwd_dir_length 3
 
-# setup ripgrep's config path
+# setup config paths
 set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/ripgreprc
-
-# setup bat's config path
 set -gx BAT_CONFIG_PATH $HOME/.config/bat/bat.conf 
 
 # LESS with colors (options explained)
@@ -56,18 +54,21 @@ set -gx LESS_TERMCAP_ue \e'[0m'           # end underline
 set -gx LESS_TERMCAP_me \e'[0m'           # end mode
 
 # grep colors
-set -gx GREP_COLOR '4;33'                 # green underlined
+set -gx GREP_COLOR '4;33'                 # yellow underlined
 
 # ls colors
-set -gx LSCOLORS 'gxfxbgdxBxxfhehbagabad'          # see man ls
-
-# FZF config
-set -gx FZF_DEFAULT_OPTS "--color=hl:#f1f227,hl+:#f1f227 --height 40% --layout=reverse --inline-info --preview 'bat {}'"
+set -gx LSCOLORS 'gxfxbgdxBxxfhehbagabad' # see man ls
 
 # tree colors (make them the same as LSCOLORS)
 #   using https://geoff.greer.fm/lscolors/
 #   it is using the Linux format strings
 set -gx TREE_COLORS 'di=36:ln=35:so=31;46:pi=33:ex=1;31:bd=0;45:cd=37;44:su=37;41:sg=30;46:tw=30;41:ow=30;43'
+
+# FZF config
+set -gx FZF_DEFAULT_OPTS "
+--color=fg:-1,bg:-1,spinner:5,marker:4
+--color=hl:220,hl+:226
+--height 40% --multi --layout=reverse --inline-info --preview 'bat {}'"
 
 # Settings for timing helper function
 set fish_command_timer_enabled 1                # enable command timer
