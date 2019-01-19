@@ -56,13 +56,13 @@ set -gx LESS_TERMCAP_ue \e'[0m'           # end underline
 set -gx LESS_TERMCAP_me \e'[0m'           # end mode
 
 # grep colors
-set -gx GREP_COLOR '4;32'                 # green underlined
+set -gx GREP_COLOR '4;33'                 # green underlined
 
 # ls colors
 set -gx LSCOLORS 'gxfxbgdxBxxfhehbagabad'          # see man ls
 
 # FZF config
-set -gx FZF_DEFAULT_OPTS "--height 40% --layout=reverse --inline-info --preview 'bat {}'"
+set -gx FZF_DEFAULT_OPTS "--color=hl:#f1f227,hl+:#f1f227 --height 40% --layout=reverse --inline-info --preview 'bat {}'"
 
 # tree colors (make them the same as LSCOLORS)
 #   using https://geoff.greer.fm/lscolors/
