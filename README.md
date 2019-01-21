@@ -3,16 +3,17 @@
 
   **Functions with dependencies on non-standard installed tools (on macOS 10.14)**
 
-| function      | depends on                                                      | which is installed by |
-| ------------- | --------------------------------------------------------------- | --------------------- |
-| build_iosevka | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_        |
-| chosts        | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_        |
-| mdb           | _[tag][tag]_                                                    | _[brew][brew]_        |
-| mwp_status    | _[dateutils][fresse]_                                           | _[brew][brew]_        |
-| testmovies    | _[mediainfo][mediaarea]_                                        | _[brew][brew]_        |
-| tv            | _[video_transcoding][donmelton]_                                | _[gem][gem]_          |
-| npodl & vidl  | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
-| fixdate       | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_      |
+| function       | depends on                                                      | which is installed by |
+| -------------- | --------------------------------------------------------------- | --------------------- |
+| build_iosevka  | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_        |
+| chosts         | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_        |
+| mdb            | _[tag][tag]_                                                    | _[brew][brew]_        |
+| mwp_status     | _[dateutils][fresse]_                                           | _[brew][brew]_        |
+| testmovies     | _[mediainfo][mediaarea]_                                        | _[brew][brew]_        |
+| tv             | _[video_transcoding][donmelton]_                                | _[gem][gem]_          |
+| npodl & vidl   | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
+| fixdate        | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_      |
+| fixmp4metadata | _[AtomicParsley][AtomicParsley]_                                | _[brew][brew]_        |
 
 
 >  \* From its local manpage:  
@@ -107,6 +108,9 @@ functions for the shell's own use.
 
 * **fixdate**  
 Extract dates from filenames and put those in the date created & modified metadata.
+
+* **fixmp4metadata**  
+Fixes titles and clears comments for mp4 files and then calls `fixdate` function to fix the dates.
 
 * **free**  
 Emulates the `free` function from Linux.  
@@ -243,3 +247,4 @@ Also if you find bugs, ditto.
 [Textual]: https://i.imgur.com/IEm8pXQ.png
 [z]: https://github.com/jethrokuan/z
 [fzf]: https://github.com/junegunn/fzf
+[AtomicParsley]: http://atomicparsley.sourceforge.net
