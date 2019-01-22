@@ -68,7 +68,7 @@ set -gx TREE_COLORS 'di=36:ln=35:so=31;46:pi=33:ex=1;31:bd=0;45:cd=37;44:su=37;4
 set -gx FZF_DEFAULT_OPTS "
 --color=fg:-1,bg:-1,spinner:5,marker:4
 --color=hl:220,hl+:226
---height 40% --multi --layout=reverse --inline-info --preview 'bat {}'"
+--height 40% --multi --layout=reverse --preview 'bat --line-range :30 {}'"
 
 # Settings for timing helper function
 set fish_command_timer_enabled 1                # enable command timer
