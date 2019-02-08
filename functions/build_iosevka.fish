@@ -18,9 +18,10 @@ function build_iosevka -d "build custom version Iosevka font"
 
   # We have one, so let's move to the repository
   cd $HOME/GitRepos/Iosevka
-  # Start from a clean slate i.e. remove build & dist folders
+  # Start from a clean slate: remove build, dist folders & JSON files
   set_color f7ca18; echo "Cleaning up from last build"; set_color normal
   rm  -rf ./build ./dist
+  rm -f *.json
 
   # Update to latest version
   git pull
