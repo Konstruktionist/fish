@@ -18,10 +18,9 @@ function prompt_git_status -d 'Write out the git status'
   set color_git_dirty (set_color ff8787)              # red
   #  states
   set color_git_added (set_color ffff00 --bold)       # yellow
-  # set color_git_copied (set_color aeabd3 --bold)      # purple
   set color_git_deleted (set_color ff8787 --bold)     # red
-  set color_git_modified (set_color 00bfff --bold)    # blue
-  set color_git_renamed (set_color f39c12 --bold)     # purple
+  set color_git_modified (set_color d6affe --bold)    # purple
+  set color_git_renamed (set_color 00bfff --bold)     # blue
   set color_git_unmerged (set_color ff8787 --bold)    # red
   set color_git_untracked (set_color f2ca27 --bold)   # yellow
   set color_git_stashed (set_color cyan)
