@@ -11,5 +11,5 @@
 #   https://apple.stackexchange.com/questions/328703/
 
 function mans -d 'Search manpage given in argument 1 for term given in argument 2'
-  man $argv[1] | col -b | grep -iC7 --color=always $argv[2] | less -RX
+  man $argv[1] | col -b | rg -iC7 --color=always -e $argv[2] | less -RX
 end
