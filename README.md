@@ -7,13 +7,14 @@
 | -------------- | --------------------------------------------------------------- | --------------------- |
 | build_iosevka  | _[nodejs][nodejs], [ttfautohint][ttfautohint] & [otfcc][otfcc]_ | _[brew][brew]_        |
 | chosts         | _[dateutils][fresse] & [wget][wget]_                            | _[brew][brew]_        |
-| mdb            | _[tag][tag]_                                                    | _[brew][brew]_        |
-| mwp_status     | _[dateutils][fresse]_                                           | _[brew][brew]_        |
-| testmovies     | _[mediainfo][mediaarea]_                                        | _[brew][brew]_        |
-| tv             | _[video_transcoding][donmelton]_                                | _[gem][gem]_          |
-| npodl & vidl   | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
 | fixdate        | _[SetFile][SetFile]_ *                                          | _[Xcode][Xcode]_      |
 | fixmp4metadata | _[AtomicParsley][AtomicParsley]_                                | _[brew][brew]_        |
+| mans           | _[ripgrep][ripgrep]_                                            | _[brew][brew]_        |
+| mdb            | _[tag][tag]_                                                    | _[brew][brew]_        |
+| mwp_status     | _[dateutils][fresse]_                                           | _[brew][brew]_        |
+| npodl & vidl   | _[youtube-dl][ytdl]_                                            | _[brew][brew]_        |
+| testmovies     | _[mediainfo][mediaarea]_                                        | _[brew][brew]_        |
+| tv             | _[video_transcoding][donmelton]_                                | _[gem][gem]_          |
 
 
 >  \* From its local manpage:  
@@ -248,3 +249,4 @@ Also if you find bugs, ditto.
 [z]: https://github.com/jethrokuan/z
 [fzf]: https://github.com/junegunn/fzf
 [AtomicParsley]: http://atomicparsley.sourceforge.net
+[ripgrep]: https://github.com/BurntSushi/ripgrep
