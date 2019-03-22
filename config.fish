@@ -79,3 +79,5 @@ set fish_command_timer_time_format '%H:%M:%S'   # 24 hour clock with minutes & s
 # Get access to tokens
 source ~/.my_tokens
 
+# setup exa colors
+source $HOME/.config/exa/EXA_COLORS
