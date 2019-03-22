@@ -18,10 +18,9 @@ function build_iosevka -d "build custom version Iosevka font"
 
   # We have one, so let's move to the repository
   cd $HOME/GitRepos/Iosevka
-  # Start from a clean slate: remove build, dist folders & JSON files
+  # Start from a clean slate: remove build & dist folders
   set_color f7ca18; echo "Cleaning up from last build"; set_color normal
   rm  -rf ./build ./dist
-  rm -f *.json
 
   # Update to latest version
   git pull
@@ -42,7 +41,7 @@ function build_iosevka -d "build custom version Iosevka font"
 
   # Build font
   set_color f7ca18; echo "Building Iosevka...."; set_color normal
-  npm run build -- contents:iosevka-custom
+  npm run build -- contents::iosevka-custom
 
   # Check for build errors and bail out if there are any
   if test "$status" -ne 0
