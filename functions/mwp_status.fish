@@ -11,6 +11,8 @@ function mwp_status -d "Check Apple's malware protection status"
   set red (set_color ff8787)
 
   # Files & their Paths:
+  # These paths will change with macOS 10.15 (Catalina). See:
+  # https://eclecticlight.co/2019/08/21/its-time-to-test-your-scripts-against-catalinas-path-changes/
   set -l XProtect '/System/Library/CoreServices/XProtect.bundle/Contents/version.plist'
   set -l Gatekeeper '/private/var/db/gkopaque.bundle/Contents/version.plist'
   set -l SIP '/System/Library/Sandbox/Compatibility.bundle/Contents/version.plist'
