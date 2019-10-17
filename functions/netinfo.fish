@@ -44,7 +44,7 @@ function netinfo -d "get network information"
 
         # Do we have an IP address?
         # Then give us the information
-        set label (ifconfig -uv $val | grep 'type' | awk '{print $2}')
+        set label (ifconfig -uv $val | grep 'type: ' | awk '{print $2}')
         set macaddress (ifconfig -uv $val | grep 'ether ' | awk '{print $2}')
         set quality (ifconfig -uv $val | grep 'link quality:' | awk '{print $3, $4}')
         set netmask (ipconfig getpacket $val | grep 'subnet_mask (ip):' | awk '{print $3}')
