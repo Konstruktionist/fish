@@ -15,10 +15,10 @@ function mwp_status -d "Check Apple's malware protection status"
   # https://eclecticlight.co/2019/08/21/its-time-to-test-your-scripts-against-catalinas-path-changes/
   set -l XProtect '/System/Library/CoreServices/XProtect.bundle/Contents/version.plist'
   set -l Gatekeeper '/private/var/db/gkopaque.bundle/Contents/version.plist'
-  set -l SIP '/System/Library/Sandbox/Compatibility.bundle/Contents/version.plist'
-  set -l MRT '/System/Library/CoreServices/MRT.app/Contents/version.plist'
-  set -l CoreSuggest '/System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/Versions/A/Resources/Assets.suggestionsassets/Contents/Info.plist'
-  set -l IncompatibleKernelExt '/System/Library/Extensions/AppleKextExcludeList.kext/Contents/version.plist'
+  # set -l SIP '/System/Library/Sandbox/Compatibility.bundle/Contents/version.plist'
+  set -l MRT '/Library/Apple/System/Library/CoreServices/MRT.app/Contents/version.plist'
+  set -l CoreSuggest '/System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/Versions/A/Resources/Assets.suggestionsassets/Info.plist'
+  set -l IncompatibleKernelExt '/Library/Apple/System/Library/Extensions/AppleKextExcludeList.kext/Contents/version.plist'
   set -l CoreLSDK '/usr/share/kdrl.bundle/info.plist'
 
   set -l fileName XProtect Gatekeeper SIP MRT CoreSuggest IncompatibleKernelExt CoreLSDK
@@ -43,10 +43,10 @@ function mwp_status -d "Check Apple's malware protection status"
         set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $Gatekeeper)
         set datum (stat -s  $Gatekeeper | __k_userFriendlyDatum)
         echo "$file             $version_color $k_version $normal     $datum"
-      case SIP
-        set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $SIP)
-        set datum (stat -s  $SIP | __k_userFriendlyDatum)
-        echo "$file                    $version_color $k_version $normal    $datum"
+      # case SIP
+      #   set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $SIP)
+      #   set datum (stat -s  $SIP | __k_userFriendlyDatum)
+      #   echo "$file                    $version_color $k_version $normal    $datum"
       case MRT
         set k_version (awk -F[<>] '/CFBundleShortVersionString/ { getline; print $3}' $MRT)
         set datum (stat -s  $MRT | __k_userFriendlyDatum)
