@@ -73,7 +73,7 @@ function fish_prompt -d 'Write out the prompt'
     set_color $fish_color_error # Red
     echo -n "[$last_status]"
   end
-  # prompt indicator = BLACK CIRCLE (U+25CF) followed by INTERROBANG (U+203D) and a space
-  set_color -o; echo -n '●‽ '
+  # prompt indicator = INTERROBANG (U+203D) and a space
+  set_color -o; echo -n '‽ '
   set_color normal
 end
