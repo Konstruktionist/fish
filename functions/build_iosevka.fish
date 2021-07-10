@@ -1,7 +1,7 @@
 function build_iosevka -d "build custom version Iosevka font"
 
-  # Dependencies: nodejs, ttfautohint & otfcc
-  # =========================================
+  # Dependencies: nodejs, ttfautohint, otfcc & 7z
+  # =============================================
   # installed via homebrew
 
 
@@ -13,17 +13,12 @@ function build_iosevka -d "build custom version Iosevka font"
   if not test -d "$HOME/GitRepos/Iosevka"
     # Then create one
     cd $HOME/GitRepos
-    git clone https://github.com/be5invis/Iosevka.git
+    # Create a shallow clone
+    git clone --depth=1 https://github.com/be5invis/Iosevka.git
   end
 
   # We have one, so let's move to the repository
   cd $HOME/GitRepos/Iosevka
-  # Start from a clean slate: remove build & dist folders
-  set_color f7ca18; echo "Cleaning up from last build"; set_color normal
-  rm  -rf ./build ./dist
-
-  # Update to latest version
-  git pull
 
   # Upgrade to latest version of required tools
   # brew upgrade node ttfautohint otfcc-mac64
@@ -41,7 +36,7 @@ function build_iosevka -d "build custom version Iosevka font"
 
   # Build font
   set_color f7ca18; echo "Building Iosevka...."; set_color normal
-  npm run build -- contents::iosevka-custom
+  npm run build -- ttf::iosevka-custom # just the Truetype fonts
 
   # Check for build errors and bail out if there are any
   if test "$status" -ne 0
@@ -51,7 +46,7 @@ function build_iosevka -d "build custom version Iosevka font"
     set_color f7ca18; echo "Archiving fonts on desktop"; set_color normal
     7z a -t7z Iosevka-custom
     mv Iosevka-custom.7z $HOME/Desktop/
-    set_color f7ca18; echo "Placing fonts into $HOME/Library/Fonts"; set_color normal
+    set_color f7ca18; echo -e "\nPlacing fonts into $HOME/Library/Fonts"; set_color normal
     mv *.ttf $HOME/Library/Fonts/
   end
 
